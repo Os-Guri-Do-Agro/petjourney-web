@@ -3,12 +3,12 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import Image from "next/image";
-import now from "@/assets/home/logos-apoiadores/now.png";
-import bichoMimado from "@/assets/home/logos-apoiadores/bicho-mimado.png";
-import dogHero from "@/assets/home/logos-apoiadores/dog-hero.png";
-import petHealth from "@/assets/home/logos-apoiadores/pet-health.png";
-import dogPlus from "@/assets/home/logos-apoiadores/dog-plus.png";
-import cobasi from "@/assets/home/logos-apoiadores/cobasi.png";
+import now from "@/assets/home/logo-apoiadores/now.png";
+import bichoMimado from "@/assets/home/logo-apoiadores/bicho-mimado.png";
+import dogHero from "@/assets/home/logo-apoiadores/dog-hero.png";
+import petHealth from "@/assets/home/logo-apoiadores/pet-health.png";
+import dogPlus from "@/assets/home/logo-apoiadores/dog-plus.png";
+import cobasi from "@/assets/home/logo-apoiadores/cobasi.png";
 
 export default function Carousel() {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -25,7 +25,7 @@ export default function Carousel() {
 
             gsap.to(container, {
                 x: -totalWidth,
-                duration: 50,
+                duration: 30,
                 ease: "none",
                 repeat: -1,
             });

@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { Button } from "@heroui/react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import Image from "next/image"
@@ -104,15 +103,15 @@ export default function ArticlesSection() {
     return (
         <section
             ref={sectionRef}
-            className="w-full py-10 bg-[#FAF9F6]"
+            className="w-full py-20 bg-[#FAF9F6]"
         >
-            <div className="max-w-7xl mx-auto px-6">
+            <div className="w-full px-5 md:px-20 lg:px-30">
 
-                <div ref={titleRef} className="text-center mb-14">
-                    <h2 className="text-3xl md:text-4xl font-bold text-[#1D3557]">
+                <div ref={titleRef} className="text-center mb-16 space-y-4">
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#1D3557] leading-snug">
                         Artigos
                     </h2>
-                    <p className="text-gray-600 mt-3">
+                    <p className="text-gray-700 text-lg xl:text-xl leading-relaxed max-w-3xl mx-auto">
                         Fique por dentro das curiosidades e notícias mais recentes do mundo pet
                     </p>
                 </div>
@@ -128,7 +127,7 @@ export default function ArticlesSection() {
                             }
                         }}
                         disabled={scrollPosition === 0}
-                        className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-12 h-12 items-center justify-center bg-white rounded-full shadow-lg hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition"
+                        className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-12 h-12 items-center justify-center bg-[#457B9D] text-white rounded-full shadow-lg hover:bg-[#1b2e47] disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-300"
                     >
                         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -145,7 +144,7 @@ export default function ArticlesSection() {
                             }
                         }}
                         disabled={containerRef.current ? scrollPosition >= containerRef.current.scrollWidth - containerRef.current.clientWidth : false}
-                        className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-12 h-12 items-center justify-center bg-white rounded-full shadow-lg hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition"
+                        className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-12 h-12 items-center justify-center bg-[#457B9D] text-white rounded-full shadow-lg hover:bg-[#1b2e47] disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-300"
                     >
                         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -153,37 +152,34 @@ export default function ArticlesSection() {
                     </button>
 
                     {/* Container dos artigos */}
-                    <div ref={containerRef} className="overflow-x-auto md:overflow-x-scroll scrollbar-hide pb-4">
-                        <div className="flex gap-6">
+                    <div ref={containerRef} className="overflow-x-auto md:overflow-x-scroll scrollbar-hide pb-6">
+                        <div className="flex gap-8">
                             {articlesToShow.map((article) => (
                                 <div
                                     key={article.id}
-                                    className="article-card relative rounded-2xl overflow-hidden shadow-lg group shrink-0 w-[300px] md:w-[350px] max-h-110"
+                                    className="article-card relative rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl group shrink-0 w-[320px] md:w-[380px] h-[500px] transition-shadow duration-300"
                                 >
                                     <Image
                                         src={article.image}
                                         alt={article.title}
                                         width={400}
-                                        height={400}
-                                        className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"
+                                        height={500}
+                                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                                     />
 
-                                    <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent" />
+                                    <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/50 to-transparent" />
 
-                                    <div className="absolute bottom-0 p-6 text-white">
-                                        <h3 className="text-lg font-semibold mb-2">
+                                    <div className="absolute bottom-0 p-8 text-white space-y-4">
+                                        <h3 className="text-xl md:text-2xl font-bold leading-tight">
                                             {article.title}
                                         </h3>
-                                        <p className="text-sm text-gray-200 mb-4">
+                                        <p className="text-sm md:text-base text-gray-200 leading-relaxed">
                                             {article.description}
                                         </p>
 
-                                        <Button
-                                            variant="outline"
-                                            className="text-white border-white hover:bg-white hover:text-black transition"
-                                        >
+                                        <button className="bg-[#457B9D] cursor-pointer hover:bg-[#1b2e47] text-white px-8 py-3 rounded-xl transition-all duration-300 font-semibold hover:scale-105 w-full">
                                             Ler mais
-                                        </Button>
+                                        </button>
                                     </div>
                                 </div>
                             ))}

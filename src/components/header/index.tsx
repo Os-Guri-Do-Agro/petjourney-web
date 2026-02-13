@@ -2,6 +2,9 @@
 import Link from 'next/link'
 import { useState, useEffect, useRef } from 'react'
 import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 
 const headerItems = [
     {
@@ -9,41 +12,71 @@ const headerItems = [
         label: 'Home'
     },
     {
-        link: '/sobre',
+        link: '/sobre-nos',
         label: 'PetJourney'
     },
     {
-        link: '/consultas',
-        label: 'Consultas'
+        link: '/servicos',
+        label: 'Serviços'
     },
     {
-        link: '/articles',
+        link: '/artigos',
         label: 'Artigos'
     },
     {
         link: '/educacional',
         label: 'Educacional'
     },
-    {
-        link: '/marketplace',
-        label: 'Marketplace'
-    },
+    // {
+    //     link: '/lojas-parceiras',
+    //     label: 'Parceiros'
+    // },
 ]
 
 export function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const headerRef = useRef(null)
+    const logoRef = useRef(null)
 
     useEffect(() => {
-        gsap.from(headerRef.current, { y: -100, opacity: 0, duration: 0.8 })
+        gsap.from(headerRef.current, { y: -100, opacity: 0, duration: 0.8, ease: 'power3.out' })
+
+        ScrollTrigger.create({
+            start: 'top -50',
+            end: 99999,
+            onEnter: () => {
+                gsap.to(headerRef.current, {
+                    backgroundColor: 'rgba(0, 0, 0, 0.98)',
+                    backdropFilter: 'blur(10px)',
+                    paddingTop: '8px',
+                    paddingBottom: '8px',
+                    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)',
+                    duration: 0.4,
+                    ease: 'power2.out'
+                })
+                gsap.to(logoRef.current, { scale: 0.85, duration: 0.4, ease: 'power2.out' })
+            },
+            onLeaveBack: () => {
+                gsap.to(headerRef.current, {
+                    backgroundColor: 'rgba(0, 0, 0, 0.4)',
+                    backdropFilter: 'blur(0px)',
+                    paddingTop: '16px',
+                    paddingBottom: '16px',
+                    boxShadow: '0 0 0 rgba(0, 0, 0, 0)',
+                    duration: 0.4,
+                    ease: 'power2.out'
+                })
+                gsap.to(logoRef.current, { scale: 1, duration: 0.4, ease: 'power2.out' })
+            }
+        })
     }, [])
 
     return (
-        <div ref={headerRef} className="absolute top-0 left-0 right-0 z-50 bg-black/40 px-4 md:px-8 lg:px-15 py-4 md:py-6" >
+        <div ref={headerRef} className="fixed top-0 left-0 right-0 z-50 bg-black/40 px-4 md:px-8 lg:px-15 py-4 md:py-6" >
             <div className="flex justify-between items-center">
                 <div className='px-2 md:px-5'>
                     <Link href={'/'}>
-                        <img className='w-30 md:w-35 lg:w-45 object-contain hover:scale-105 transition-transform duration-200' src="/logo.png" alt="logo Pet Journey" />
+                        <img ref={logoRef} className='w-30 md:w-35 lg:w-45 object-contain hover:scale-105 transition-transform duration-200' src="/logo.png" alt="logo Pet Journey" />
                     </Link>
                 </div>
 

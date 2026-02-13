@@ -34,10 +34,10 @@ export function Footer() {
                     <div>
                         <h4 className="font-bold text-lg mb-5 text-white">Catálogo</h4>
                         <ul className="space-y-3 text-sm">
-                            <li><Link href="#" className="inline-block text-white/70 hover:text-white hover:translate-x-1 transition-all duration-200">Consultas Veterinárias</Link></li>
-                            <li><Link href="/articles" className="inline-block text-white/70 hover:text-white hover:translate-x-1 transition-all duration-200">Artigos e Dicas</Link></li>
-                            <li><Link href="#" className="inline-block text-white/70 hover:text-white hover:translate-x-1 transition-all duration-200">Conteúdo Educacional</Link></li>
-                            <li><Link href="#" className="inline-block text-white/70 hover:text-white hover:translate-x-1 transition-all duration-200">Marketplace Pet</Link></li>
+                            <li><Link href="/servicos" className="inline-block text-white/70 hover:text-white hover:translate-x-1 transition-all duration-200">Nossos Serviços</Link></li>
+                            <li><Link href="/artigos" className="inline-block text-white/70 hover:text-white hover:translate-x-1 transition-all duration-200">Artigos e Dicas</Link></li>
+                            <li><Link href="/educacional" className="inline-block text-white/70 hover:text-white hover:translate-x-1 transition-all duration-200">Conteúdo Educacional</Link></li>
+                            {/* <li><Link href="/lojas-parceiras" className="inline-block text-white/70 hover:text-white hover:translate-x-1 transition-all duration-200">Lojas Parceiras</Link></li> */}
                         </ul>
                     </div>
 

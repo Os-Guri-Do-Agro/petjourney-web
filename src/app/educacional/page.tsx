@@ -70,11 +70,12 @@ const articles = [
     }
 ]
 
-export default function Artigos() {
+export default function Educacional() {
     const [mounted, setMounted] = useState(false)
     const [selectedCategory, setSelectedCategory] = useState('Todos')
     const heroRef = useRef<HTMLDivElement>(null)
     const textRef = useRef<HTMLDivElement>(null)
+    const missionRef = useRef<HTMLDivElement>(null)
     const articlesRef = useRef<HTMLDivElement>(null)
     const finalRef = useRef<HTMLDivElement>(null)
 
@@ -102,6 +103,20 @@ export default function Artigos() {
                     duration: 1,
                     delay: 0.3,
                     ease: 'power2.out'
+                })
+            }
+
+            if (missionRef.current) {
+                gsap.from(missionRef.current, {
+                    opacity: 0,
+                    y: 30,
+                    duration: 0.8,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: missionRef.current,
+                        start: 'top 80%',
+                        toggleActions: 'play none none reverse'
+                    }
                 })
             }
 
@@ -159,34 +174,40 @@ export default function Artigos() {
             <section className="w-full bg-[#1D3557] py-40 px-5 md:px-20 lg:px-30">
                 <div ref={heroRef} className="text-center text-white">
                     <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold">
-                        Artigos
+                        Educacional
                     </h1>
                 </div>
             </section>
 
-            <section className="w-full min-h-50 flex items-center justify-center py-16 mb-10" >
-                <div className="flex w-full items-center justify-center h-full px-5 md:px-20 lg:px-30">
-                    <div ref={textRef} className="flex w-full h-full text-center items-center justify-center">
-                        <h2 className="text-lg md:text-2xl font-semibold leading-light text-[#1D3557]">
-                            Acreditamos que cada pet merece uma vida longa, feliz e cheia de cuidado. <br />
-                            E que cada tutor merece ter as ferramentas para tornar isso possível.
+            <section className="w-full py-20 bg-linear-to-b from-[#F1FAEE] to-[#FAF9F6]">
+                <div className="px-5 md:px-20 lg:px-30">
+                    <div ref={textRef} className="text-center">
+                        <h2 className="text-2xl md:text-4xl font-bold leading-relaxed text-[#1D3557] mb-4">
+                            Conhecimento que transforma a vida dos pets, e dos humanos também.
                         </h2>
                     </div>
                 </div>
             </section>
 
-            <section className="w-full px-5 md:px-20 lg:px-30 py-10">
-                <p className="text-center text-gray-700 text-lg md:text-xl mb-10 max-w-4xl mx-auto">
-                    Somos uma plataforma que conecta saúde, bem-estar e tecnologia em uma jornada completa de cuidado animal.
-                    Unimos inovação, empatia e informação para facilitar a rotina de tutores e profissionais da área veterinária.
-                </p>
+            <section className="w-full py-16 bg-[#FAF9F6]">
+                <div className="px-5 md:px-20 lg:px-30">
+                    <div ref={missionRef} className="relative">
+                        <div className="absolute top-0 bottom-0 w-1 bg-linear-to-b from-[#457B9D] to-[#1D3557] rounded-full"></div>
+                        <p className="text-center text-gray-700 text-lg md:text-xl leading-relaxed pl-6">
+                            Somos uma plataforma que conecta saúde, bem-estar e tecnologia em uma jornada completa de cuidado animal. Unimos inovação, empatia e informação para facilitar a rotina de tutores e profissionais da área veterinária.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section className="w-full px-5 md:px-20 lg:px-30 py-10 bg-[#FAF9F6]">
 
                 <div className="flex flex-col lg:flex-row gap-8">
 
                     <div className="lg:w-3/4">
                         <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
                             <h3 className="text-2xl md:text-3xl font-bold text-[#1D3557]">
-                                Últimos Artigos
+                                Últimos Posts
                             </h3>
 
                             <select
@@ -282,7 +303,7 @@ export default function Artigos() {
                 </div>
             </section>
 
-            <section className="w-full flex justify-center pt-20 bg-[#FAF9F6]">
+            <section className="w-full flex justify-center pt-20 bg-[#FAF9F6] overflow-hidden">
                 <div ref={finalRef} className="w-full bg-[#457B9D] flex flex-col md:flex-row items-center gap-10">
 
                     <div className=" w-full md:w-1/2 relative h-[500px] md:h-[450px]">

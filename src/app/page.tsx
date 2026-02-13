@@ -72,7 +72,6 @@ export default function Home() {
             start: 'top 70%',
             toggleActions: 'play none none reverse'
           },
-          x: -100,
           opacity: 0,
           duration: 1,
           ease: 'power3.out'
@@ -87,7 +86,6 @@ export default function Home() {
             start: 'top 70%',
             toggleActions: 'play none none reverse'
           },
-          x: 100,
           opacity: 0,
           duration: 1,
           ease: 'power3.out'
@@ -103,7 +101,6 @@ export default function Home() {
             start: 'top 70%',
             toggleActions: 'play none none reverse'
           },
-          x: -100,
           opacity: 0,
           duration: 1,
           ease: 'power3.out'
@@ -118,7 +115,6 @@ export default function Home() {
             start: 'top 70%',
             toggleActions: 'play none none reverse'
           },
-          x: 100,
           opacity: 0,
           duration: 1,
           ease: 'power3.out'
@@ -237,7 +233,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section ref={section1Ref} className="w-full py-20" style={{ background: 'var(--background)' }}>
+      <section ref={section1Ref} className="w-full py-20 overflow-hidden" style={{ background: 'var(--background)' }}>
 
         <div className="grid md:grid-cols-2">
 
@@ -294,7 +290,7 @@ export default function Home() {
 
       </section>
 
-      <section className="w-full flex justify-center py-20 bg-[#FAF9F6] px-5 md:px-20 lg:px-30">
+      <section className="w-full flex justify-center py-20 bg-[#FAF9F6] px-5 md:px-20 lg:px-30 overflow-hidden">
         <div ref={vetRef} className="w-full bg-[#457B9D] rounded-2xl flex flex-col md:flex-row items-center gap-10">
 
           <div className=" w-full md:w-1/2 relative h-[500px] md:h-[450px] md:m-5">
@@ -321,7 +317,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full flex justify-center py-20 bg-[#FAF9F6] px-5 md:px-20 lg:px-30">
+      <section className="w-full flex justify-center py-20 bg-[#FAF9F6] px-5 md:px-20 lg:px-30 overflow-hidden">
         <div className="w-full flex flex-col lg:flex-row gap-16">
 
           <div ref={marketplaceRef} className="lg:w-1/2 space-y-6">
@@ -383,7 +379,7 @@ export default function Home() {
         <Artigos />
       </section>
 
-      <section className="w-full flex justify-center pt-20 bg-[#FAF9F6]">
+      <section className="w-full flex justify-center pt-20 bg-[#FAF9F6] overflow-hidden">
         <div ref={finalRef} className="w-full bg-[#457B9D] flex flex-col md:flex-row items-center gap-10">
 
           <div className=" w-full md:w-1/2 relative h-[500px] md:h-[450px]">
