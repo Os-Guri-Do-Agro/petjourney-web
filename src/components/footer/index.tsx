@@ -1,7 +1,9 @@
 "use client"
 
+import { Target } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { FaInstagram, FaFacebook } from "react-icons/fa"
 
 export function Footer() {
     return (
@@ -22,10 +24,16 @@ export function Footer() {
 
                     <div className="flex gap-4">
                         <div className="w-10 h-10 rounded-full border-2 border-white/30 flex items-center justify-center hover:bg-white hover:text-[#243F63] hover:border-white transition-all duration-300 cursor-pointer">
-                            <span className="text-sm">📱</span>
+                            <Link href={'https://www.instagram.com/petjourney.health/'} target="_blank">
+                                <FaInstagram />
+                            </Link>
+
                         </div>
                         <div className="w-10 h-10 rounded-full border-2 border-white/30 flex items-center justify-center hover:bg-white hover:text-[#243F63] hover:border-white transition-all duration-300 cursor-pointer">
-                            <span className="text-sm">📧</span>
+                            <Link href={'https://www.facebook.com/petjourney.health'} target="_blank">
+                                <FaFacebook />
+                            </Link>
+
                         </div>
                     </div>
                 </div>

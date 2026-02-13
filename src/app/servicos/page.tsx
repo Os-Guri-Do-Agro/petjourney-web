@@ -249,7 +249,7 @@ export default function Servicos() {
                         Cuidar é prevenir, acompanhar e proteger.
                     </h2>
 
-                    <div ref={careContentRef} className="flex flex-col md:flex-row gap-8 items-center max-w-6xl mx-auto">
+                    <div ref={careContentRef} className="flex flex-col md:flex-row gap-8 items-center">
                         <div className="w-full md:w-1/2 grid grid-cols-1 gap-6">
                             <div className="bg-white p-8 rounded-2xl shadow-lg">
                                 <div className="flex items-center gap-3 mb-4">

@@ -76,6 +76,7 @@ export default function Artigos() {
     const heroRef = useRef<HTMLDivElement>(null)
     const textRef = useRef<HTMLDivElement>(null)
     const missionRef = useRef<HTMLDivElement>(null)
+    const featuredRef = useRef<HTMLDivElement>(null)
     const articlesRef = useRef<HTMLDivElement>(null)
     const finalRef = useRef<HTMLDivElement>(null)
 
@@ -117,6 +118,21 @@ export default function Artigos() {
                         start: 'top 80%',
                         toggleActions: 'play none none reverse'
                     }
+                })
+            }
+
+            if (featuredRef.current?.children) {
+                gsap.from(Array.from(featuredRef.current.children), {
+                    scrollTrigger: {
+                        trigger: featuredRef.current,
+                        start: 'top 75%',
+                        toggleActions: 'play none none reverse'
+                    },
+                    opacity: 0,
+                    scale: 0.95,
+                    duration: 0.8,
+                    stagger: 0.2,
+                    ease: 'power2.out'
                 })
             }
 
@@ -203,15 +219,82 @@ export default function Artigos() {
                 </div>
             </section>
 
+            <section className="w-full py-16 bg-[#FAF9F6]">
+                <div className="w-full px-5 md:px-20 lg:px-30 py-10">
+                    <h3 className="text-2xl md:text-3xl font-bold text-[#1D3557] mb-8">
+                        Últimos Posts
+                    </h3>
+
+                    <div ref={featuredRef} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="relative h-[400px] md:h-[500px] group cursor-pointer">
+                            <Image
+                                src={articles[0].image}
+                                alt={articles[0].title}
+                                fill
+                                sizes="(max-width: 768px) 100vw, 50vw"
+                                className="object-cover rounded-xl shadow-lg"
+                            />
+                            <div className="absolute inset-0 bg-linear-to-t from-black/70 to-transparent rounded-xl flex flex-col justify-end p-6">
+                                <span className={`${getCategoryColor(articles[0].category)} text-white px-3 py-1 rounded-full text-xs font-semibold w-fit mb-3`}>
+                                    {articles[0].category}
+                                </span>
+                                <h4 className="text-2xl font-bold text-white mb-2">{articles[0].title}</h4>
+                                <p className="text-gray-200 text-sm">{articles[0].date}</p>
+                            </div>
+                        </div>
+
+                        <div className="flex flex-col gap-6">
+                            <div className="relative h-[190px] md:h-[240px] group cursor-pointer">
+                                <Image
+                                    src={articles[1].image}
+                                    alt={articles[1].title}
+                                    fill
+                                    sizes="(max-width: 768px) 100vw, 50vw"
+                                    className="object-cover rounded-xl shadow-lg"
+                                />
+                                <div className="absolute inset-0 bg-linear-to-t from-black/70 to-transparent rounded-xl flex flex-col justify-end p-4">
+                                    <span className={`${getCategoryColor(articles[1].category)} text-white px-3 py-1 rounded-full text-xs font-semibold w-fit mb-2`}>
+                                        {articles[1].category}
+                                    </span>
+                                    <h4 className="text-lg font-bold text-white mb-1">{articles[1].title}</h4>
+                                    <p className="text-gray-200 text-xs">{articles[1].date}</p>
+                                </div>
+                            </div>
+
+                            <div className="relative h-[190px] md:h-[240px] group cursor-pointer">
+                                <Image
+                                    src={articles[2].image}
+                                    alt={articles[2].title}
+                                    fill
+                                    sizes="(max-width: 768px) 100vw, 50vw"
+                                    className="object-cover rounded-xl shadow-lg"
+                                />
+                                <div className="absolute inset-0 bg-linear-to-t from-black/70 to-transparent rounded-xl flex flex-col justify-end p-4">
+                                    <span className={`${getCategoryColor(articles[2].category)} text-white px-3 py-1 rounded-full text-xs font-semibold w-fit mb-2`}>
+                                        {articles[2].category}
+                                    </span>
+                                    <h4 className="text-lg font-bold text-white mb-1">{articles[2].title}</h4>
+                                    <p className="text-gray-200 text-xs">{articles[2].date}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <section className="w-full px-5 md:px-20 lg:px-30 py-10 bg-[#FAF9F6]">
 
                 <div className="flex flex-col lg:flex-row gap-8">
 
                     <div className="lg:w-3/4">
                         <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
-                            <h3 className="text-2xl md:text-3xl font-bold text-[#1D3557]">
-                                Últimos Artigos
-                            </h3>
+                            <div className="flex items-center w-full gap-5">
+                                <h3 className="text-2xl md:text-3xl font-bold text-[#1D3557]">
+                                    Todos
+                                </h3>
+                                <input className='w-full max-w-2xl border-[#1D3557] border-2 rounded-lg px-4 py-2 text-[#1D3557] focus:outline-none focus:ring-2 focus:ring-[#1D3557]' placeholder="O'que está farejando?" type="text" />
+                            </div>
+
 
                             <select
                                 value={selectedCategory}
@@ -227,13 +310,13 @@ export default function Artigos() {
                             </select>
                         </div>
 
-                        <div ref={articlesRef} className="grid md:grid-cols-2 gap-6">
+                        <div ref={articlesRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                             {filteredArticles.map((article, index) => (
                                 <div
                                     key={article.id}
                                     className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow cursor-pointer"
                                 >
-                                    <div className="relative h-100">
+                                    <div className="relative h-48">
                                         <Image
                                             src={article.image}
                                             alt={article.title}
@@ -245,23 +328,23 @@ export default function Artigos() {
                                         />
                                     </div>
 
-                                    <div className="p-6 space-y-3">
-                                        <div className="flex items-center justify-between text-sm text-gray-500">
-                                            <span className={`${getCategoryColor(article.category)} text-white px-3 py-1 rounded-full text-xs font-semibold shadow-md`}>
+                                    <div className="p-4 space-y-2">
+                                        <div className="flex items-center justify-between text-xs text-gray-500">
+                                            <span className={`${getCategoryColor(article.category)} text-white px-2 py-1 rounded-full text-xs font-semibold shadow-md`}>
                                                 {article.category}
                                             </span>
                                             <span>{article.date}</span>
                                         </div>
 
-                                        <h4 className="text-xl font-bold text-[#1D3557]">
+                                        <h4 className="text-lg font-bold text-[#1D3557] line-clamp-2">
                                             {article.title}
                                         </h4>
 
-                                        <p className="text-gray-600 line-clamp-2">
+                                        <p className="text-gray-600 text-sm line-clamp-2">
                                             {article.excerpt}
                                         </p>
 
-                                        <button className="text-[#1D3557] font-semibold hover:underline cursor-pointer">
+                                        <button className="text-[#1D3557] text-sm font-semibold hover:underline cursor-pointer">
                                             Ler mais →
                                         </button>
                                     </div>
