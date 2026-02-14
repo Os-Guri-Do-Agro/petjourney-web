@@ -10,15 +10,28 @@ import tutorImg from '@/assets/home/tutor.jpg'
 import aveImg from '@/assets/home/ave.jpg'
 import coelhoImg from '@/assets/home/coelho.jpg'
 import bgSection from '@/assets/home/bg-section_2.jpg'
+import { artigoService } from '@/service/artigo/artigo-service'
 
 gsap.registerPlugin(ScrollTrigger)
 
-export default function ArtigoPage({ params }: { params: { slug: string } }) {
+export default function ArtigoPage({ params }: { params: { id: string } }) {
     const [mounted, setMounted] = useState(false)
     const coverRef = useRef<HTMLDivElement>(null)
     const contentRef = useRef<HTMLDivElement>(null)
+    const [artigo, setArtigo] = useState<any>(null)
+
+    // const infoArtigo = async () => {
+    //     try {
+    //         console.log(params.id)
+    //         const response = await artigoService.getArtigoById(id)
+    //         setArtigo(response.data.data)
+    //     } catch (error) {
+    //         console.error('Erro ao buscar artigo:', error)
+    //     }
+    // }
 
     useEffect(() => {
+        // infoArtigo()
         setMounted(true)
     }, [])
 

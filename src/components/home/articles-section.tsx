@@ -5,48 +5,12 @@ import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import Image from "next/image"
 import ArtigoImg from "@/assets/home/artigo-img.jpg"
+import { artigoService } from "@/service/artigo/artigo-service"
+import { categoriaArtigoService } from "@/service/categori-artigo/categoriaArtigo-service"
 
 if (typeof window !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger)
 }
-
-const articles = [
-    {
-        id: 1,
-        title: "Título artigo",
-        description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry...",
-        image: ArtigoImg,
-    },
-    {
-        id: 2,
-        title: "Título artigo",
-        description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry...",
-        image: ArtigoImg,
-    },
-    {
-        id: 3,
-        title: "Título artigo",
-        description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry...",
-        image: ArtigoImg,
-    },
-    {
-        id: 4,
-        title: "Título artigo",
-        description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry...",
-        image: ArtigoImg,
-    },
-    {
-        id: 5,
-        title: "Título artigo",
-        description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry...",
-        image: ArtigoImg,
-    },
-]
 
 export default function ArticlesSection() {
     const [mounted, setMounted] = useState(false)
@@ -54,14 +18,28 @@ export default function ArticlesSection() {
     const sectionRef = useRef<HTMLDivElement>(null)
     const titleRef = useRef<HTMLDivElement>(null)
     const containerRef = useRef<HTMLDivElement>(null)
-    const articlesToShow = articles.slice(0, 4)
+    const [artigos, setArtigos] = useState<any[]>([])
+    const [page, setPage] = useState(1)
+    const [limit, setLimit] = useState(6)
+
+    const buscarArtigos = async () => {
+        try {
+            const response = await artigoService.getAllArtigos(page, limit, '', '')
+            setArtigos(response.data.data.data || [])
+        } catch (e) {
+            console.error('Erro ao buscar artigos:', e)
+        }
+    }
+
+
 
     useEffect(() => {
         setMounted(true)
+        buscarArtigos()
     }, [])
 
     useEffect(() => {
-        if (!mounted) return
+        if (!mounted || artigos.length === 0) return
 
         const ctx = gsap.context(() => {
             // Title animation
@@ -98,7 +76,7 @@ export default function ArticlesSection() {
         })
 
         return () => ctx.revert()
-    }, [mounted])
+    }, [mounted, artigos])
 
     return (
         <section
@@ -154,35 +132,37 @@ export default function ArticlesSection() {
                     {/* Container dos artigos */}
                     <div ref={containerRef} className="overflow-x-auto md:overflow-x-scroll scrollbar-hide pb-6">
                         <div className="flex gap-8">
-                            {articlesToShow.map((article) => (
-                                <div
-                                    key={article.id}
-                                    className="article-card relative rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl group shrink-0 w-[320px] md:w-[380px] h-[500px] transition-shadow duration-300"
-                                >
-                                    <Image
-                                        src={article.image}
-                                        alt={article.title}
-                                        width={400}
-                                        height={500}
-                                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
-                                    />
+                            {Array.isArray(artigos) && artigos.slice(0, 4).map((artigo) => {
+                                const bannerImage = artigo.imagensArtigo?.find((img: any) => img.isBanner)
+                                return (
+                                    <div
+                                        key={artigo.id}
+                                        className="article-card relative rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl group shrink-0 w-[320px] md:w-[380px] h-[500px] transition-shadow duration-300"
+                                    >
+                                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                                        <img
+                                            src={bannerImage?.imagemUrl || ArtigoImg.src}
+                                            alt={artigo.titulo}
+                                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                                        />
 
-                                    <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/50 to-transparent" />
+                                        <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/50 to-transparent" />
 
-                                    <div className="absolute bottom-0 p-8 text-white space-y-4">
-                                        <h3 className="text-xl md:text-2xl font-bold leading-tight">
-                                            {article.title}
-                                        </h3>
-                                        <p className="text-sm md:text-base text-gray-200 leading-relaxed">
-                                            {article.description}
-                                        </p>
+                                        <div className="absolute bottom-0 p-8 text-white space-y-4">
+                                            <h3 className="text-xl md:text-2xl font-bold leading-tight line-clamp-2">
+                                                {artigo.titulo}
+                                            </h3>
+                                            <p className="text-sm md:text-base text-gray-200 leading-relaxed line-clamp-2">
+                                                {artigo.subTitulo}
+                                            </p>
 
-                                        <button className="bg-[#457B9D] cursor-pointer hover:bg-[#1b2e47] text-white px-8 py-3 rounded-xl transition-all duration-300 font-semibold hover:scale-105 w-full">
-                                            Ler mais
-                                        </button>
+                                            <button className="bg-[#457B9D] cursor-pointer hover:bg-[#1b2e47] text-white px-8 py-3 rounded-xl transition-all duration-300 font-semibold hover:scale-105 w-full">
+                                                Ler mais
+                                            </button>
+                                        </div>
                                     </div>
-                                </div>
-                            ))}
+                                )
+                            })}
                         </div>
                     </div>
                 </div>

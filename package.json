@@ -10,6 +10,7 @@
   "dependencies": {
     "@heroui/react": "^3.0.0-beta.6",
     "@heroui/styles": "^3.0.0-beta.6",
+    "axios": "^1.13.5",
     "gsap": "^3.14.2",
     "lucide-react": "^0.563.0",
     "next": "16.1.6",

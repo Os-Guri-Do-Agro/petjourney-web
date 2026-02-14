@@ -5,84 +5,71 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import coelho from '../../assets/home/coelho.jpg'
 import ArtigoImg from '../../assets/home/artigo-img.jpg'
+import { artigoService } from '@/service/artigo/artigo-service'
+import { categoriaArtigoService } from '@/service/categori-artigo/categoriaArtigo-service'
+import { useRouter } from 'next/navigation'
+
 
 if (typeof window !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger)
 }
 
-const categories = [
-    'Saúde',
-    'Comportamento',
-    'Alimentação',
-    'Bem-estar',
-    'Dicas',
-    'Novidades'
-]
-
-const articles = [
-    {
-        id: 1,
-        title: 'Como cuidar da saúde do seu pet',
-        excerpt: 'Dicas essenciais para manter seu animal saudável e feliz durante toda a vida.',
-        category: 'Saúde',
-        image: ArtigoImg,
-        date: '15 Jan 2024'
-    },
-    {
-        id: 2,
-        title: 'Alimentação balanceada para cães',
-        excerpt: 'Entenda a importância de uma dieta equilibrada para o seu melhor amigo.',
-        category: 'Alimentação',
-        image: ArtigoImg,
-        date: '12 Jan 2024'
-    },
-    {
-        id: 3,
-        title: 'Comportamento felino: entenda seu gato',
-        excerpt: 'Descubra os sinais que seu gato usa para se comunicar com você.',
-        category: 'Comportamento',
-        image: ArtigoImg,
-        date: '10 Jan 2024'
-    },
-    {
-        id: 4,
-        title: 'Exercícios para pets: mantenha-os ativos',
-        excerpt: 'A importância da atividade física para a saúde e bem-estar do seu pet.',
-        category: 'Bem-estar',
-        image: ArtigoImg,
-        date: '08 Jan 2024'
-    },
-    {
-        id: 5,
-        title: 'Vacinação: proteja seu pet',
-        excerpt: 'Calendário completo de vacinas essenciais para cães e gatos.',
-        category: 'Saúde',
-        image: ArtigoImg,
-        date: '05 Jan 2024'
-    },
-    {
-        id: 6,
-        title: 'Novidades em tecnologia pet',
-        excerpt: 'Conheça os dispositivos inteligentes que facilitam o cuidado com seu animal.',
-        category: 'Novidades',
-        image: ArtigoImg,
-        date: '03 Jan 2024'
-    }
-]
-
 export default function Artigos() {
     const [mounted, setMounted] = useState(false)
-    const [selectedCategory, setSelectedCategory] = useState('Todos')
     const heroRef = useRef<HTMLDivElement>(null)
     const textRef = useRef<HTMLDivElement>(null)
     const missionRef = useRef<HTMLDivElement>(null)
     const featuredRef = useRef<HTMLDivElement>(null)
     const articlesRef = useRef<HTMLDivElement>(null)
     const finalRef = useRef<HTMLDivElement>(null)
+    const [artigos, setArtigos] = useState<any[]>([])
+    const [artigosDestaque, setArtigosDestaque] = useState<any[]>([])
+    const [categoria, setCategoria] = useState<any[]>([])
+    const router = useRouter()
+    const [page, setPage] = useState(1)
+    const [limit, setLimit] = useState(9)
+    const [titleFilter, setTitleFilter] = useState('')
+    const [selectedCategory, setSelectedCategory] = useState('')
+
+    const buscarArtigos = async () => {
+        try {
+            const response = await artigoService.getAllArtigos(page, limit, selectedCategory, titleFilter)
+            setArtigos(response.data.data.data || [])
+        } catch (e) {
+            console.error('Erro ao buscar artigos:', e)
+        }
+    }
+
+    const buscarArtigosDestaque = async () => {
+        try {
+            const response = await artigoService.getAllArtigos(1, 3, '', '')
+            setArtigosDestaque(response.data.data.data || [])
+        } catch (e) {
+            console.error('Erro ao buscar artigos em destaque:', e)
+        }
+    }
+
+    const buscarCategoriaArtigo = async () => {
+        try {
+            const response = await categoriaArtigoService.getAllCategoriaArtigo()
+            setCategoria(response.data.data || [])
+        } catch (e) {
+            console.error('Erro ao buscar categorias:', e)
+        }
+    }
 
     useEffect(() => {
         setMounted(true)
+        buscarCategoriaArtigo()
+        buscarArtigosDestaque()
     }, [])
+
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            buscarArtigos()
+        }, 500)
+        return () => clearTimeout(timeout)
+    }, [selectedCategory, titleFilter, page])
 
     useEffect(() => {
         if (!mounted) return
@@ -169,22 +156,6 @@ export default function Artigos() {
         return () => ctx.revert()
     }, [mounted])
 
-    const filteredArticles = selectedCategory === 'Todos'
-        ? articles
-        : articles.filter(article => article.category === selectedCategory)
-
-    const getCategoryColor = (category: string) => {
-        const colors: { [key: string]: string } = {
-            'Saúde': 'bg-gradient-to-r from-[#10b981] to-[#059669]',
-            'Comportamento': 'bg-gradient-to-r from-[#8b5cf6] to-[#7c3aed]',
-            'Alimentação': 'bg-gradient-to-r from-[#f59e0b] to-[#d97706]',
-            'Bem-estar': 'bg-gradient-to-r from-[#ec4899] to-[#db2777]',
-            'Dicas': 'bg-gradient-to-r from-[#3b82f6] to-[#2563eb]',
-            'Novidades': 'bg-gradient-to-r from-[#ef4444] to-[#dc2626]'
-        }
-        return colors[category] || 'bg-gradient-to-r from-[#1D3557] to-[#457B9D]'
-    }
-
     return (
         <>
             <section className="w-full bg-[#1D3557] py-40 px-5 md:px-20 lg:px-30">
@@ -226,130 +197,131 @@ export default function Artigos() {
                     </h3>
 
                     <div ref={featuredRef} className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="relative h-[400px] md:h-[500px] group cursor-pointer">
-                            <Image
-                                src={articles[0].image}
-                                alt={articles[0].title}
-                                fill
-                                sizes="(max-width: 768px) 100vw, 50vw"
-                                className="object-cover rounded-xl shadow-lg"
-                            />
-                            <div className="absolute inset-0 bg-linear-to-t from-black/70 to-transparent rounded-xl flex flex-col justify-end p-6">
-                                <span className={`${getCategoryColor(articles[0].category)} text-white px-3 py-1 rounded-full text-xs font-semibold w-fit mb-3`}>
-                                    {articles[0].category}
-                                </span>
-                                <h4 className="text-2xl font-bold text-white mb-2">{articles[0].title}</h4>
-                                <p className="text-gray-200 text-sm">{articles[0].date}</p>
-                            </div>
-                        </div>
-
-                        <div className="flex flex-col gap-6">
-                            <div className="relative h-[190px] md:h-[240px] group cursor-pointer">
-                                <Image
-                                    src={articles[1].image}
-                                    alt={articles[1].title}
-                                    fill
-                                    sizes="(max-width: 768px) 100vw, 50vw"
-                                    className="object-cover rounded-xl shadow-lg"
-                                />
-                                <div className="absolute inset-0 bg-linear-to-t from-black/70 to-transparent rounded-xl flex flex-col justify-end p-4">
-                                    <span className={`${getCategoryColor(articles[1].category)} text-white px-3 py-1 rounded-full text-xs font-semibold w-fit mb-2`}>
-                                        {articles[1].category}
-                                    </span>
-                                    <h4 className="text-lg font-bold text-white mb-1">{articles[1].title}</h4>
-                                    <p className="text-gray-200 text-xs">{articles[1].date}</p>
+                        {artigosDestaque.length > 0 && (
+                            <>
+                                <div className="relative h-[400px] md:h-[500px] group cursor-pointer">
+                                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                                    <img
+                                        src={artigosDestaque[0].imagensArtigo?.find((img: any) => img.isBanner)?.imagemUrl || ArtigoImg.src}
+                                        alt={artigosDestaque[0].titulo}
+                                        className="w-full h-full object-cover rounded-xl shadow-lg"
+                                    />
+                                    <div className="absolute inset-0 bg-linear-to-t from-black/70 to-transparent rounded-xl flex flex-col justify-end p-6">
+                                        <h4 className="text-2xl font-bold text-white mb-2 line-clamp-2">{artigosDestaque[0].titulo}</h4>
+                                        <p className="text-gray-200 text-sm">{new Date(artigosDestaque[0].createdAt).toLocaleDateString('pt-BR')}</p>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div className="relative h-[190px] md:h-[240px] group cursor-pointer">
-                                <Image
-                                    src={articles[2].image}
-                                    alt={articles[2].title}
-                                    fill
-                                    sizes="(max-width: 768px) 100vw, 50vw"
-                                    className="object-cover rounded-xl shadow-lg"
-                                />
-                                <div className="absolute inset-0 bg-linear-to-t from-black/70 to-transparent rounded-xl flex flex-col justify-end p-4">
-                                    <span className={`${getCategoryColor(articles[2].category)} text-white px-3 py-1 rounded-full text-xs font-semibold w-fit mb-2`}>
-                                        {articles[2].category}
-                                    </span>
-                                    <h4 className="text-lg font-bold text-white mb-1">{articles[2].title}</h4>
-                                    <p className="text-gray-200 text-xs">{articles[2].date}</p>
+                                <div className="flex flex-col gap-6">
+                                    {artigosDestaque[1] && (
+                                        <div className="relative h-[190px] md:h-[240px] group cursor-pointer">
+                                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                                            <img
+                                                src={artigosDestaque[1].imagensArtigo?.find((img: any) => img.isBanner)?.imagemUrl || ArtigoImg.src}
+                                                alt={artigosDestaque[1].titulo}
+                                                className="w-full h-full object-cover rounded-xl shadow-lg"
+                                            />
+                                            <div className="absolute inset-0 bg-linear-to-t from-black/70 to-transparent rounded-xl flex flex-col justify-end p-4">
+                                                <h4 className="text-lg font-bold text-white mb-1 line-clamp-2">{artigosDestaque[1].titulo}</h4>
+                                                <p className="text-gray-200 text-xs">{new Date(artigosDestaque[1].createdAt).toLocaleDateString('pt-BR')}</p>
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    {artigosDestaque[2] && (
+                                        <div className="relative h-[190px] md:h-[240px] group cursor-pointer">
+                                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                                            <img
+                                                src={artigosDestaque[2].imagensArtigo?.find((img: any) => img.isBanner)?.imagemUrl || ArtigoImg.src}
+                                                alt={artigosDestaque[2].titulo}
+                                                className="w-full h-full object-cover rounded-xl shadow-lg"
+                                            />
+                                            <div className="absolute inset-0 bg-linear-to-t from-black/70 to-transparent rounded-xl flex flex-col justify-end p-4">
+                                                <h4 className="text-lg font-bold text-white mb-1 line-clamp-2">{artigosDestaque[2].titulo}</h4>
+                                                <p className="text-gray-200 text-xs">{new Date(artigosDestaque[2].createdAt).toLocaleDateString('pt-BR')}</p>
+                                            </div>
+                                        </div>
+                                    )}
                                 </div>
-                            </div>
-                        </div>
+                            </>
+                        )}
                     </div>
                 </div>
             </section>
 
             <section className="w-full px-5 md:px-20 lg:px-30 py-10 bg-[#FAF9F6]">
-
                 <div className="flex flex-col lg:flex-row gap-8">
-
                     <div className="lg:w-3/4">
                         <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
                             <div className="flex items-center w-full gap-5">
                                 <h3 className="text-2xl md:text-3xl font-bold text-[#1D3557]">
                                     Todos
                                 </h3>
-                                <input className='w-full max-w-2xl border-[#1D3557] border-2 rounded-lg px-4 py-2 text-[#1D3557] focus:outline-none focus:ring-2 focus:ring-[#1D3557]' placeholder="O'que está farejando?" type="text" />
+                                <input
+                                    className='w-full max-w-2xl border-[#1D3557] border-2 rounded-lg px-4 py-2 text-[#1D3557] focus:outline-none focus:ring-2 focus:ring-[#1D3557]'
+                                    placeholder="O'que está farejando?"
+                                    type="text"
+                                    value={titleFilter}
+                                    onChange={(e) => {
+                                        setTitleFilter(e.target.value)
+                                        setPage(0)
+                                    }}
+                                />
                             </div>
-
 
                             <select
                                 value={selectedCategory}
-                                onChange={(e) => setSelectedCategory(e.target.value)}
+                                onChange={(e) => {
+                                    setSelectedCategory(e.target.value)
+                                    setPage(0)
+                                }}
                                 className="lg:hidden px-4 py-2 rounded-lg border-2 border-[#1D3557] text-[#1D3557] font-semibold cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#1D3557]"
                             >
-                                <option value="Todos">Todas as categorias</option>
-                                {categories.map((category) => (
-                                    <option key={category} value={category}>
-                                        {category}
+                                <option value="">Todas as categorias</option>
+                                {categoria.map((cat: any) => (
+                                    <option key={cat.id} value={cat.id}>
+                                        {cat.nome}
                                     </option>
                                 ))}
                             </select>
                         </div>
 
                         <div ref={articlesRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                            {filteredArticles.map((article, index) => (
-                                <div
-                                    key={article.id}
-                                    className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow cursor-pointer"
-                                >
-                                    <div className="relative h-48">
-                                        <Image
-                                            src={article.image}
-                                            alt={article.title}
-                                            fill
-                                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                                            className="object-cover"
-                                            loading={index < 2 ? "eager" : "lazy"}
-                                            priority={index < 2}
-                                        />
-                                    </div>
-
-                                    <div className="p-4 space-y-2">
-                                        <div className="flex items-center justify-between text-xs text-gray-500">
-                                            <span className={`${getCategoryColor(article.category)} text-white px-2 py-1 rounded-full text-xs font-semibold shadow-md`}>
-                                                {article.category}
-                                            </span>
-                                            <span>{article.date}</span>
+                            {artigos.map((artigo: any, index: number) => {
+                                const bannerImage = artigo.imagensArtigo?.find((img: any) => img.isBanner)
+                                return (
+                                    <div
+                                        key={artigo.id}
+                                        className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow cursor-pointer"
+                                    >
+                                        <div className="relative h-48">
+                                            <img
+                                                src={bannerImage?.imagemUrl || ArtigoImg.src}
+                                                alt={artigo.titulo}
+                                                className="w-full h-full object-cover"
+                                            />
                                         </div>
 
-                                        <h4 className="text-lg font-bold text-[#1D3557] line-clamp-2">
-                                            {article.title}
-                                        </h4>
+                                        <div className="p-4 space-y-2">
+                                            <div className="flex items-center justify-between text-xs text-gray-500">
+                                                <span>{new Date(artigo.createdAt).toLocaleDateString('pt-BR')}</span>
+                                            </div>
 
-                                        <p className="text-gray-600 text-sm line-clamp-2">
-                                            {article.excerpt}
-                                        </p>
+                                            <h4 className="text-lg font-bold text-[#1D3557] line-clamp-2">
+                                                {artigo.titulo}
+                                            </h4>
 
-                                        <button className="text-[#1D3557] text-sm font-semibold hover:underline cursor-pointer">
-                                            Ler mais →
-                                        </button>
+                                            <p className="text-gray-600 text-sm line-clamp-2">
+                                                {artigo.subTitulo}
+                                            </p>
+
+                                            <button className="text-[#1D3557] text-sm font-semibold hover:underline cursor-pointer" onClick={() => router.push(`/artigos/${artigo.id}`)}>
+                                                Ler mais →
+                                            </button>
+                                        </div>
                                     </div>
-                                </div>
-                            ))}
+                                )
+                            })}
                         </div>
                     </div>
 
@@ -361,8 +333,8 @@ export default function Artigos() {
 
                             <div className="space-y-2">
                                 <button
-                                    onClick={() => setSelectedCategory('Todos')}
-                                    className={`w-full text-left px-4 py-2 rounded-lg transition-all duration-300 cursor-pointer font-medium ${selectedCategory === 'Todos'
+                                    onClick={() => setSelectedCategory('')}
+                                    className={`w-full text-left px-4 py-2 rounded-lg transition-all duration-300 cursor-pointer font-medium ${selectedCategory === ''
                                         ? 'bg-linear-to-r from-[#1D3557] to-[#457B9D] text-white shadow-md'
                                         : 'hover:bg-[#FFEDD8] text-[#1D3557]'
                                         }`}
@@ -370,22 +342,21 @@ export default function Artigos() {
                                     Todos
                                 </button>
 
-                                {categories.map((category) => (
+                                {categoria.map((cat: any) => (
                                     <button
-                                        key={category}
-                                        onClick={() => setSelectedCategory(category)}
-                                        className={`w-full text-left px-4 py-2 rounded-lg transition-all duration-300 cursor-pointer font-medium ${selectedCategory === category
-                                            ? `${getCategoryColor(category)} text-white shadow-md`
+                                        key={cat.id}
+                                        onClick={() => setSelectedCategory(cat.id)}
+                                        className={`w-full text-left px-4 py-2 rounded-lg transition-all duration-300 cursor-pointer font-medium ${selectedCategory === cat.id
+                                            ? 'bg-linear-to-r from-[#1D3557] to-[#457B9D] text-white shadow-md'
                                             : 'hover:bg-[#FFEDD8] text-[#1D3557]'
                                             }`}
                                     >
-                                        {category}
+                                        {cat.nome}
                                     </button>
                                 ))}
                             </div>
                         </div>
                     </div>
-
                 </div>
             </section>
 

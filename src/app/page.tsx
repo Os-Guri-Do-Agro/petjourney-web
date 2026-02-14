@@ -371,10 +371,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* <section className='w-full py-10'>
-        <Image src={bgPetJourney} alt='Logo Pet Journey com vários animais' sizes="(max-width: 768px) 100vw, 50vw" className='w-full object-contain'></Image>
-      </section> */}
-
       <section className='w-full flex items-center justify-center py-10'>
         <Artigos />
       </section>
