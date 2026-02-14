@@ -199,8 +199,7 @@ export default function Artigos() {
                     <div ref={featuredRef} className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         {artigosDestaque.length > 0 && (
                             <>
-                                <div className="relative h-[400px] md:h-[500px] group cursor-pointer">
-                                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <div className="relative h-[400px] md:h-[500px] group cursor-pointer" onClick={() => router.push(`/artigos/${artigosDestaque[0].id}`)}>
                                     <img
                                         src={artigosDestaque[0].imagensArtigo?.find((img: any) => img.isBanner)?.imagemUrl || ArtigoImg.src}
                                         alt={artigosDestaque[0].titulo}
@@ -214,8 +213,7 @@ export default function Artigos() {
 
                                 <div className="flex flex-col gap-6">
                                     {artigosDestaque[1] && (
-                                        <div className="relative h-[190px] md:h-[240px] group cursor-pointer">
-                                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                                        <div className="relative h-[190px] md:h-[240px] group cursor-pointer" onClick={() => router.push(`/artigos/${artigosDestaque[1].id}`)}>
                                             <img
                                                 src={artigosDestaque[1].imagensArtigo?.find((img: any) => img.isBanner)?.imagemUrl || ArtigoImg.src}
                                                 alt={artigosDestaque[1].titulo}
@@ -229,8 +227,7 @@ export default function Artigos() {
                                     )}
 
                                     {artigosDestaque[2] && (
-                                        <div className="relative h-[190px] md:h-[240px] group cursor-pointer">
-                                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                                        <div className="relative h-[190px] md:h-[240px] group cursor-pointer" onClick={() => router.push(`/artigos/${artigosDestaque[2].id}`)}>
                                             <img
                                                 src={artigosDestaque[2].imagensArtigo?.find((img: any) => img.isBanner)?.imagemUrl || ArtigoImg.src}
                                                 alt={artigosDestaque[2].titulo}
