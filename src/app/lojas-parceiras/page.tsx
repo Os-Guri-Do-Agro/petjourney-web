@@ -15,6 +15,7 @@ import {
     Ham,
     Grid2X2
 } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 
 if (typeof window !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger)
@@ -91,6 +92,7 @@ export default function Marketplace() {
     const missionRef = useRef<HTMLDivElement>(null)
     const storesRef = useRef<HTMLDivElement>(null)
     const finalRef = useRef<HTMLDivElement>(null)
+    const router = useRouter()
 
     const filteredStores = stores.filter(store => {
         const matchesCategory = selectedCategory === 'Todas' || store.category === selectedCategory
@@ -314,7 +316,7 @@ export default function Marketplace() {
                             <button className="cursor-pointer w-full bg-[#1D3557] text-[#FAF9F6] px-8 py-3 rounded-xl font-semibold hover:scale-102 transition-transform duration-300">
                                 Assine nosso newsletter
                             </button>
-                            <button className="cursor-pointer w-full bg-[#FAF9F6] text-[#1D3557] px-8 py-3 rounded-xl font-semibold hover:scale-102 transition-transform duration-300">
+                            <button onClick={() => router.push('/contato')} className="cursor-pointer w-full bg-[#FAF9F6] text-[#1D3557] px-8 py-3 rounded-xl font-semibold hover:scale-102 transition-transform duration-300">
                                 Entre em contato
                             </button>
                         </div>
