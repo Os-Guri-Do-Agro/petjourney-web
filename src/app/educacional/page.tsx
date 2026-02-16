@@ -29,46 +29,6 @@ const articles = [
         image: ArtigoImg,
         date: '15 Jan 2024'
     },
-    {
-        id: 2,
-        title: 'Alimentação balanceada para cães',
-        excerpt: 'Entenda a importância de uma dieta equilibrada para o seu melhor amigo.',
-        category: 'Alimentação',
-        image: ArtigoImg,
-        date: '12 Jan 2024'
-    },
-    {
-        id: 3,
-        title: 'Comportamento felino: entenda seu gato',
-        excerpt: 'Descubra os sinais que seu gato usa para se comunicar com você.',
-        category: 'Comportamento',
-        image: ArtigoImg,
-        date: '10 Jan 2024'
-    },
-    {
-        id: 4,
-        title: 'Exercícios para pets: mantenha-os ativos',
-        excerpt: 'A importância da atividade física para a saúde e bem-estar do seu pet.',
-        category: 'Bem-estar',
-        image: ArtigoImg,
-        date: '08 Jan 2024'
-    },
-    {
-        id: 5,
-        title: 'Vacinação: proteja seu pet',
-        excerpt: 'Calendário completo de vacinas essenciais para cães e gatos.',
-        category: 'Saúde',
-        image: ArtigoImg,
-        date: '05 Jan 2024'
-    },
-    {
-        id: 6,
-        title: 'Novidades em tecnologia pet',
-        excerpt: 'Conheça os dispositivos inteligentes que facilitam o cuidado com seu animal.',
-        category: 'Novidades',
-        image: ArtigoImg,
-        date: '03 Jan 2024'
-    }
 ]
 
 export default function Educacional() {

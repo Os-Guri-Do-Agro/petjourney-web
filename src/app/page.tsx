@@ -203,12 +203,12 @@ export default function Home() {
         <div className="relative z-10 w-full px-5 md:px-20 lg:px-30 pt-24">
           <div ref={heroRef} className=" text-white space-y-6 w-full mt-20">
 
-            <h1 className="text-4xl md:text-5xl lg:text-7xl font-extrabold leading-tight ">
+            <h1 className="text-3xl md:text-4xl lg:text-6xl font-extrabold leading-tight ">
               Amar, <br />
               Conectar e Cuidar
             </h1>
 
-            <p className=" text-2xl md:text-4xl font-semibold text-gray-200">
+            <p className=" text-2xl md:text-3xl font-semibold text-gray-200">
               Durante toda a jornada.
             </p>
 
