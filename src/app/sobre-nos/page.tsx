@@ -347,7 +347,7 @@ export default function SobreNos() {
                 </div>
             </section>
 
-            {/* <section className="py-20 bg-[#FAF9F6]">
+            <section className="py-20 bg-[#FAF9F6]">
                 <div className="md:px-20 lg:px-30">
                     <div className="text-center mb-16 px-5">
                         <h3 className='text-3xl md:text-4xl font-bold text-[#1D3557] mb-4'>Nossa Equipe</h3>
@@ -420,7 +420,7 @@ export default function SobreNos() {
                         )}
                     </div>
                 </div>
-            </section> */}
+            </section>
 
             <section className="w-full flex justify-center pt-20 bg-[#FAF9F6] overflow-hidden">
                 <div ref={finalRef} className="w-full bg-[#457B9D] flex flex-col md:flex-row items-center gap-10">
