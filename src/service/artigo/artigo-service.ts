@@ -6,11 +6,22 @@ export const artigoService = {
         return promise
     },
 
-    getAllArtigos(page: number, limit: number, categoriaArtigoId: string, titulo: string): Promise<any> {
+    getAllArtigos(
+        page: number,
+        limit: number,
+        categoriaArtigoId?: string,
+        titulo?: string
+    ): Promise<any> {
         return this.handlerequest(
-            apiClient.get(`/artigo?page=${page}&limit=${limit}&categoriaArtigoId=${categoriaArtigoId}&titulo=${titulo}`)
-        )
-        'Erro ao buscar Artigos'
+            apiClient.get('/artigo', {
+                params: {
+                    page,
+                    limit,
+                    categoriaArtigoId: categoriaArtigoId || undefined,
+                    titulo: titulo || undefined,
+                },
+            })
+        );
     },
 
     getArtigoById(id: string): Promise<any> {
