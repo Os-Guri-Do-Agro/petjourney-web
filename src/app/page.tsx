@@ -9,6 +9,7 @@ import tutor from '../assets/home/tutor.jpg'
 import bgPetJourney from '../assets/home/bg-logo-petjourney.jpg'
 import Carousel from '../components/home/carousel-wrap'
 import Artigos from '../components/home/articles-section'
+import { useRouter } from 'next/navigation'
 import {
   Beef,
   Pill,
@@ -32,6 +33,7 @@ export default function Home() {
   const marketplaceRef = useRef<HTMLDivElement>(null)
   const iconsRef = useRef<HTMLDivElement>(null)
   const finalRef = useRef<HTMLDivElement>(null)
+  const router = useRouter()
 
   useEffect(() => {
     setMounted(true)
@@ -201,12 +203,12 @@ export default function Home() {
         <div className="relative z-10 w-full px-5 md:px-20 lg:px-30 pt-24">
           <div ref={heroRef} className=" text-white space-y-6 w-full mt-20">
 
-            <h1 className="text-4xl md:text-5xl lg:text-7xl font-extrabold leading-tight ">
+            <h1 className="text-3xl md:text-4xl lg:text-6xl font-extrabold leading-tight ">
               Amar, <br />
               Conectar e Cuidar
             </h1>
 
-            <p className=" text-2xl md:text-4xl font-semibold text-gray-200">
+            <p className=" text-2xl md:text-3xl font-semibold text-gray-200">
               Durante toda a jornada.
             </p>
 
@@ -254,7 +256,7 @@ export default function Home() {
                 vacinas, dados do chip e compatibilidade com dispositivos inteligentes.
               </p>
 
-              <button className="bg-[#457B9D] hover:bg-[#1b2e47] text-white px-8 py-3 rounded-xl transition-colors cursor-pointer w-full font-semibold">
+              <button onClick={() => router.push('/servicos')} className="bg-[#457B9D] hover:bg-[#1b2e47] text-white px-8 py-3 rounded-xl transition-colors cursor-pointer w-full font-semibold">
                 Saiba mais
               </button>
             </div>
@@ -277,7 +279,7 @@ export default function Home() {
                 Marketplace completo com os melhores produtos e serviços.
               </p>
 
-              <button className="bg-[#457B9D] hover:bg-[#1b2e47] text-white px-10 py-3 rounded-xl transition-colors cursor-pointer w-full font-semibold">
+              <button onClick={() => router.push('/artigos')} className="bg-[#457B9D] hover:bg-[#1b2e47] text-white px-10 py-3 rounded-xl transition-colors cursor-pointer w-full font-semibold">
                 Saiba mais
               </button>
             </div>
@@ -309,7 +311,7 @@ export default function Home() {
               Ferramentas que simplificam o atendimento e fortalecem o vínculo com o tutor.
             </p>
 
-            <button className="cursor-pointer w-full bg-[#FAF9F6] text-[#1D3557] px-8 py-3 rounded-xl font-semibold hover:scale-102 transition-transform duration-300">
+            <button onClick={() => router.push('/servicos')} className="cursor-pointer w-full bg-[#FAF9F6] text-[#1D3557] px-8 py-3 rounded-xl font-semibold hover:scale-102 transition-transform duration-300">
               Saiba mais
             </button>
           </div>
@@ -392,7 +394,7 @@ export default function Home() {
               <button className="cursor-pointer w-full bg-[#1D3557] text-[#FAF9F6] px-8 py-3 rounded-xl font-semibold hover:scale-102 transition-transform duration-300">
                 Assine nosso newsletter
               </button>
-              <button className="cursor-pointer w-full bg-[#FAF9F6] text-[#1D3557] px-8 py-3 rounded-xl font-semibold hover:scale-102 transition-transform duration-300">
+              <button onClick={() => router.push('/contato')} className="cursor-pointer w-full bg-[#FAF9F6] text-[#1D3557] px-8 py-3 rounded-xl font-semibold hover:scale-102 transition-transform duration-300">
                 Entre em contato
               </button>
             </div>

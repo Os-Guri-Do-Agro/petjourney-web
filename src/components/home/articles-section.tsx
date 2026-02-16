@@ -7,6 +7,7 @@ import Image from "next/image"
 import ArtigoImg from "@/assets/home/artigo-img.jpg"
 import { artigoService } from "@/service/artigo/artigo-service"
 import { categoriaArtigoService } from "@/service/categori-artigo/categoriaArtigo-service"
+import { useRouter } from "next/navigation"
 
 if (typeof window !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger)
@@ -21,6 +22,7 @@ export default function ArticlesSection() {
     const [artigos, setArtigos] = useState<any[]>([])
     const [page, setPage] = useState(1)
     const [limit, setLimit] = useState(6)
+    const router = useRouter()
 
     const buscarArtigos = async () => {
         try {
@@ -156,7 +158,7 @@ export default function ArticlesSection() {
                                                 {artigo.subTitulo}
                                             </p>
 
-                                            <button className="bg-[#457B9D] cursor-pointer hover:bg-[#1b2e47] text-white px-8 py-3 rounded-xl transition-all duration-300 font-semibold hover:scale-105 w-full">
+                                            <button onClick={() => router.push(`/artigos/${artigo.id}`)} className="bg-[#457B9D] cursor-pointer hover:bg-[#1b2e47] text-white px-8 py-3 rounded-xl transition-all duration-300 font-semibold hover:scale-105 w-full">
                                                 Ler mais
                                             </button>
                                         </div>

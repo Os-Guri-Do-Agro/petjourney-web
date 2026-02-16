@@ -8,6 +8,7 @@ import coelho from '../../assets/home/coelho.jpg'
 import tutor from '../../assets/home/tutor.jpg'
 import ave from '../../assets/home/ave.jpg'
 import dogHero from '../../assets/home/logo-apoiadores/dog-hero.png'
+import { useRouter } from 'next/navigation'
 
 if (typeof window !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger)
@@ -24,6 +25,7 @@ export default function Servicos() {
     const connectTitleRef = useRef<HTMLDivElement>(null)
     const connectCardsRef = useRef<HTMLDivElement>(null)
     const finalRef = useRef<HTMLDivElement>(null)
+    const router = useRouter();
 
     useEffect(() => {
         setMounted(true)
@@ -320,7 +322,7 @@ export default function Servicos() {
                             <button className="cursor-pointer w-full bg-[#1D3557] text-[#FAF9F6] px-8 py-3 rounded-xl font-semibold hover:scale-102 transition-transform duration-300">
                                 Assine nosso newsletter
                             </button>
-                            <button className="cursor-pointer w-full bg-[#FAF9F6] text-[#1D3557] px-8 py-3 rounded-xl font-semibold hover:scale-102 transition-transform duration-300">
+                            <button onClick={() => router.push('/contato')} className="cursor-pointer w-full bg-[#FAF9F6] text-[#1D3557] px-8 py-3 rounded-xl font-semibold hover:scale-102 transition-transform duration-300">
                                 Entre em contato
                             </button>
                         </div>

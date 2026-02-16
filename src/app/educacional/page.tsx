@@ -5,6 +5,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import coelho from '../../assets/home/coelho.jpg'
 import ArtigoImg from '../../assets/home/artigo-img.jpg'
+import { useRouter } from 'next/navigation'
 
 if (typeof window !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger)
@@ -28,46 +29,6 @@ const articles = [
         image: ArtigoImg,
         date: '15 Jan 2024'
     },
-    {
-        id: 2,
-        title: 'Alimentação balanceada para cães',
-        excerpt: 'Entenda a importância de uma dieta equilibrada para o seu melhor amigo.',
-        category: 'Alimentação',
-        image: ArtigoImg,
-        date: '12 Jan 2024'
-    },
-    {
-        id: 3,
-        title: 'Comportamento felino: entenda seu gato',
-        excerpt: 'Descubra os sinais que seu gato usa para se comunicar com você.',
-        category: 'Comportamento',
-        image: ArtigoImg,
-        date: '10 Jan 2024'
-    },
-    {
-        id: 4,
-        title: 'Exercícios para pets: mantenha-os ativos',
-        excerpt: 'A importância da atividade física para a saúde e bem-estar do seu pet.',
-        category: 'Bem-estar',
-        image: ArtigoImg,
-        date: '08 Jan 2024'
-    },
-    {
-        id: 5,
-        title: 'Vacinação: proteja seu pet',
-        excerpt: 'Calendário completo de vacinas essenciais para cães e gatos.',
-        category: 'Saúde',
-        image: ArtigoImg,
-        date: '05 Jan 2024'
-    },
-    {
-        id: 6,
-        title: 'Novidades em tecnologia pet',
-        excerpt: 'Conheça os dispositivos inteligentes que facilitam o cuidado com seu animal.',
-        category: 'Novidades',
-        image: ArtigoImg,
-        date: '03 Jan 2024'
-    }
 ]
 
 export default function Educacional() {
@@ -78,6 +39,7 @@ export default function Educacional() {
     const missionRef = useRef<HTMLDivElement>(null)
     const articlesRef = useRef<HTMLDivElement>(null)
     const finalRef = useRef<HTMLDivElement>(null)
+    const router = useRouter()
 
     useEffect(() => {
         setMounted(true)
@@ -320,7 +282,7 @@ export default function Educacional() {
                             <button className="cursor-pointer w-full bg-[#1D3557] text-[#FAF9F6] px-8 py-3 rounded-xl font-semibold hover:scale-102 transition-transform duration-300">
                                 Assine nosso newsletter
                             </button>
-                            <button className="cursor-pointer w-full bg-[#FAF9F6] text-[#1D3557] px-8 py-3 rounded-xl font-semibold hover:scale-102 transition-transform duration-300">
+                            <button onClick={() => router.push('/contato')} className="cursor-pointer w-full bg-[#FAF9F6] text-[#1D3557] px-8 py-3 rounded-xl font-semibold hover:scale-102 transition-transform duration-300">
                                 Entre em contato
                             </button>
                         </div>

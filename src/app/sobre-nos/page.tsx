@@ -5,6 +5,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import coelho from '../../assets/home/coelho.jpg'
 import { Book, Calendar, Star, Watch, ChevronLeft, ChevronRight } from "lucide-react"
+import { useRouter } from 'next/navigation'
 
 import dog from '../../assets/about/dog-logoMarca.jpg'
 
@@ -24,6 +25,7 @@ export default function SobreNos() {
     const cardsRef = useRef<HTMLDivElement>(null)
     const manifestoRef = useRef<HTMLElement>(null)
     const buttonRef = useRef<HTMLDivElement>(null)
+    const router = useRouter()
 
     const oqueFazemos = [
         {
@@ -345,7 +347,7 @@ export default function SobreNos() {
                 </div>
             </section>
 
-            <section className="py-20 bg-[#FAF9F6]">
+            {/* <section className="py-20 bg-[#FAF9F6]">
                 <div className="md:px-20 lg:px-30">
                     <div className="text-center mb-16 px-5">
                         <h3 className='text-3xl md:text-4xl font-bold text-[#1D3557] mb-4'>Nossa Equipe</h3>
@@ -418,7 +420,7 @@ export default function SobreNos() {
                         )}
                     </div>
                 </div>
-            </section>
+            </section> */}
 
             <section className="w-full flex justify-center pt-20 bg-[#FAF9F6] overflow-hidden">
                 <div ref={finalRef} className="w-full bg-[#457B9D] flex flex-col md:flex-row items-center gap-10">
@@ -437,7 +439,7 @@ export default function SobreNos() {
                             <button className="cursor-pointer w-full bg-[#1D3557] text-[#FAF9F6] px-8 py-3 rounded-xl font-semibold hover:scale-102 transition-transform duration-300">
                                 Assine nosso newsletter
                             </button>
-                            <button className="cursor-pointer w-full bg-[#FAF9F6] text-[#1D3557] px-8 py-3 rounded-xl font-semibold hover:scale-102 transition-transform duration-300">
+                            <button onClick={() => router.push('/contato')} className="cursor-pointer w-full bg-[#FAF9F6] text-[#1D3557] px-8 py-3 rounded-xl font-semibold hover:scale-102 transition-transform duration-300">
                                 Entre em contato
                             </button>
                         </div>
