@@ -11,26 +11,30 @@ const headerItems = [
         link: '/',
         label: 'Home'
     },
+    // {
+    //     link: '/sobre-nos',
+    //     label: 'PetJourney'
+    // },
+    // {
+    //     link: '/servicos',
+    //     label: 'Serviços'
+    // },
     {
-        link: '/sobre-nos',
-        label: 'PetJourney'
+        link: '/tutor',
+        label: 'Tutor'
     },
+    // {
+    //     link: '/educacional',
+    //     label: 'Educacional'
+    // },
     {
-        link: '/servicos',
-        label: 'Serviços'
+        link: '/clinicas',
+        label: 'Clínicas'
     },
     {
         link: '/artigos',
         label: 'Artigos'
     },
-    {
-        link: '/educacional',
-        label: 'Educacional'
-    },
-    // {
-    //     link: '/lojas-parceiras',
-    //     label: 'Parceiros'
-    // },
 ]
 
 export function Header() {
@@ -46,10 +50,9 @@ export function Header() {
             end: 99999,
             onEnter: () => {
                 gsap.to(headerRef.current, {
-                    backgroundColor: 'rgba(0, 0, 0, 0.98)',
-                    backdropFilter: 'blur(10px)',
-                    paddingTop: '8px',
-                    paddingBottom: '8px',
+                    backgroundColor: 'rgba(29, 53, 87, 0.8)',
+                    paddingTop: '12px',
+                    paddingBottom: '12px',
                     boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)',
                     duration: 0.4,
                     ease: 'power2.out'
@@ -58,10 +61,9 @@ export function Header() {
             },
             onLeaveBack: () => {
                 gsap.to(headerRef.current, {
-                    backgroundColor: 'rgba(0, 0, 0, 0.4)',
-                    backdropFilter: 'blur(0px)',
-                    paddingTop: '16px',
-                    paddingBottom: '16px',
+                    backgroundColor: 'transparent',
+                    paddingTop: '19px',
+                    paddingBottom: '19px',
                     boxShadow: '0 0 0 rgba(0, 0, 0, 0)',
                     duration: 0.4,
                     ease: 'power2.out'
@@ -72,9 +74,9 @@ export function Header() {
     }, [])
 
     return (
-        <div ref={headerRef} className="fixed top-0 left-0 right-0 z-50 bg-black/40 px-4 md:px-8 lg:px-15 py-4 md:py-6" >
+        <div ref={headerRef} className="fixed top-0 left-0 right-0 z-50 px-5 md:px-30 lg:px-70 py-4 md:py-6">
             <div className="flex justify-between items-center">
-                <div className='px-2 md:px-5'>
+                <div>
                     <Link href={'/'}>
                         <img ref={logoRef} className='w-30 md:w-35 lg:w-45 object-contain hover:scale-105 transition-transform duration-200' src="/logo.png" alt="logo Pet Journey" />
                     </Link>

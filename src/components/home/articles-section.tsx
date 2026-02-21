@@ -83,12 +83,12 @@ export default function ArticlesSection() {
     return (
         <section
             ref={sectionRef}
-            className="w-full py-20 bg-[#FAF9F6]"
+            className="w-full pb-10 bg-[#FAF9F6]"
         >
-            <div className="w-full px-5 md:px-20 lg:px-30">
+            <div className="w-full px-5 md:px-30 lg:px-70">
 
                 <div ref={titleRef} className="text-center mb-16 space-y-4">
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#1D3557] leading-snug">
+                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#1D3557] leading-snug">
                         Artigos
                     </h2>
                     <p className="text-gray-700 text-lg xl:text-xl leading-relaxed max-w-3xl mx-auto">
@@ -132,14 +132,14 @@ export default function ArticlesSection() {
                     </button>
 
                     {/* Container dos artigos */}
-                    <div ref={containerRef} className="overflow-x-auto md:overflow-x-scroll scrollbar-hide pb-6">
+                    <div ref={containerRef} className="overflow-x-auto md:overflow-x-scroll scrollbar-hide p-10 p12">
                         <div className="flex gap-8">
                             {Array.isArray(artigos) && artigos.slice(0, 4).map((artigo) => {
                                 const bannerImage = artigo.imagensArtigo?.find((img: any) => img.isBanner)
                                 return (
                                     <div
                                         key={artigo.id}
-                                        className="article-card relative rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl group shrink-0 w-[320px] md:w-[380px] h-[500px] transition-shadow duration-300"
+                                        className="article-card relative rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl group shrink-0 w-[320px] md:w-[380px] h-[400px] transition-shadow duration-300"
                                     >
                                         {/* eslint-disable-next-line @next/next/no-img-element */}
                                         <img

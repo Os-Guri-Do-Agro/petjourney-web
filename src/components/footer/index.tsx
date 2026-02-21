@@ -42,26 +42,27 @@ export function Footer() {
                     <div>
                         <h4 className="font-bold text-lg mb-5 text-white">Catálogo</h4>
                         <ul className="space-y-3 text-sm">
-                            <li><Link href="/servicos" className="inline-block text-white/70 hover:text-white hover:translate-x-1 transition-all duration-200">Nossos Serviços</Link></li>
+                            <li><Link href="/clinicas" className="inline-block text-white/70 hover:text-white hover:translate-x-1 transition-all duration-200">Clínicas</Link></li>
                             <li><Link href="/artigos" className="inline-block text-white/70 hover:text-white hover:translate-x-1 transition-all duration-200">Artigos e Dicas</Link></li>
-                            <li><Link href="/educacional" className="inline-block text-white/70 hover:text-white hover:translate-x-1 transition-all duration-200">Conteúdo Educacional</Link></li>
+                            <li><Link href="/tutor" className="inline-block text-white/70 hover:text-white hover:translate-x-1 transition-all duration-200">Tutor</Link></li>
+                            <li><Link href="/contato" className="inline-block text-white/70 hover:text-white hover:translate-x-1 transition-all duration-200">Contato</Link></li>
                             {/* <li><Link href="/lojas-parceiras" className="inline-block text-white/70 hover:text-white hover:translate-x-1 transition-all duration-200">Lojas Parceiras</Link></li> */}
                         </ul>
                     </div>
 
-                    <div>
+                    {/* <div>
                         <h4 className="font-bold text-lg mb-5 text-white">Serviços</h4>
                         <ul className="space-y-3 text-sm">
                             <li><Link href="#" className="inline-block text-white/70 hover:text-white hover:translate-x-1 transition-all duration-200">Agendamento Online</Link></li>
                             <li><Link href="#" className="inline-block text-white/70 hover:text-white hover:translate-x-1 transition-all duration-200">Planos de Saúde</Link></li>
                         </ul>
-                    </div>
+                    </div> */}
 
                     <div>
                         <h4 className="font-bold text-lg mb-5 text-white">Contato</h4>
                         <div className="space-y-3 text-sm">
-                            <Link href="tel:11999999999" className="inline-block text-white/70 hover:text-white transition-colors duration-200">📞 (11) 9999-9999</Link>
-                            <Link href="mailto:contato@petjourney.com" className="inline-block text-white/70 hover:text-white transition-colors duration-200">✉️ contato@petjourney.com</Link>
+                            {/* <Link href="tel:11999999999" className="inline-block text-white/70 hover:text-white transition-colors duration-200">📞 (11) 9999-9999</Link> */}
+                            <Link href="mailto:atendimento@petjourney.health" className="inline-block text-white/70 hover:text-white transition-colors duration-200">atendimento@petjourney.health</Link>
                             <p className="text-white/70 mt-4 leading-relaxed">Cuidando do seu pet com amor e dedicação</p>
                         </div>
                     </div>
@@ -75,7 +76,7 @@ export function Footer() {
                                 placeholder="Seu e-mail"
                                 type="email"
                             />
-                            <button className="bg-white text-[#243F63] h-11 rounded-lg font-semibold hover:bg-white/90 hover:scale-105 transition-all duration-200">
+                            <button className="bg-white text-[#243F63] h-11 rounded-lg font-semibold hover:bg-white/90 hover:scale-105 transition-all duration-200 cursor-pointer">
                                 Inscrever-se
                             </button>
                         </div>
@@ -83,7 +84,7 @@ export function Footer() {
                 </div>
 
                 <div className="mt-16 pt-8 border-t border-white/10">
-                    <p className="text-center text-sm text-white/50">© 2025 PetJourney. Todos os direitos reservados.</p>
+                    <p className="text-center text-sm text-white/50">© 2026 PetJourney. Todos os direitos reservados.</p>
                 </div>
             </div>
 

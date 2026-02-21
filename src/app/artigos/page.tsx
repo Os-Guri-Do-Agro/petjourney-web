@@ -158,45 +158,44 @@ export default function Artigos() {
 
     return (
         <>
-            <section className="w-full bg-[#1D3557] py-40 px-5 md:px-20 lg:px-30">
-                <div ref={heroRef} className="text-center text-white">
-                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold">
-                        Artigos
-                    </h1>
+            <section className="min-h-[70vh] bg-linear-to-b from-[#1D3557] to-[#457B9D] flex items-center">
+                <div className="w-full px-5 md:px-20 lg:px-70 pt-32 pb-20">
+                    <div ref={heroRef} className="text-white space-y-6 max-w-4xl">
+                        <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight">
+                            Artigos
+                        </h1>
+                        <p className="text-lg md:text-xl text-[#FAF9F6] max-w-2xl">
+                            Conteúdos sobre saúde, bem-estar e cuidados com seu pet
+                        </p>
+                    </div>
                 </div>
             </section>
 
-            <section className="w-full py-20 bg-linear-to-b from-[#F1FAEE] to-[#FAF9F6]">
-                <div className="px-5 md:px-20 lg:px-30">
-                    <div ref={textRef} className="text-center">
-                        <h2 className="text-2xl md:text-4xl font-bold leading-relaxed text-[#1D3557] mb-4">
+            <section className="py-20 bg-[#FAF9F6]">
+                <div className="px-5 md:px-20 lg:px-70">
+                    <div ref={textRef} className="text-center mb-16">
+                        <h2 className="text-3xl md:text-4xl font-bold text-[#1D3557] mb-4">
                             Na Pet Journey, acreditamos que cada pet merece uma vida longa e cheia de cuidado.
                         </h2>
-                        <p className="text-xl md:text-2xl text-[#457B9D] font-medium">
-                            E que cada tutor merece as ferramentas para tornar isso possível.
+                        <p className="text-lg text-[#457B9D] max-w-3xl mx-auto">
+                            E que cada tutor merece as ferramentas para tornar isso possível. Somos uma plataforma que conecta saúde, bem-estar e tecnologia em uma jornada completa de cuidado animal.
                         </p>
                     </div>
                 </div>
             </section>
 
-            <section className="w-full py-16 bg-[#FAF9F6]">
-                <div className="px-5 md:px-20 lg:px-30">
-                    <div ref={missionRef} className="relative">
-                        <div className="absolute top-0 bottom-0 w-1 bg-linear-to-b from-[#457B9D] to-[#1D3557] rounded-full"></div>
-                        <p className="text-center text-gray-700 text-lg md:text-xl leading-relaxed pl-6">
-                            Somos uma plataforma que conecta saúde, bem-estar e tecnologia em uma jornada completa de cuidado animal. Unimos inovação, empatia e informação para facilitar a rotina de tutores e profissionais da área veterinária.
+            <section className="py-20 bg-[#FAF9F6]">
+                <div className="px-5 md:px-20 lg:px-70">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl md:text-4xl font-bold text-[#1D3557] mb-4">
+                            Últimos Posts
+                        </h2>
+                        <p className="text-lg text-[#457B9D] max-w-2xl mx-auto">
+                            Confira os artigos mais recentes sobre cuidados com pets
                         </p>
                     </div>
-                </div>
-            </section>
 
-            <section className="w-full py-16 bg-[#FAF9F6]">
-                <div className="w-full px-5 md:px-20 lg:px-30 py-10">
-                    <h3 className="text-2xl md:text-3xl font-bold text-[#1D3557] mb-8">
-                        Últimos Posts
-                    </h3>
-
-                    <div ref={featuredRef} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div ref={featuredRef} className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         {artigosDestaque.length > 0 && (
                             <>
                                 <div className="relative h-[400px] md:h-[500px] group cursor-pointer" onClick={() => router.push(`/artigos/${artigosDestaque[0].id}`)}>
@@ -246,7 +245,8 @@ export default function Artigos() {
                 </div>
             </section>
 
-            <section className="w-full px-5 md:px-20 lg:px-30 py-10 bg-[#FAF9F6]">
+            <section className="py-20 bg-[#FAF9F6]">
+                <div className="px-5 md:px-20 lg:px-70">
                 <div className="flex flex-col lg:flex-row gap-8">
                     <div className="lg:w-3/4">
                         <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
@@ -283,13 +283,13 @@ export default function Artigos() {
                             </select>
                         </div>
 
-                        <div ref={articlesRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div ref={articlesRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {artigos.map((artigo: any, index: number) => {
                                 const bannerImage = artigo.imagensArtigo?.find((img: any) => img.isBanner)
                                 return (
                                     <div
                                         key={artigo.id}
-                                        className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow cursor-pointer"
+                                        className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer border border-gray-100"
                                     >
                                         <div className="relative h-48">
                                             <img
@@ -323,7 +323,7 @@ export default function Artigos() {
                     </div>
 
                     <div className="lg:w-1/4 hidden lg:block">
-                        <div className="bg-white rounded-xl shadow-md p-6 sticky top-24">
+                        <div className="bg-white rounded-2xl shadow-lg p-8 sticky top-24 border border-gray-100">
                             <h3 className="text-xl font-bold text-[#1D3557] mb-4">
                                 Categorias
                             </h3>
@@ -355,32 +355,25 @@ export default function Artigos() {
                         </div>
                     </div>
                 </div>
+                </div>
             </section>
 
-            <section className="w-full flex justify-center pt-20 bg-[#FAF9F6] overflow-hidden">
-                <div ref={finalRef} className="w-full bg-[#457B9D] flex flex-col md:flex-row items-center gap-10">
-
-                    <div className=" w-full md:w-1/2 relative h-[500px] md:h-[450px]">
-                        <Image src={coelho} alt='coelho' fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
+            <section className="py-20 bg-linear-to-b from-[#457B9D] to-[#1D3557]">
+                <div ref={finalRef} className="px-5 md:px-20 lg:px-70 text-center text-white">
+                    <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                        Cada etapa importa. E você não precisa caminhar sozinho.
+                    </h2>
+                    <p className="text-xl mb-10 max-w-2xl mx-auto">
+                        Fique por dentro das novidades e receba conteúdos exclusivos sobre cuidados com pets
+                    </p>
+                    <div className="flex flex-col md:flex-row gap-4 justify-center">
+                        <button className="bg-[#FFEDD8] text-[#1D3557] px-10 py-4 rounded-xl font-bold shadow-lg hover:scale-105 transition-transform duration-300 cursor-pointer">
+                            Assine nosso newsletter
+                        </button>
+                        <button onClick={() => router.push('/contato')} className="bg-transparent border-2 border-white text-white px-10 py-4 rounded-xl font-bold hover:bg-white hover:text-[#1D3557] transition-all duration-300 cursor-pointer">
+                            Entre em contato
+                        </button>
                     </div>
-
-                    <div className="w-full md:w-1/2 text-white space-y-6 p-5">
-                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-snug text-center">
-                            Cada etapa importa.
-                            E você não precisa caminhar sozinho.
-                        </h2>
-
-                        <div className="flex gap-3 flex-col md-flex-row">
-                            <button className="cursor-pointer w-full bg-[#1D3557] text-[#FAF9F6] px-8 py-3 rounded-xl font-semibold hover:scale-102 transition-transform duration-300">
-                                Assine nosso newsletter
-                            </button>
-                            <button onClick={() => router.push('/contato')} className="cursor-pointer w-full bg-[#FAF9F6] text-[#1D3557] px-8 py-3 rounded-xl font-semibold hover:scale-102 transition-transform duration-300">
-                                Entre em contato
-                            </button>
-                        </div>
-
-                    </div>
-
                 </div>
             </section>
         </>

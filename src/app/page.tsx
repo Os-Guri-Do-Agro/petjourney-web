@@ -3,20 +3,20 @@ import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import ave from '../assets/home/ave.jpg'
-import coelho from '../assets/home/coelho.jpg'
-import tutor from '../assets/home/tutor.jpg'
-import bgPetJourney from '../assets/home/bg-logo-petjourney.jpg'
-import Carousel from '../components/home/carousel-wrap'
 import Artigos from '../components/home/articles-section'
 import { useRouter } from 'next/navigation'
 import {
-  Beef,
   Pill,
-  ToyBrick,
-  ShowerHead,
-  Stethoscope,
-  Dog
+  Dog,
+  FileText,
+  Syringe,
+  Share2,
+  Bell,
+  Calendar,
+  Shield,
+  Lock,
+  UserCheck,
+  Database
 } from "lucide-react";
 
 if (typeof window !== 'undefined') {
@@ -34,6 +34,60 @@ export default function Home() {
   const iconsRef = useRef<HTMLDivElement>(null)
   const finalRef = useRef<HTMLDivElement>(null)
   const router = useRouter()
+
+  const ItensSaudePet = [
+    {
+      id: 1,
+      icon: Dog,
+      title: 'Informações espalhadas ',
+      description: 'Carteirinha, papéis, Whatsapp e memória- tudo desconectado.'
+    },
+    {
+      id: 2,
+      icon: Dog,
+      title: 'Falta de controle',
+      description: 'Vacinas esquecidas, exames atrasados, dados perdidos.'
+    },
+    {
+      id: 3,
+      icon: Dog,
+      title: 'Emergências sem dados',
+      description: 'Na urgência, ninguém lembra do histórico completo do pet.'
+    },
+  ]
+
+  const ItensSolucaoPet = [
+    {
+      id: 1,
+      icon: Dog,
+      title: 'Prontuário digital do pet',
+    },
+    {
+      id: 2,
+      icon: Dog,
+      title: 'Upload de exames e precrição',
+    },
+    {
+      id: 3,
+      icon: Dog,
+      title: 'Caderneta de exames e vacinas digital',
+    },
+    {
+      id: 4,
+      icon: Dog,
+      title: 'Compartilhamento com veterinários',
+    },
+    {
+      id: 5,
+      icon: Dog,
+      title: 'Lembretes automáticos de saúde',
+    },
+    {
+      id: 6,
+      icon: Dog,
+      title: 'Caderno do Tutor',
+    },
+  ]
 
   useEffect(() => {
     setMounted(true)
@@ -189,148 +243,79 @@ export default function Home() {
     return () => ctx.revert()
   }, [mounted])
   const serviceIcons = [
-    { icon: Beef, label: "Alimentos" },
-    { icon: Pill, label: "Medicamentos" },
-    { icon: ToyBrick, label: "Brinquedos" },
-    { icon: ShowerHead, label: "Banho & Tosa" },
-    { icon: Stethoscope, label: "Consultas" },
-    { icon: Dog, label: "Passeadores" }
+    { icon: FileText, label: "Prontuário Digital" },
+    { icon: Pill, label: "Exames e Prescrições" },
+    { icon: Syringe, label: "Caderneta de Vacinas" },
+    { icon: Share2, label: "Compartilhamento com Veterinários" },
+    { icon: Bell, label: "Lembretes Automáticos" },
+    { icon: Calendar, label: "Agendamento Integrado" }
   ]
 
   return (
     <>
-      <section className="h-[90vh] bg-[url('../assets/home/bg-web.jpg')] bg-no-repeat bg-bottom bg-cover">
-        <div className="relative z-10 w-full px-5 md:px-20 lg:px-30 pt-24">
-          <div ref={heroRef} className=" text-white space-y-6 w-full mt-20">
+      <section className="h-[81vh] bg-[url('../assets/home/bg-home.jpg')] bg-no-repeat bg-center bg-cover">
+        <div className="relative z-10 w-full px-5 md:px-20 lg:px-70 pt-24">
+          <div ref={heroRef} className=" text-white space-y-6 w-full md:mt-20">
 
-            <h1 className="text-3xl md:text-4xl lg:text-6xl font-extrabold leading-tight ">
-              Amar, <br />
-              Conectar e Cuidar
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold leading-tight text-[#FAF9F6]">
+              O histórico completo do seu pet, <br />
+              acessível quando você precisar
             </h1>
 
-            <p className=" text-2xl md:text-3xl font-semibold text-gray-200">
-              Durante toda a jornada.
+            <p className="text-[#FAF9F6] text-xl max-w-lg">
+              Vacinas, exames, prescrições e agendamentos organizados em um só lugar
             </p>
 
-            <p className="text-gray-300 text-xl md:text-2xl max-w-md">
-              Somos a ponte entre a tecnologia e o cuidado animal contínuo,
-              preventivo e acessível.
-            </p>
-
-            <button className="bg-[#4F7C99] px-6 py-3 rounded-xl font-semibold shadow-lg w-full max-w-70 hover:bg-[#00000038] duration-300 transition-colors cursor-pointer">
-              Iniciar Jornada
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <section className="w-full min-h-50 flex items-center justify-center py-5 mb-7" style={{ background: 'linear-gradient(to bottom, var(--secondary), var(--background))' }}>
-        <div className="flex w-full items-center justify-cente h-full px-5 md:px-20 lg:px-30">
-          <div className=" flex w-full h-full text-center items-center justify-center">
-            <h2 ref={missionRef} className="text-lg md:text-2xl font-semibold leading-light text-[#1D3557]">
-              Transformamos a jornada com a saúde do seu pets em uma experiência completa, inteligente e humanizada, conectamos tecnologia, monitoramento, histórico médico, rede de profissionais e um ecossistema de bem-estar para que tutores possam cuidar dos seus animais com mais segurança, praticidade e amor em cada etapa da vida.
-            </h2>
-          </div>
-
-        </div>
-      </section>
-
-      <section ref={section1Ref} className="w-full py-20 overflow-hidden" style={{ background: 'var(--background)' }}>
-
-        <div className="grid md:grid-cols-2">
-
-          <div className="image-container h-[400px] md:min-h-[500px] relative">
-            <Image src={ave} alt="Pet care" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
-          </div>
-
-          <div className="flex items-center px-5 md:px-20 py-10 md:py-0 lg:px-30">
-            <div className="text-content w-full space-y-6">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#1D3557]">
-                Saúde integrada:
-                do chip ao check-up
-              </h2>
-
-              <p className="text-lg xl:text-2xl text-gray-700 leading-relaxed">
-                Toda a jornada de saúde do seu pet em um só lugar:
-                prontuário eletrônico, caderneta digital, exames,
-                vacinas, dados do chip e compatibilidade com dispositivos inteligentes.
-              </p>
-
-              <button onClick={() => router.push('/servicos')} className="bg-[#457B9D] hover:bg-[#1b2e47] text-white px-8 py-3 rounded-xl transition-colors cursor-pointer w-full font-semibold">
+            <div className=" flex gap-5">
+              <button className="bg-linear-to-l from-[#457b9d] to-[#1D3557] px-6 py-3 rounded-xl font-semibold shadow-lg w-full max-w-70 hover:bg-white duration-300 transition-colors cursor-pointer">
+                Faça parte
+              </button>
+              <button className="border-2 bg-[#000000b4] px-6 py-3 rounded-xl font-semibold shadow-lg w-full max-w-70 hover:bg-white duration-300 transition-colors cursor-pointer">
                 Saiba mais
               </button>
             </div>
+
           </div>
         </div>
+      </section>
 
-        <div ref={section2Ref} className="grid md:grid-cols-2">
-
-          <div className="flex items-center px-5 md:px-20 lg:px-30 py-10 order-2 md:order-1">
-            <div className="text-content w-full space-y-6">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#1D3557]">
-                Para o tutor
-              </h2>
-
-              <p className="text-lg xl:text-2xl text-gray-700 leading-relaxed">
-                Consultas online com veterinários de confiança.
-                Agendamentos práticos, direto pelo app.
-                Blog com dicas personalizadas para seu pet.
-                Cursos rápidos sobre saúde, bem-estar e comportamento.
-                Marketplace completo com os melhores produtos e serviços.
-              </p>
-
-              <button onClick={() => router.push('/artigos')} className="bg-[#457B9D] hover:bg-[#1b2e47] text-white px-10 py-3 rounded-xl transition-colors cursor-pointer w-full font-semibold">
-                Saiba mais
-              </button>
-            </div>
+      <section className='flex w-full px-5 md:px-40 lg:px-70 bg-linear-to-b from-[#1D3557] via-[#1d3557d3] py-10'>
+        <div className=" flex flex-col w-full items-center justify-center gap-15">
+          <div className="w-full flex align-center justify-center">
+            <h2 className='text-center text-2xl md:text-3xl lg:text-4xl font-bold text-[#FAF9F6]'>O problema da saúde pet hoje</h2>
           </div>
-
-          <div className="image-container h-[400px] md:h-[500px] order-1 md:order-2 relative">
-            <Image src={tutor} alt="Pet care" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover object-center" />
+          <div className="w-full flex gap-5 md:gap-10 items-center justify-center flex-wrap md:flex-nowrap">
+            {ItensSaudePet.map((item) => {
+              const Icon = item.icon;
+              return (
+                <div className="w-full flex flex-col items-center justify-center gap-5 p-5 bg-[#FAF9F6] rounded-3xl shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 cursor-pointer md:h-full border-2 border-[#457b9d]" key={item.id}>
+                  <Icon className="w-20 h-20 text-[#1D3557]" />
+                  <div className="text-center flex flex-col gap-3">
+                    <h3 className='text-xl font-bold text-[#1D3557]'>{item.title}</h3>
+                    <p className='max-w-90 text-[#457B9D] text-lg'>{item.description}</p>
+                  </div>
+                </div>
+              )
+            })}
           </div>
         </div>
 
       </section>
 
-      <section className="w-full flex justify-center py-20 bg-[#FAF9F6] px-5 md:px-20 lg:px-30 overflow-hidden">
-        <div ref={vetRef} className="w-full bg-[#457B9D] rounded-2xl flex flex-col md:flex-row items-center gap-10">
-
-          <div className=" w-full md:w-1/2 relative h-[500px] md:h-[450px] md:m-5">
-            <Image src={coelho} alt='coelho' fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover rounded-tr-2xl rounded-tl-2xl md:rounded-2xl" />
-          </div>
-
-          <div className="w-full md:w-1/2 text-white space-y-6 p-5">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-snug">
-              Para Veterinários
-            </h2>
-
-            <p className="text-gray-100 text-lg xl:text-2xl leading-relaxed">
-              Acesso instantâneo ao histórico do animal.
-              Agendamentos otimizados e comunicação direta com tutores.
-              Cursos e especializações para sua evolução contínua.
-              Ferramentas que simplificam o atendimento e fortalecem o vínculo com o tutor.
-            </p>
-
-            <button onClick={() => router.push('/servicos')} className="cursor-pointer w-full bg-[#FAF9F6] text-[#1D3557] px-8 py-3 rounded-xl font-semibold hover:scale-102 transition-transform duration-300">
-              Saiba mais
-            </button>
-          </div>
-
-        </div>
-      </section>
-
-      <section className="w-full flex justify-center py-20 bg-[#FAF9F6] px-5 md:px-20 lg:px-30 overflow-hidden">
+      <section className="w-full flex justify-center py-20 bg-[#FAF9F6] px-5 md:px-30 lg:px-70 overflow-hidden">
         <div className="w-full flex flex-col lg:flex-row gap-16">
 
           <div ref={marketplaceRef} className="lg:w-1/2 space-y-6">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#1E3A5F] leading-snug">
-              Tudo o que seu pet precisa, em um só lugar
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#1D3557] leading-snug">
+              Solução: PetJourney <br /> Tudo conectado em um só lugar
             </h2>
 
-            <div className="text-gray-700 text-lg leading-relaxed space-y-2">
-              <p>
-                O Marketplace Pet Journey conecta você aos melhores produtos,
-                serviços e profissionais.
+            <div className="text-[#457B9D] text-lg leading-relaxed space-y-2">
+              <p className=''>
+                Não é apenas agenda.
+                Não é apenas marketplace.
+                É a memória médica estruturada do seu pet.
+
               </p>
               <p>
                 Alimentos, medicamentos, brinquedos, serviços de banho, tosa,
@@ -353,10 +338,10 @@ export default function Home() {
               return (
                 <div
                   key={index}
-                  className="flex flex-col items-center justify-center gap-2 p-4 rounded-xl bg-[#457B9D]"
+                  className="flex flex-col items-center justify-center gap-2 p-4 rounded-xl bg-linear-to-bl from-[#457b9d] to-[#1D3557]"
                 >
                   <Icon className="w-10 h-10 text-[#FAF9F6]" />
-                  <span className="text-sm text-[#FAF9F6] font-semibold text-center">
+                  <span className="text-sm text-[#FAF9F6] font-semibold text-center max-w-30">
                     {item.label}
                   </span>
                 </div>
@@ -367,39 +352,106 @@ export default function Home() {
         </div>
       </section>
 
-      <section className='py-10 bg-[#FAF9F6]'>
-        <div className="">
-          <Carousel />
+      <section className="flex py-20 w-full">
+        <div className="w-full bg-[url('../assets/home/home-cat-banner.jpg')] bg-no-repeat bg-center bg-cover flex min-h-150 items-center px-5 md:px-30 lg:px-70 justify-start h-full">
+          <div className="w-full h-full flex flex-col justify-center gap-5 lg:p-10 rounded-2xl md:bg-linear-to-r from-black/30 max-w-3xl">
+            <h2 className='text-3xl md:text-4xl lg:text-5xl font-bold text-[#FaF9F6] leading-snug'>
+              Por que tutores e veterinários <br />vão amar a PetJourney
+            </h2>
+
+            <ul className='flex flex-col gap-2 '>
+              <li className='text-xl md:text-2xl text-[#FAF9F6] list-disc ml-5 md:ml-10'>Tranquilidade para tutores</li>
+              <li className='text-xl md:text-2xl text-[#FAF9F6] list-disc ml-5 md:ml-10'>Organização centralizada</li>
+              <li className='text-xl md:text-2xl text-[#FAF9F6] list-disc ml-5 md:ml-10'>Economia de tempo</li>
+              <li className='text-xl md:text-2xl text-[#FAF9F6] list-disc ml-5 md:ml-10'>Menos repetição de exames</li>
+              <li className='text-xl md:text-2xl text-[#FAF9F6] list-disc ml-5 md:ml-10'>Apoio ao diagnóstico veterinário</li>
+            </ul>
+
+            <button className="bg-linear-to-l from-[#457b9d] to-[#1D3557] px-6 py-3 rounded-xl font-semibold shadow-lg w-full max-w-70 hover:bg-white duration-300 transition-colors cursor-pointer text-white">
+              Saiba mais
+            </button>
+          </div>
+
         </div>
       </section>
 
-      <section className='w-full flex items-center justify-center py-10'>
+      <section className='w-full flex items-center justify-center'>
         <Artigos />
       </section>
 
-      <section className="w-full flex justify-center pt-20 bg-[#FAF9F6] overflow-hidden">
-        <div ref={finalRef} className="w-full bg-[#457B9D] flex flex-col md:flex-row items-center gap-10">
+      <section className="w-full py-20 px-5 md:px-30 lg:px-70 bg-linear-to-br from-[#1D3557] via-[#457b9d] to-[#1D3557] relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-10 left-10 w-40 h-40 bg-white/50 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 right-20 w-60 h-60 bg-white/50 rounded-full blur-3xl"></div>
+        </div>
 
-          <div className=" w-full md:w-1/2 relative h-[500px] md:h-[450px]">
-            <Image src={coelho} alt='coelho' fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
+        <div className="relative z-10 max-w-7xl mx-auto">
+          <div className="text-center mb-15">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#FAF9F6] mb-4">
+              Segurança e privacidade em primeiro lugar
+            </h2>
+            <p className="text-[#FAF9F6]/80 text-lg md:text-xl max-w-3xl mx-auto">
+              Seus dados e os do seu pet protegidos com padrão profissional
+            </p>
           </div>
 
-          <div className="w-full md:w-1/2 text-white space-y-6 p-5">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-snug text-center">
-              Cada etapa importa.
-              E você não precisa caminhar sozinho.
-            </h2>
-
-            <div className="flex gap-3 flex-col md-flex-row">
-              <button className="cursor-pointer w-full bg-[#1D3557] text-[#FAF9F6] px-8 py-3 rounded-xl font-semibold hover:scale-102 transition-transform duration-300">
-                Assine nosso newsletter
-              </button>
-              <button onClick={() => router.push('/contato')} className="cursor-pointer w-full bg-[#FAF9F6] text-[#1D3557] px-8 py-3 rounded-xl font-semibold hover:scale-102 transition-transform duration-300">
-                Entre em contato
-              </button>
+          <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+            <div className="bg-white/10 backdrop-blur-sm p-8 rounded-3xl border border-white/20 hover:bg-white/15 transition-all duration-300 transform hover:-translate-y-2">
+              <div className="bg-[#FAF9F6] w-16 h-16 rounded-2xl flex items-center justify-center mb-6">
+                <Lock className="w-8 h-8 text-[#1D3557]" />
+              </div>
+              <h3 className="text-2xl font-bold text-[#FAF9F6] mb-4">Criptografia de dados</h3>
+              <p className="text-[#FAF9F6]/90 text-lg leading-relaxed">
+                Todas as informações são criptografadas de ponta a ponta, garantindo que apenas você tenha acesso aos dados do seu pet.
+              </p>
             </div>
 
+            <div className="bg-white/10 backdrop-blur-sm p-8 rounded-3xl border border-white/20 hover:bg-white/15 transition-all duration-300 transform hover:-translate-y-2 md:mt-12">
+              <div className="bg-[#FAF9F6] w-16 h-16 rounded-2xl flex items-center justify-center mb-6">
+                <Shield className="w-8 h-8 text-[#1D3557]" />
+              </div>
+              <h3 className="text-2xl font-bold text-[#FAF9F6] mb-4">Conformidade com LGPD</h3>
+              <p className="text-[#FAF9F6]/90 text-lg leading-relaxed">
+                Seguimos rigorosamente a Lei Geral de Proteção de Dados, respeitando sua privacidade e direitos.
+              </p>
+            </div>
+
+            <div className="bg-white/10 backdrop-blur-sm p-8 rounded-3xl border border-white/20 hover:bg-white/15 transition-all duration-300 transform hover:-translate-y-2">
+              <div className="bg-[#FAF9F6] w-16 h-16 rounded-2xl flex items-center justify-center mb-6">
+                <UserCheck className="w-8 h-8 text-[#1D3557]" />
+              </div>
+              <h3 className="text-2xl font-bold text-[#FAF9F6] mb-4">Controle de compartilhamento</h3>
+              <p className="text-[#FAF9F6]/90 text-lg leading-relaxed">
+                Você decide quem pode acessar as informações do seu pet. Compartilhe com veterinários de forma segura e controlada.
+              </p>
+            </div>
+
+            <div className="bg-white/10 backdrop-blur-sm p-8 rounded-3xl border border-white/20 hover:bg-white/15 transition-all duration-300 transform hover:-translate-y-2 md:mt-12">
+              <div className="bg-[#FAF9F6] w-16 h-16 rounded-2xl flex items-center justify-center mb-6">
+                <Database className="w-8 h-8 text-[#1D3557]" />
+              </div>
+              <h3 className="text-2xl font-bold text-[#FAF9F6] mb-4">Consentimento explícito</h3>
+              <p className="text-[#FAF9F6]/90 text-lg leading-relaxed">
+                Nenhum dado é compartilhado sem sua autorização prévia. Transparência total em cada etapa.
+              </p>
+            </div>
           </div>
+        </div>
+      </section>
+
+      <section className="w-full flex justify-center bg-[#FAF9F6] overflow-hidden">
+        <div ref={finalRef} className="w-full bg-[url('../assets/home/bgFooter-home.jpg')] bg-no-repeat bg-center bg-cover flex min-h-170 items-center px-5 md:px-30 lg:px-70 justify-end">
+          <div className="bg-white/30 w-200 p-10 min-h-100 rounded-4xl flex flex-col items-center text-center justify-center gap-10">
+            <h2 className='font-black text-3xl  lg:text-4xl text-[#1D3557]'>
+              Comece agora a organizar a saúde do seu pet
+            </h2>
+
+            <button className='px-5 py-4 bg-linear-to-bl from-[#457b9d] to-[#1D3557] rounded-2xl font-bold text-white max-w-70 cursor-pointer'>
+              Faça parte da lista de espera
+            </button>
+
+          </div>
+
 
         </div>
       </section>
