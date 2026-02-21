@@ -1,0 +1,403 @@
+'use client'
+import { useState, useEffect, useRef } from 'react'
+import Image from 'next/image'
+import { Mail, Phone, MapPin, Send, ChevronDown, Check, Loader2 } from 'lucide-react'
+import { Listbox, ListboxButton, ListboxOptions, ListboxOption, Transition } from '@headlessui/react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import tutor from '../../../assets/home/tutor.jpg'
+import coelho from '../../../assets/home/coelho.jpg'
+import { marketingService } from '@/service/marketing/marketing-server'
+import toast, { Toaster } from 'react-hot-toast'
+
+if (typeof window !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger)
+}
+
+const assuntos = [
+    { id: 'duvida', name: 'Dúvida' },
+    { id: 'suporte', name: 'Suporte' },
+    { id: 'parceria', name: 'Parceria' },
+    { id: 'outro', name: 'Outro' }
+]
+
+export default function Contato() {
+    const [mounted, setMounted] = useState(false)
+    const [formData, setFormData] = useState({
+        nome: '',
+        email: '',
+        telefone: '',
+        mensagem: ''
+    })
+    const [selectedAssunto, setSelectedAssunto] = useState(assuntos[0])
+    const [errors, setErrors] = useState({
+        nome: '',
+        email: '',
+        telefone: '',
+        mensagem: ''
+    })
+    const [loading, setLoading] = useState(false)
+
+    const validateEmail = (email: string) => {
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        return regex.test(email)
+    }
+
+    const validatePhone = (phone: string) => {
+        const cleaned = phone.replace(/\D/g, '')
+        return cleaned.length === 11
+    }
+
+    const validateName = (name: string) => {
+        return name.trim().length >= 3
+    }
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault()
+
+        const newErrors = {
+            nome: '',
+            email: '',
+            telefone: '',
+            mensagem: ''
+        }
+
+        if (!validateName(formData.nome)) {
+            newErrors.nome = 'Nome deve ter pelo menos 3 caracteres'
+        }
+
+        if (!validateEmail(formData.email)) {
+            newErrors.email = 'E-mail inválido'
+        }
+
+        if (!validatePhone(formData.telefone)) {
+            newErrors.telefone = 'Telefone deve ter 11 dígitos'
+        }
+
+        if (formData.mensagem.trim().length < 10) {
+            newErrors.mensagem = 'Mensagem deve ter pelo menos 10 caracteres'
+        }
+
+        setErrors(newErrors)
+
+        if (newErrors.nome || newErrors.email || newErrors.telefone || newErrors.mensagem) {
+            return
+        }
+
+        setLoading(true)
+        try {
+            await marketingService.postContact({
+                nome: formData.nome,
+                email: formData.email,
+                telefone: formData.telefone.replace(/\D/g, ''),
+                assunto: selectedAssunto.name,
+                mensagem: formData.mensagem
+            })
+            setTimeout(() => {
+                toast.success('Mensagem enviada com sucesso!')  
+            }, 300);
+            setFormData({ nome: '', email: '', telefone: '', mensagem: '' })
+            setSelectedAssunto(assuntos[0])
+        } catch (error) {
+            toast.error('Erro ao enviar mensagem')
+        } finally {
+            setLoading(false)
+        }
+    }
+
+    const heroRef = useRef<any>(null)
+    const formRef = useRef<any>(null)
+    const imageRef = useRef<any>(null)
+    const ctaRef = useRef<any>(null)
+    const cardsRef = useRef<any>(null)
+
+    useEffect(() => {
+        setMounted(true)
+    }, [])
+
+    useEffect(() => {
+        if (!mounted) return
+
+        const ctx = gsap.context(() => {
+            if (heroRef.current?.children) {
+                gsap.from(Array.from(heroRef.current.children), {
+                    opacity: 0,
+                    y: 50,
+                    duration: 1,
+                    stagger: 0.2,
+                    ease: 'power3.out'
+                })
+            }
+
+            if (formRef.current) {
+                gsap.from(formRef.current, {
+                    scrollTrigger: {
+                        trigger: formRef.current,
+                        start: 'top 75%',
+                        toggleActions: 'play none none reverse'
+                    },
+                    opacity: 0,
+                    x: -50,
+                    duration: 1,
+                    ease: 'power3.out'
+                })
+            }
+
+            if (imageRef.current) {
+                gsap.from(imageRef.current, {
+                    scrollTrigger: {
+                        trigger: imageRef.current,
+                        start: 'top 75%',
+                        toggleActions: 'play none none reverse'
+                    },
+                    opacity: 0,
+                    x: 50,
+                    duration: 1,
+                    ease: 'power3.out'
+                })
+            }
+
+            if (ctaRef.current) {
+                gsap.from(ctaRef.current, {
+                    scrollTrigger: {
+                        trigger: ctaRef.current,
+                        start: 'top 75%',
+                        toggleActions: 'play none none reverse'
+                    },
+                    scale: 0.95,
+                    opacity: 0,
+                    duration: 1,
+                    ease: 'power2.out'
+                })
+            }
+
+            if (cardsRef.current?.children) {
+                gsap.from(Array.from(cardsRef.current.children), {
+                    opacity: 0,
+                    y: 80,
+                    duration: 0.8,
+                    stagger: 0.15,
+                    ease: 'power3.out'
+                })
+            }
+        })
+
+        return () => ctx.revert()
+    }, [mounted])
+
+    const handleChange = (e: React.ChangeEvent<any>) => {
+        const { name, value } = e.target
+        setFormData({ ...formData, [name]: value })
+        setErrors({ ...errors, [name]: '' })
+    }
+
+    const handlePhoneChange = (e: React.ChangeEvent<any>) => {
+        const value = e.target.value.replace(/\D/g, '')
+        const formatted = value
+            .replace(/^(\d{2})(\d)/, '($1) $2')
+            .replace(/(\d{5})(\d)/, '$1-$2')
+            .slice(0, 15)
+        setFormData({ ...formData, telefone: formatted })
+        setErrors({ ...errors, telefone: '' })
+    }
+
+    return (
+        <div className="min-h-screen bg-[#FAF9F6]">
+            <Toaster position="top-right" />
+            {/* Hero Section */}
+            <section className="relative h-[50vh] bg-[url('../assets/home/bg-web.jpg')] bg-cover bg-center">
+                <div className="absolute inset-0 bg-black/40" />
+                <div ref={heroRef} className="relative z-10 h-full flex flex-col items-center justify-center text-white px-5">
+                    <h1 className="text-4xl md:text-6xl font-bold mb-4">Entre em Contato</h1>
+                    <p className="text-xl md:text-2xl text-gray-200 text-center max-w-2xl">
+                        Estamos aqui para cuidar da jornada do seu pet
+                    </p>
+                </div>
+            </section>
+
+            {/* Contact Info Cards */}
+            <section className="px-5 md:px-20 lg:px-30 -mt-16 relative z-20">
+                <div ref={cardsRef} className="grid md:grid-cols-3 gap-6 mb-20">
+                    <div className="bg-white p-6 rounded-xl shadow-lg text-center">
+                        <div className="bg-[#457B9D] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <Mail className="w-8 h-8 text-white" />
+                        </div>
+                        <h3 className="text-xl font-bold text-[#1D3557] mb-2">Email</h3>
+                        <p className="text-gray-600">atendimento@petjourney.health</p>
+                    </div>
+
+                    <div className="bg-white p-6 rounded-xl shadow-lg text-center">
+                        <div className="bg-[#457B9D] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <Phone className="w-8 h-8 text-white" />
+                        </div>
+                        <h3 className="text-xl font-bold text-[#1D3557] mb-2">Telefone</h3>
+                        <p className="text-gray-600">(11) 9999-9999</p>
+                    </div>
+
+                    <div className="bg-white p-6 rounded-xl shadow-lg text-center">
+                        <div className="bg-[#457B9D] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <MapPin className="w-8 h-8 text-white" />
+                        </div>
+                        <h3 className="text-xl font-bold text-[#1D3557] mb-2">Localização</h3>
+                        <p className="text-gray-600">São Paulo, SP</p>
+                    </div>
+                </div>
+            </section>
+
+            {/* Form Section */}
+            <section className="px-5 md:px-20 lg:px-30 py-10">
+                <div className="grid md:grid-cols-2 gap-10 items-center">
+                    {/* Form */}
+                    <div ref={formRef} className="bg-white p-8 rounded-2xl shadow-xl">
+                        <h2 className="text-3xl font-bold text-[#1D3557] mb-6">Envie sua mensagem</h2>
+                        <form onSubmit={handleSubmit} className="space-y-5">
+                            <div>
+                                <label className="block text-gray-700 font-semibold mb-2">Nome</label>
+                                <input
+                                    type="text"
+                                    name="nome"
+                                    value={formData.nome}
+                                    onChange={handleChange}
+                                    className={`w-full px-4 py-3 border ${errors.nome ? 'border-red-500' : 'border-gray-300'} rounded-lg focus:outline-none focus:ring-2 focus:ring-[#457B9D] transition-all`}
+                                />
+                                {errors.nome && <p className="text-red-500 text-sm mt-1">{errors.nome}</p>}
+                            </div>
+
+                            <div>
+                                <label className="block text-gray-700 font-semibold mb-2">Email</label>
+                                <input
+                                    type="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    className={`w-full px-4 py-3 border ${errors.email ? 'border-red-500' : 'border-gray-300'} rounded-lg focus:outline-none focus:ring-2 focus:ring-[#457B9D] transition-all`}
+                                />
+                                {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+                            </div>
+
+                            <div>
+                                <label className="block text-gray-700 font-semibold mb-2">Telefone</label>
+                                <input
+                                    type="tel"
+                                    name="telefone"
+                                    value={formData.telefone}
+                                    onChange={handlePhoneChange}
+                                    placeholder="(00) 00000-0000"
+                                    className={`w-full px-4 py-3 border ${errors.telefone ? 'border-red-500' : 'border-gray-300'} rounded-lg focus:outline-none focus:ring-2 focus:ring-[#457B9D] transition-all`}
+                                />
+                                {errors.telefone && <p className="text-red-500 text-sm mt-1">{errors.telefone}</p>}
+                            </div>
+
+                            <div className="relative z-20">
+                                <Listbox value={selectedAssunto} onChange={setSelectedAssunto}>
+                                    <label className="block text-gray-700 font-semibold mb-2">Assunto</label>
+                                    <ListboxButton className="relative w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#457B9D] bg-white text-left cursor-pointer transition-all">
+                                        <span className="block truncate">{selectedAssunto.name}</span>
+                                        <span className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                                            <ChevronDown className="w-5 h-5 text-gray-400" />
+                                        </span>
+                                    </ListboxButton>
+                                    <Transition
+                                        leave="transition ease-in duration-100"
+                                        leaveFrom="opacity-100"
+                                        leaveTo="opacity-0"
+                                    >
+                                        <ListboxOptions className="absolute z-10 mt-1 w-full bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-auto focus:outline-none">
+                                            {assuntos.map((assunto) => (
+                                                <ListboxOption
+                                                    key={assunto.id}
+                                                    value={assunto}
+                                                    className="relative cursor-pointer select-none py-3 pl-10 pr-4 data-focus:bg-[#457B9D] data-focus:text-white bg-white text-gray-900"
+                                                >
+                                                    {({ selected }) => (
+                                                        <>
+                                                            <span className={`block truncate ${selected ? 'font-semibold' : 'font-normal'}`}>
+                                                                {assunto.name}
+                                                            </span>
+                                                            {selected && (
+                                                                <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-[#457B9D] data-focus:text-white">
+                                                                    <Check className="w-5 h-5" />
+                                                                </span>
+                                                            )}
+                                                        </>
+                                                    )}
+                                                </ListboxOption>
+                                            ))}
+                                        </ListboxOptions>
+                                    </Transition>
+                                </Listbox>
+                            </div>
+
+                            <div>
+                                <label className="block text-gray-700 font-semibold mb-2">Mensagem</label>
+                                <textarea
+                                    name="mensagem"
+                                    value={formData.mensagem}
+                                    onChange={handleChange}
+                                    rows={5}
+                                    className={`w-full px-4 py-3 border ${errors.mensagem ? 'border-red-500' : 'border-gray-300'} rounded-lg focus:outline-none focus:ring-2 focus:ring-[#457B9D] resize-none transition-all`}
+                                />
+                                {errors.mensagem && <p className="text-red-500 text-sm mt-1">{errors.mensagem}</p>}
+                            </div>
+
+                            <button
+                                type="submit"
+                                disabled={loading}
+                                className="w-full bg-[#457B9D] hover:bg-[#1D3557] text-white font-bold py-4 rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                            >
+                                {loading ? (
+                                    <>
+                                        <Loader2 className="w-5 h-5 animate-spin" />
+                                        Enviando...
+                                    </>
+                                ) : (
+                                    <>
+                                        <Send className="w-5 h-5" />
+                                        Enviar Mensagem
+                                    </>
+                                )}
+                            </button>
+                        </form>
+                    </div>
+
+                    {/* Image */}
+                    <div ref={imageRef} className="relative h-[600px] rounded-2xl overflow-hidden shadow-xl">
+                        <Image
+                            src={tutor}
+                            alt="Contato Pet Journey"
+                            fill
+                            className="object-cover"
+                        />
+                    </div>
+                </div>
+            </section>
+
+            {/* CTA Section */}
+            <section className="px-5 md:px-20 lg:px-30 py-20">
+                <div ref={ctaRef} className="bg-[#457B9D] rounded-2xl overflow-hidden">
+                    <div className="grid md:grid-cols-2">
+                        <div className="relative h-[400px]">
+                            <Image
+                                src={coelho}
+                                alt="Pet Journey"
+                                fill
+                                className="object-cover"
+                            />
+                        </div>
+                        <div className="p-10 flex flex-col justify-center text-white">
+                            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                                Faça parte da jornada
+                            </h2>
+                            <p className="text-lg mb-6 text-gray-100">
+                                Junte-se a milhares de tutores que já confiam no Pet Journey para cuidar da saúde e bem-estar dos seus pets.
+                            </p>
+                            <button onClick={() => window.open('/lista-espera', '_blank')} className="bg-white cursor-pointer text-[#1D3557] px-8 py-3 rounded-lg font-bold hover:scale-105 transition-transform w-fit">
+                                Começar Agora
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    )
+}
