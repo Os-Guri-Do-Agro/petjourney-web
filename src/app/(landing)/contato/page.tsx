@@ -1,12 +1,14 @@
 'use client'
 import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
-import { Mail, Phone, MapPin, Send, ChevronDown, Check } from 'lucide-react'
+import { Mail, Phone, MapPin, Send, ChevronDown, Check, Loader2 } from 'lucide-react'
 import { Listbox, ListboxButton, ListboxOptions, ListboxOption, Transition } from '@headlessui/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import tutor from '../../../assets/home/tutor.jpg'
 import coelho from '../../../assets/home/coelho.jpg'
+import { marketingService } from '@/service/marketing/marketing-server'
+import toast, { Toaster } from 'react-hot-toast'
 
 if (typeof window !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger)
@@ -28,11 +30,84 @@ export default function Contato() {
         mensagem: ''
     })
     const [selectedAssunto, setSelectedAssunto] = useState(assuntos[0])
+    const [errors, setErrors] = useState({
+        nome: '',
+        email: '',
+        telefone: '',
+        mensagem: ''
+    })
+    const [loading, setLoading] = useState(false)
+
+    const validateEmail = (email: string) => {
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        return regex.test(email)
+    }
+
+    const validatePhone = (phone: string) => {
+        const cleaned = phone.replace(/\D/g, '')
+        return cleaned.length === 11
+    }
+
+    const validateName = (name: string) => {
+        return name.trim().length >= 3
+    }
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault()
+
+        const newErrors = {
+            nome: '',
+            email: '',
+            telefone: '',
+            mensagem: ''
+        }
+
+        if (!validateName(formData.nome)) {
+            newErrors.nome = 'Nome deve ter pelo menos 3 caracteres'
+        }
+
+        if (!validateEmail(formData.email)) {
+            newErrors.email = 'E-mail inválido'
+        }
+
+        if (!validatePhone(formData.telefone)) {
+            newErrors.telefone = 'Telefone deve ter 11 dígitos'
+        }
+
+        if (formData.mensagem.trim().length < 10) {
+            newErrors.mensagem = 'Mensagem deve ter pelo menos 10 caracteres'
+        }
+
+        setErrors(newErrors)
+
+        if (newErrors.nome || newErrors.email || newErrors.telefone || newErrors.mensagem) {
+            return
+        }
+
+        setLoading(true)
+        try {
+            await marketingService.postContact({
+                nome: formData.nome,
+                email: formData.email,
+                telefone: formData.telefone.replace(/\D/g, ''),
+                assunto: selectedAssunto.name,
+                mensagem: formData.mensagem
+            })
+            toast.success('Mensagem enviada com sucesso!')
+            setFormData({ nome: '', email: '', telefone: '', mensagem: '' })
+            setSelectedAssunto(assuntos[0])
+        } catch (error) {
+            toast.error('Erro ao enviar mensagem')
+        } finally {
+            setLoading(false)
+        }
+    }
 
     const heroRef = useRef<any>(null)
     const formRef = useRef<any>(null)
     const imageRef = useRef<any>(null)
     const ctaRef = useRef<any>(null)
+    const cardsRef = useRef<any>(null)
 
     useEffect(() => {
         setMounted(true)
@@ -93,22 +168,40 @@ export default function Contato() {
                     ease: 'power2.out'
                 })
             }
+
+            if (cardsRef.current?.children) {
+                gsap.from(Array.from(cardsRef.current.children), {
+                    opacity: 0,
+                    y: 80,
+                    duration: 0.8,
+                    stagger: 0.15,
+                    ease: 'power3.out'
+                })
+            }
         })
 
         return () => ctx.revert()
     }, [mounted])
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault()
-        console.log('Form submitted:', formData)
+    const handleChange = (e: React.ChangeEvent<any>) => {
+        const { name, value } = e.target
+        setFormData({ ...formData, [name]: value })
+        setErrors({ ...errors, [name]: '' })
     }
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value })
+    const handlePhoneChange = (e: React.ChangeEvent<any>) => {
+        const value = e.target.value.replace(/\D/g, '')
+        const formatted = value
+            .replace(/^(\d{2})(\d)/, '($1) $2')
+            .replace(/(\d{5})(\d)/, '$1-$2')
+            .slice(0, 15)
+        setFormData({ ...formData, telefone: formatted })
+        setErrors({ ...errors, telefone: '' })
     }
 
     return (
         <div className="min-h-screen bg-[#FAF9F6]">
+            <Toaster position="top-right" />
             {/* Hero Section */}
             <section className="relative h-[50vh] bg-[url('../assets/home/bg-web.jpg')] bg-cover bg-center">
                 <div className="absolute inset-0 bg-black/40" />
@@ -122,8 +215,8 @@ export default function Contato() {
 
             {/* Contact Info Cards */}
             <section className="px-5 md:px-20 lg:px-30 -mt-16 relative z-20">
-                <div className="grid md:grid-cols-3 gap-6 mb-20">
-                    <div className="bg-white p-6 rounded-xl shadow-lg text-center hover:scale-105 transition-transform">
+                <div ref={cardsRef} className="grid md:grid-cols-3 gap-6 mb-20">
+                    <div className="bg-white p-6 rounded-xl shadow-lg text-center">
                         <div className="bg-[#457B9D] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                             <Mail className="w-8 h-8 text-white" />
                         </div>
@@ -131,7 +224,7 @@ export default function Contato() {
                         <p className="text-gray-600">atendimento@petjourney.health</p>
                     </div>
 
-                    <div className="bg-white p-6 rounded-xl shadow-lg text-center hover:scale-105 transition-transform">
+                    <div className="bg-white p-6 rounded-xl shadow-lg text-center">
                         <div className="bg-[#457B9D] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                             <Phone className="w-8 h-8 text-white" />
                         </div>
@@ -139,7 +232,7 @@ export default function Contato() {
                         <p className="text-gray-600">(11) 9999-9999</p>
                     </div>
 
-                    <div className="bg-white p-6 rounded-xl shadow-lg text-center hover:scale-105 transition-transform">
+                    <div className="bg-white p-6 rounded-xl shadow-lg text-center">
                         <div className="bg-[#457B9D] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                             <MapPin className="w-8 h-8 text-white" />
                         </div>
@@ -163,9 +256,9 @@ export default function Contato() {
                                     name="nome"
                                     value={formData.nome}
                                     onChange={handleChange}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#457B9D] transition-all"
-                                    required
+                                    className={`w-full px-4 py-3 border ${errors.nome ? 'border-red-500' : 'border-gray-300'} rounded-lg focus:outline-none focus:ring-2 focus:ring-[#457B9D] transition-all`}
                                 />
+                                {errors.nome && <p className="text-red-500 text-sm mt-1">{errors.nome}</p>}
                             </div>
 
                             <div>
@@ -175,9 +268,9 @@ export default function Contato() {
                                     name="email"
                                     value={formData.email}
                                     onChange={handleChange}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#457B9D] transition-all"
-                                    required
+                                    className={`w-full px-4 py-3 border ${errors.email ? 'border-red-500' : 'border-gray-300'} rounded-lg focus:outline-none focus:ring-2 focus:ring-[#457B9D] transition-all`}
                                 />
+                                {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
                             </div>
 
                             <div>
@@ -186,9 +279,11 @@ export default function Contato() {
                                     type="tel"
                                     name="telefone"
                                     value={formData.telefone}
-                                    onChange={handleChange}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#457B9D] transition-all"
+                                    onChange={handlePhoneChange}
+                                    placeholder="(00) 00000-0000"
+                                    className={`w-full px-4 py-3 border ${errors.telefone ? 'border-red-500' : 'border-gray-300'} rounded-lg focus:outline-none focus:ring-2 focus:ring-[#457B9D] transition-all`}
                                 />
+                                {errors.telefone && <p className="text-red-500 text-sm mt-1">{errors.telefone}</p>}
                             </div>
 
                             <div className="relative z-20">
@@ -238,17 +333,27 @@ export default function Contato() {
                                     value={formData.mensagem}
                                     onChange={handleChange}
                                     rows={5}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#457B9D] resize-none transition-all"
-                                    required
+                                    className={`w-full px-4 py-3 border ${errors.mensagem ? 'border-red-500' : 'border-gray-300'} rounded-lg focus:outline-none focus:ring-2 focus:ring-[#457B9D] resize-none transition-all`}
                                 />
+                                {errors.mensagem && <p className="text-red-500 text-sm mt-1">{errors.mensagem}</p>}
                             </div>
 
                             <button
                                 type="submit"
-                                className="w-full bg-[#457B9D] hover:bg-[#1D3557] text-white font-bold py-4 rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer"
+                                disabled={loading}
+                                className="w-full bg-[#457B9D] hover:bg-[#1D3557] text-white font-bold py-4 rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                             >
-                                <Send className="w-5 h-5" />
-                                Enviar Mensagem
+                                {loading ? (
+                                    <>
+                                        <Loader2 className="w-5 h-5 animate-spin" />
+                                        Enviando...
+                                    </>
+                                ) : (
+                                    <>
+                                        <Send className="w-5 h-5" />
+                                        Enviar Mensagem
+                                    </>
+                                )}
                             </button>
                         </form>
                     </div>

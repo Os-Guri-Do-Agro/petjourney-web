@@ -16,7 +16,11 @@ export const marketingService = {
         return this.handlerequest(
             apiClient.post('/marketing/subscription-whitelist', data)
         )
+    },
+
+    postContact(data: any): Promise<any> {
+        return this.handlerequest(
+            apiClient.post('/marketing/contact', data)
+        )
     }
-
-
 }
