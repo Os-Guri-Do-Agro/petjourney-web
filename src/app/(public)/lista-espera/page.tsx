@@ -1,20 +1,28 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
-import { Loader2 } from 'lucide-react'
+import { useState, useEffect, useRef, Fragment } from 'react'
+import { Loader2, ChevronDown, Check } from 'lucide-react'
+import { Listbox, ListboxButton, ListboxOptions, ListboxOption, Transition } from '@headlessui/react'
 import { marketingService } from '@/service/marketing/marketing-server'
 import gsap from 'gsap'
 import toast, { Toaster } from 'react-hot-toast'
 import Link from 'next/link'
 
 
+const perfis = [
+    { id: '', name: 'Selecione seu perfil' },
+    { id: 'TUTOR', name: 'Tutor' },
+    { id: 'VETERINARIO', name: 'Veterinário' },
+    { id: 'CLINICA', name: 'Clínica' }
+]
+
 export default function ListaEspera() {
     const [formData, setFormData] = useState({
-        perfil: '',
         nome: '',
         email: '',
         telefone: ''
     })
+    const [selectedPerfil, setSelectedPerfil] = useState(perfis[0])
     const [errors, setErrors] = useState({
         nome: '',
         email: '',
@@ -108,13 +116,14 @@ export default function ListaEspera() {
         setLoading(true)
         try {
             await marketingService.postWhiteList({
-                perfil: formData.perfil,
+                perfil: selectedPerfil.id,
                 nome: formData.nome,
                 email: formData.email,
                 telefone: formData.telefone.replace(/\D/g, '')
             })
             toast.success('Cadastro realizado com sucesso!')
-            setFormData({ perfil: '', nome: '', email: '', telefone: '' })
+            setFormData({ nome: '', email: '', telefone: '' })
+            setSelectedPerfil(perfis[0])
         } catch (error) {
             toast.error('Erro ao adicionar à lista de espera')
         } finally {
@@ -162,25 +171,55 @@ export default function ListaEspera() {
 
             <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-[#FAF9F6]">
                 <div ref={formRef} className="w-full max-w-md">
+                    <div className="w-full items-center justify-center flex mb-10 lg:hidden">
+                        <Link href={'/'}>
+                        <img className='w-60 h-auto object-contain' src="./logo-com-pata.png" alt="logo" />                        
+                        </Link>
+                    </div>
                     <div ref={el => { formFieldsRef.current[0] = el }} className="mb-8">
-                        <h2 className="text-3xl font-bold text-[#1D3557] mb-2">Entre na lista de espera</h2>
-                        <p className="text-[#457B9D] text-lg">Preencha os dados abaixo para fazer parte</p>
+                        <h2 className="text-3xl font-bold text-[#1D3557] mb-2 text-center lg:text-start">Entre na lista de espera</h2>
+                        <p className="text-[#457B9D] text-lg text-center lg:text-start">Preencha os dados abaixo para fazer parte</p>
                     </div>
 
                     <form onSubmit={handleSubmit} className="space-y-6">
-                        <div ref={el => { formFieldsRef.current[1] = el }}>
-                            <label className="block text-[#1D3557] font-semibold mb-2">Perfil</label>
-                            <select 
-                                name="perfil" 
-                                value={formData.perfil} 
-                                onChange={handleChange}
-                                className="w-full border-b-2 border-[#457B9D]/30 focus:border-[#1D3557] outline-none px-2 py-3 bg-transparent text-[#1D3557] transition-colors cursor-pointer"
-                            >
-                                <option value="">Selecione seu perfil</option>
-                                <option value="TUTOR">Tutor</option>
-                                <option value="VETERINARIO">Veterinário</option>
-                                <option value="CLINICA">Clínica</option>
-                            </select>
+                        <div ref={el => { formFieldsRef.current[1] = el }} className="relative z-20">
+                            <Listbox value={selectedPerfil} onChange={setSelectedPerfil}>
+                                <label className="block text-[#1D3557] font-semibold mb-2">Perfil</label>
+                                <ListboxButton className="relative w-full border-b-2 border-[#457B9D]/30 focus:border-[#1D3557] outline-none px-2 py-3 bg-[#FAF9F6] text-[#1D3557] transition-colors cursor-pointer text-left">
+                                    <span className="block truncate">{selectedPerfil.name}</span>
+                                    <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                                        <ChevronDown className="w-5 h-5 text-[#457B9D]" />
+                                    </span>
+                                </ListboxButton>
+                                <Transition
+                                    leave="transition ease-in duration-100"
+                                    leaveFrom="opacity-100"
+                                    leaveTo="opacity-0"
+                                >
+                                    <ListboxOptions className="absolute z-10 mt-1 w-full bg-white border border-[#457B9D]/30 rounded-lg shadow-lg max-h-60 overflow-auto focus:outline-none">
+                                        {perfis.map((perfil) => (
+                                            <ListboxOption
+                                                key={perfil.id}
+                                                value={perfil}
+                                                className="relative cursor-pointer select-none py-3 pl-10 pr-4 data-focus:bg-[#457B9D] data-focus:text-white bg-white text-[#1D3557]"
+                                            >
+                                                {({ selected }) => (
+                                                    <>
+                                                        <span className={`block truncate ${selected ? 'font-semibold' : 'font-normal'}`}>
+                                                            {perfil.name}
+                                                        </span>
+                                                        {selected && (
+                                                            <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-[#457B9D] data-focus:text-white">
+                                                                <Check className="w-5 h-5" />
+                                                            </span>
+                                                        )}
+                                                    </>
+                                                )}
+                                            </ListboxOption>
+                                        ))}
+                                    </ListboxOptions>
+                                </Transition>
+                            </Listbox>
                         </div>
 
                         <div ref={el => { formFieldsRef.current[2] = el }}>

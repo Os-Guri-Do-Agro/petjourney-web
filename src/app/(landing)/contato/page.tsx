@@ -1,7 +1,8 @@
 'use client'
 import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
-import { Mail, Phone, MapPin, Send } from 'lucide-react'
+import { Mail, Phone, MapPin, Send, ChevronDown, Check } from 'lucide-react'
+import { Listbox, ListboxButton, ListboxOptions, ListboxOption, Transition } from '@headlessui/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import tutor from '../../../assets/home/tutor.jpg'
@@ -11,15 +12,22 @@ if (typeof window !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger)
 }
 
+const assuntos = [
+    { id: 'duvida', name: 'Dúvida' },
+    { id: 'suporte', name: 'Suporte' },
+    { id: 'parceria', name: 'Parceria' },
+    { id: 'outro', name: 'Outro' }
+]
+
 export default function Contato() {
     const [mounted, setMounted] = useState(false)
     const [formData, setFormData] = useState({
         nome: '',
         email: '',
         telefone: '',
-        assunto: '',
         mensagem: ''
     })
+    const [selectedAssunto, setSelectedAssunto] = useState(assuntos[0])
 
     const heroRef = useRef<any>(null)
     const formRef = useRef<any>(null)
@@ -95,7 +103,7 @@ export default function Contato() {
         console.log('Form submitted:', formData)
     }
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value })
     }
 
@@ -155,7 +163,7 @@ export default function Contato() {
                                     name="nome"
                                     value={formData.nome}
                                     onChange={handleChange}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#457B9D]"
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#457B9D] transition-all"
                                     required
                                 />
                             </div>
@@ -167,7 +175,7 @@ export default function Contato() {
                                     name="email"
                                     value={formData.email}
                                     onChange={handleChange}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#457B9D]"
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#457B9D] transition-all"
                                     required
                                 />
                             </div>
@@ -179,25 +187,48 @@ export default function Contato() {
                                     name="telefone"
                                     value={formData.telefone}
                                     onChange={handleChange}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#457B9D]"
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#457B9D] transition-all"
                                 />
                             </div>
 
-                            <div>
-                                <label className="block text-gray-700 font-semibold mb-2">Assunto</label>
-                                <select
-                                    name="assunto"
-                                    value={formData.assunto}
-                                    onChange={handleChange}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#457B9D]"
-                                    required
-                                >
-                                    <option value="">Selecione um assunto</option>
-                                    <option value="duvida">Dúvida</option>
-                                    <option value="suporte">Suporte</option>
-                                    <option value="parceria">Parceria</option>
-                                    <option value="outro">Outro</option>
-                                </select>
+                            <div className="relative z-20">
+                                <Listbox value={selectedAssunto} onChange={setSelectedAssunto}>
+                                    <label className="block text-gray-700 font-semibold mb-2">Assunto</label>
+                                    <ListboxButton className="relative w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#457B9D] bg-white text-left cursor-pointer transition-all">
+                                        <span className="block truncate">{selectedAssunto.name}</span>
+                                        <span className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                                            <ChevronDown className="w-5 h-5 text-gray-400" />
+                                        </span>
+                                    </ListboxButton>
+                                    <Transition
+                                        leave="transition ease-in duration-100"
+                                        leaveFrom="opacity-100"
+                                        leaveTo="opacity-0"
+                                    >
+                                        <ListboxOptions className="absolute z-10 mt-1 w-full bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-auto focus:outline-none">
+                                            {assuntos.map((assunto) => (
+                                                <ListboxOption
+                                                    key={assunto.id}
+                                                    value={assunto}
+                                                    className="relative cursor-pointer select-none py-3 pl-10 pr-4 data-focus:bg-[#457B9D] data-focus:text-white bg-white text-gray-900"
+                                                >
+                                                    {({ selected }) => (
+                                                        <>
+                                                            <span className={`block truncate ${selected ? 'font-semibold' : 'font-normal'}`}>
+                                                                {assunto.name}
+                                                            </span>
+                                                            {selected && (
+                                                                <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-[#457B9D] data-focus:text-white">
+                                                                    <Check className="w-5 h-5" />
+                                                                </span>
+                                                            )}
+                                                        </>
+                                                    )}
+                                                </ListboxOption>
+                                            ))}
+                                        </ListboxOptions>
+                                    </Transition>
+                                </Listbox>
                             </div>
 
                             <div>
@@ -207,7 +238,7 @@ export default function Contato() {
                                     value={formData.mensagem}
                                     onChange={handleChange}
                                     rows={5}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#457B9D] resize-none"
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#457B9D] resize-none transition-all"
                                     required
                                 />
                             </div>

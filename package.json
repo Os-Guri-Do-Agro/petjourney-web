@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.9",
     "@heroui/react": "^3.0.0-beta.6",
     "@heroui/styles": "^3.0.0-beta.6",
     "axios": "^1.13.5",
