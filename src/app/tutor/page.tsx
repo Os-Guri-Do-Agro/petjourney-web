@@ -1,7 +1,94 @@
 'use client'
 import { FileText, Syringe, Bell, BookOpen, Dog, Pill, Heart, Shield, Clock, Smartphone } from 'lucide-react'
+import { useEffect, useRef } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import{ useRouter } from 'next/navigation'
+
+gsap.registerPlugin(ScrollTrigger)
 
 export default function TutorScreen() {
+    const heroRef = useRef(null)
+    const funcRef = useRef<(HTMLDivElement | null)[]>([])
+    const passosRef = useRef<(HTMLDivElement | null)[]>([])
+    const benefRef = useRef<(HTMLDivElement | null)[]>([])
+    const ctaRef = useRef(null)
+
+    const router = useRouter();
+
+    useEffect(() => {
+        const ctx = gsap.context(() => {
+            gsap.from(heroRef.current, {
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                ease: 'power3.out'
+            })
+
+            funcRef.current.forEach((el, i) => {
+                if (el) {
+                    gsap.from(el, {
+                        scrollTrigger: {
+                            trigger: el,
+                            start: 'top 80%',
+                            toggleActions: 'play none none reverse'
+                        },
+                        opacity: 0,
+                        y: 50,
+                        duration: 0.6,
+                        delay: i * 0.1
+                    })
+                }
+            })
+
+            passosRef.current.forEach((el, i) => {
+                if (el) {
+                    gsap.from(el, {
+                        scrollTrigger: {
+                            trigger: el,
+                            start: 'top 80%',
+                            toggleActions: 'play none none reverse'
+                        },
+                        opacity: 0,
+                        x: i % 2 === 0 ? -50 : 50,
+                        duration: 0.8,
+                        delay: i * 0.15
+                    })
+                }
+            })
+
+            benefRef.current.forEach((el, i) => {
+                if (el) {
+                    gsap.from(el, {
+                        scrollTrigger: {
+                            trigger: el,
+                            start: 'top 80%',
+                            toggleActions: 'play none none reverse'
+                        },
+                        opacity: 0,
+                        scale: 0.8,
+                        duration: 0.6,
+                        delay: i * 0.1
+                    })
+                }
+            })
+
+            if (ctaRef.current) {
+                gsap.from(ctaRef.current, {
+                    scrollTrigger: {
+                        trigger: ctaRef.current,
+                        start: 'top 80%',
+                        toggleActions: 'play none none reverse'
+                    },
+                    opacity: 0,
+                    y: 30,
+                    duration: 0.8
+                })
+            }
+        })
+
+        return () => ctx.revert()
+    }, [])
 
     const funcionalidades = [
         {
@@ -88,7 +175,7 @@ export default function TutorScreen() {
         <>
             <section className="min-h-[70vh] bg-linear-to-b from-[#1D3557] to-[#457B9D] flex items-center">
                 <div className="w-full px-5 md:px-20 lg:px-70 pt-32 pb-20">
-                    <div className="text-white space-y-6 max-w-4xl">
+                    <div ref={heroRef} className="text-white space-y-6 max-w-4xl">
                         <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight">
                             Guia completo para tutores
                         </h1>
@@ -96,7 +183,7 @@ export default function TutorScreen() {
                             Descubra como a PetJourney pode transformar o cuidado com seu pet.
                             Aprenda a usar todas as funcionalidades da plataforma.
                         </p>
-                        <button className="bg-[#FFEDD8] text-[#1D3557] px-8 py-4 rounded-xl font-bold shadow-lg hover:scale-105 transition-transform duration-300">
+                        <button className="bg-[#FFEDD8] hover:bg-[#ffffff] cursor-pointer text-[#1D3557] px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-shadow duration-300">
                             Começar Agora
                         </button>
                     </div>
@@ -120,7 +207,10 @@ export default function TutorScreen() {
                             return (
                                 <div
                                     key={index}
-                                    className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-2 border-transparent hover:border-[#457B9D]"
+                                    ref={el => { funcRef.current[index] = el }}
+                                    className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 border-2 border-transparent hover:border-[#457B9D]"
+                                    onMouseEnter={(e) => gsap.to(e.currentTarget, { y: -8, duration: 0.3 })}
+                                    onMouseLeave={(e) => gsap.to(e.currentTarget, { y: 0, duration: 0.3 })}
                                 >
                                     <div className="bg-linear-to-bl from-[#457b9d] to-[#1E3A5F] w-16 h-16 rounded-full flex items-center justify-center mb-6">
                                         <Icon className="w-8 h-8 text-white" />
@@ -153,7 +243,8 @@ export default function TutorScreen() {
                         {passos.map((passo, index) => (
                             <div
                                 key={index}
-                                className="flex gap-5 items-start transition-all duration-300"
+                                ref={el => { passosRef.current[index] = el }}
+                                className="flex gap-5 items-start"
                             >
                                 <div className="bg-linear-to-bl from-[#457b9d] to-[#1E3A5F] text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold shrink-0">
                                     {passo.numero}
@@ -189,7 +280,8 @@ export default function TutorScreen() {
                             return (
                                 <div
                                     key={index}
-                                    className="bg-white p-8 rounded-2xl shadow-lg text-center hover:bg-[#457B9D] group transition-all duration-300"
+                                    ref={el => { benefRef.current[index] = el }}
+                                    className="bg-white p-8 rounded-2xl shadow-lg text-center hover:bg-[#457B9D] group transition-colors duration-300"
                                 >
                                     <div className="bg-[#457B9D] group-hover:bg-white w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 transition-colors duration-300">
                                         <Icon className="w-10 h-10 text-white group-hover:text-[#457B9D] transition-colors duration-300" />
@@ -208,7 +300,7 @@ export default function TutorScreen() {
             </section>
 
             <section className="py-20 bg-linear-to-b from-[#457B9D] to-[#1D3557]">
-                <div className="px-5 md:px-20 lg:px-70 text-center text-white">
+                <div ref={ctaRef} className="px-5 md:px-20 lg:px-70 text-center text-white">
                     <h2 className="text-3xl md:text-4xl font-bold mb-6">
                         Conheça as funcionalidades para tutores de pets
                     </h2>
@@ -220,10 +312,10 @@ export default function TutorScreen() {
                     </div>
 
                     <div className="flex flex-col md:flex-row gap-4 justify-center">
-                        <button className="bg-[#FFEDD8] text-[#1D3557] px-10 py-4 rounded-xl font-bold shadow-lg hover:scale-105 transition-transform duration-300 cursor-pointer">
+                        <button className="bg-[#FFEDD8] hover:bg-[#ffffff] text-[#1D3557] px-10 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer">
                             Lista de Espera
                         </button>
-                        <button className="bg-transparent border-2 border-white text-white px-10 py-4 rounded-xl font-bold hover:bg-white hover:text-[#1D3557] transition-all duration-300 cursor-pointer">
+                        <button className="bg-transparent border-2 border-white text-white px-10 py-4 rounded-xl font-bold hover:bg-white hover:text-[#1D3557] transition-all duration-300 cursor-pointer" onClick={() => router.push('/clinicas')}>
                             Saiba Mais
                         </button>
                     </div>

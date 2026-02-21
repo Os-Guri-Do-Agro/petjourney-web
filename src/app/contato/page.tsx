@@ -120,7 +120,7 @@ export default function Contato() {
                             <Mail className="w-8 h-8 text-white" />
                         </div>
                         <h3 className="text-xl font-bold text-[#1D3557] mb-2">Email</h3>
-                        <p className="text-gray-600">contato@petjourney.com.br</p>
+                        <p className="text-gray-600">atendimento@petjourney.health</p>
                     </div>
 
                     <div className="bg-white p-6 rounded-xl shadow-lg text-center hover:scale-105 transition-transform">
@@ -214,7 +214,7 @@ export default function Contato() {
 
                             <button
                                 type="submit"
-                                className="w-full bg-[#457B9D] hover:bg-[#1D3557] text-white font-bold py-4 rounded-lg transition-colors flex items-center justify-center gap-2"
+                                className="w-full bg-[#457B9D] hover:bg-[#1D3557] text-white font-bold py-4 rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer"
                             >
                                 <Send className="w-5 h-5" />
                                 Enviar Mensagem
@@ -253,7 +253,7 @@ export default function Contato() {
                             <p className="text-lg mb-6 text-gray-100">
                                 Junte-se a milhares de tutores que já confiam no Pet Journey para cuidar da saúde e bem-estar dos seus pets.
                             </p>
-                            <button className="bg-white text-[#1D3557] px-8 py-3 rounded-lg font-bold hover:scale-105 transition-transform w-fit">
+                            <button className="bg-white cursor-pointer text-[#1D3557] px-8 py-3 rounded-lg font-bold hover:scale-105 transition-transform w-fit">
                                 Começar Agora
                             </button>
                         </div>

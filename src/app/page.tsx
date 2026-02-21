@@ -33,24 +33,28 @@ export default function Home() {
   const marketplaceRef = useRef<HTMLDivElement>(null)
   const iconsRef = useRef<HTMLDivElement>(null)
   const finalRef = useRef<HTMLDivElement>(null)
+  const cardsRef = useRef<HTMLDivElement>(null)
+  const problemsRef = useRef<HTMLDivElement>(null)
+  const benefitsRef = useRef<HTMLDivElement>(null)
+  const securityRef = useRef<HTMLDivElement>(null)
   const router = useRouter()
 
   const ItensSaudePet = [
     {
       id: 1,
-      icon: Dog,
+      icon: Database,
       title: 'Informações espalhadas ',
       description: 'Carteirinha, papéis, Whatsapp e memória- tudo desconectado.'
     },
     {
       id: 2,
-      icon: Dog,
+      icon: Calendar,
       title: 'Falta de controle',
       description: 'Vacinas esquecidas, exames atrasados, dados perdidos.'
     },
     {
       id: 3,
-      icon: Dog,
+      icon: Shield,
       title: 'Emergências sem dados',
       description: 'Na urgência, ninguém lembra do histórico completo do pet.'
     },
@@ -59,32 +63,32 @@ export default function Home() {
   const ItensSolucaoPet = [
     {
       id: 1,
-      icon: Dog,
+      icon: FileText,
       title: 'Prontuário digital do pet',
     },
     {
       id: 2,
-      icon: Dog,
+      icon: Pill,
       title: 'Upload de exames e precrição',
     },
     {
       id: 3,
-      icon: Dog,
+      icon: Syringe,
       title: 'Caderneta de exames e vacinas digital',
     },
     {
       id: 4,
-      icon: Dog,
+      icon: Share2,
       title: 'Compartilhamento com veterinários',
     },
     {
       id: 5,
-      icon: Dog,
+      icon: Bell,
       title: 'Lembretes automáticos de saúde',
     },
     {
       id: 6,
-      icon: Dog,
+      icon: UserCheck,
       title: 'Caderno do Tutor',
     },
   ]
@@ -192,6 +196,7 @@ export default function Home() {
         })
       }
 
+
       // Marketplace text
       if (marketplaceRef.current?.children) {
         gsap.from(Array.from(marketplaceRef.current.children), {
@@ -221,6 +226,54 @@ export default function Home() {
           duration: 0.5,
           stagger: 0.1,
           ease: 'back.out(1.7)'
+        })
+      }
+
+      // Problems section - Cards stagger
+      if (problemsRef.current?.children) {
+        gsap.from(Array.from(problemsRef.current.children), {
+          scrollTrigger: {
+            trigger: problemsRef.current,
+            start: 'top 75%',
+            toggleActions: 'play none none reverse'
+          },
+          y: 50,
+          opacity: 0,
+          duration: 0.8,
+          stagger: 0.2,
+          ease: 'power3.out'
+        })
+      }
+
+      // Benefits section - Content fade + list stagger
+      if (benefitsRef.current?.children) {
+        gsap.from(Array.from(benefitsRef.current.children), {
+          scrollTrigger: {
+            trigger: benefitsRef.current,
+            start: 'top 70%',
+            toggleActions: 'play none none reverse'
+          },
+          x: -50,
+          opacity: 0,
+          duration: 0.8,
+          stagger: 0.15,
+          ease: 'power2.out'
+        })
+      }
+
+      // Security section - Grid cards stagger
+      if (securityRef.current?.children) {
+        gsap.from(Array.from(securityRef.current.children), {
+          scrollTrigger: {
+            trigger: securityRef.current,
+            start: 'top 75%',
+            toggleActions: 'play none none reverse'
+          },
+          y: 60,
+          opacity: 0,
+          duration: 0.8,
+          stagger: 0.2,
+          ease: 'power3.out'
         })
       }
 
@@ -267,10 +320,10 @@ export default function Home() {
             </p>
 
             <div className=" flex gap-5">
-              <button className="bg-linear-to-l from-[#457b9d] to-[#1D3557] px-6 py-3 rounded-xl font-semibold shadow-lg w-full max-w-70 hover:bg-white duration-300 transition-colors cursor-pointer">
+              <button className="bg-linear-to-l from-[#457b9d] to-[#1D3557] px-6 py-3 rounded-xl font-semibold shadow-lg w-full max-w-70 hover:bg-linear-to-r hover:from-[#457b9d] hover:to-[#1D3557] duration-300 transition-colors cursor-pointer">
                 Faça parte
               </button>
-              <button className="border-2 bg-[#000000b4] px-6 py-3 rounded-xl font-semibold shadow-lg w-full max-w-70 hover:bg-white duration-300 transition-colors cursor-pointer">
+              <button onClick={() => router.push('/tutor')} className="border-2 bg-[#00000050] px-6 py-3 rounded-xl font-semibold shadow-lg w-full max-w-70 hover:bg-[#FAF9F6] duration-300 transition-colors cursor-pointer hover:text-[#1D3557] hover:border-white">
                 Saiba mais
               </button>
             </div>
@@ -284,11 +337,11 @@ export default function Home() {
           <div className="w-full flex align-center justify-center">
             <h2 className='text-center text-2xl md:text-3xl lg:text-4xl font-bold text-[#FAF9F6]'>O problema da saúde pet hoje</h2>
           </div>
-          <div className="w-full flex gap-5 md:gap-10 items-center justify-center flex-wrap md:flex-nowrap">
+          <div ref={problemsRef} className="w-full flex gap-5 md:gap-10 items-center justify-center flex-wrap md:flex-nowrap">
             {ItensSaudePet.map((item) => {
               const Icon = item.icon;
               return (
-                <div className="w-full flex flex-col items-center justify-center gap-5 p-5 bg-[#FAF9F6] rounded-3xl shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 cursor-pointer md:h-full border-2 border-[#457b9d]" key={item.id}>
+                <div className="w-full flex flex-col items-center justify-center gap-5 p-5 bg-[#FAF9F6] rounded-3xl shadow-lg md:h-full" key={item.id}>
                   <Icon className="w-20 h-20 text-[#1D3557]" />
                   <div className="text-center flex flex-col gap-3">
                     <h3 className='text-xl font-bold text-[#1D3557]'>{item.title}</h3>
@@ -353,8 +406,8 @@ export default function Home() {
       </section>
 
       <section className="flex py-20 w-full">
-        <div className="w-full bg-[url('../assets/home/home-cat-banner.jpg')] bg-no-repeat bg-center bg-cover flex min-h-150 items-center px-5 md:px-30 lg:px-70 justify-start h-full">
-          <div className="w-full h-full flex flex-col justify-center gap-5 lg:p-10 rounded-2xl md:bg-linear-to-r from-black/30 max-w-3xl">
+        <div className="w-full bg-[url('../assets/home/home-cat-banner.jpg')] bg-no-repeat bg-center bg-cover flex min-h-150 items-center px-5 md:px-30 lg:px-70 justify-start h-full md:p-10">
+          <div ref={benefitsRef} className="w-full h-full flex flex-col justify-center gap-5 md:p-10 lg:p-10 rounded-2xl md:bg-linear-to-r from-black/30 max-w-3xl">
             <h2 className='text-3xl md:text-4xl lg:text-5xl font-bold text-[#FaF9F6] leading-snug'>
               Por que tutores e veterinários <br />vão amar a PetJourney
             </h2>
@@ -367,9 +420,14 @@ export default function Home() {
               <li className='text-xl md:text-2xl text-[#FAF9F6] list-disc ml-5 md:ml-10'>Apoio ao diagnóstico veterinário</li>
             </ul>
 
-            <button className="bg-linear-to-l from-[#457b9d] to-[#1D3557] px-6 py-3 rounded-xl font-semibold shadow-lg w-full max-w-70 hover:bg-white duration-300 transition-colors cursor-pointer text-white">
-              Saiba mais
+<div className=" flex gap-5 flex-wrap">
+<button className="bg-linear-to-l from-[#457b9d] to-[#1D3557] hover:bg-linear-to-r hover:from-[#457b9d] hover:to-[#1D3557] px-6 py-3 rounded-xl font-semibold shadow-lg w-full max-w-70 hover:bg-white duration-300 transition-colors cursor-pointer text-white" onClick={() => router.push('/tutor')}>
+              Sou Tutor
             </button>
+            <button className="bg-linear-to-l from-[#457b9d] to-[#1D3557] px-6 py-3 rounded-xl font-semibold shadow-lg w-full max-w-70 hover:bg-white duration-300 transition-colors cursor-pointer text-white hover:bg-linear-to-r hover:from-[#457b9d] hover:to-[#1D3557]" onClick={() => router.push('/clinicas')}>
+              Sou Veterinário
+            </button>
+</div>
           </div>
 
         </div>
@@ -395,8 +453,8 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
-            <div className="bg-white/10 backdrop-blur-sm p-8 rounded-3xl border border-white/20 hover:bg-white/15 transition-all duration-300 transform hover:-translate-y-2">
+          <div ref={securityRef} className="grid md:grid-cols-2 gap-8 lg:gap-12">
+            <div className="bg-white/10 backdrop-blur-sm p-8 rounded-3xl border border-white/20 hover:bg-white/15 ">
               <div className="bg-[#FAF9F6] w-16 h-16 rounded-2xl flex items-center justify-center mb-6">
                 <Lock className="w-8 h-8 text-[#1D3557]" />
               </div>
@@ -406,7 +464,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="bg-white/10 backdrop-blur-sm p-8 rounded-3xl border border-white/20 hover:bg-white/15 transition-all duration-300 transform hover:-translate-y-2 md:mt-12">
+            <div className="bg-white/10 backdrop-blur-sm p-8 rounded-3xl border border-white/20 hover:bg-white/15 md:mt-12">
               <div className="bg-[#FAF9F6] w-16 h-16 rounded-2xl flex items-center justify-center mb-6">
                 <Shield className="w-8 h-8 text-[#1D3557]" />
               </div>
@@ -416,7 +474,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="bg-white/10 backdrop-blur-sm p-8 rounded-3xl border border-white/20 hover:bg-white/15 transition-all duration-300 transform hover:-translate-y-2">
+            <div className="bg-white/10 backdrop-blur-sm p-8 rounded-3xl border border-white/20 hover:bg-white/15 ">
               <div className="bg-[#FAF9F6] w-16 h-16 rounded-2xl flex items-center justify-center mb-6">
                 <UserCheck className="w-8 h-8 text-[#1D3557]" />
               </div>
@@ -426,7 +484,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="bg-white/10 backdrop-blur-sm p-8 rounded-3xl border border-white/20 hover:bg-white/15 transition-all duration-300 transform hover:-translate-y-2 md:mt-12">
+            <div className="bg-white/10 backdrop-blur-sm p-8 rounded-3xl border border-white/20 hover:bg-white/15 md:mt-12">
               <div className="bg-[#FAF9F6] w-16 h-16 rounded-2xl flex items-center justify-center mb-6">
                 <Database className="w-8 h-8 text-[#1D3557]" />
               </div>
@@ -440,8 +498,8 @@ export default function Home() {
       </section>
 
       <section className="w-full flex justify-center bg-[#FAF9F6] overflow-hidden">
-        <div ref={finalRef} className="w-full bg-[url('../assets/home/bgFooter-home.jpg')] bg-no-repeat bg-center bg-cover flex min-h-170 items-center px-5 md:px-30 lg:px-70 justify-end">
-          <div className="bg-white/30 w-200 p-10 min-h-100 rounded-4xl flex flex-col items-center text-center justify-center gap-10">
+        <div className="w-full bg-[url('../assets/home/bgFooter-home.jpg')] bg-no-repeat bg-center bg-cover flex min-h-170 items-center px-5 md:px-30 lg:px-70 justify-end">
+          <div ref={finalRef} className="bg-white/30 w-200 p-10 min-h-100 rounded-4xl flex flex-col items-center text-center justify-center gap-10">
             <h2 className='font-black text-3xl  lg:text-4xl text-[#1D3557]'>
               Comece agora a organizar a saúde do seu pet
             </h2>

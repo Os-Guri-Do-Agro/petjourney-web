@@ -93,13 +93,17 @@ export function Header() {
                 </div>
 
                 <div className="hidden lg:flex gap-3">
-                    <button className='text-white font-bold py-2 px-4 rounded-lg hover:scale-105 duration-200 transition-translate text-sm xl:text-base cursor-pointer'
+                    {/* <button className='text-white font-bold py-2 px-4 rounded-lg hover:scale-105 duration-200 transition-translate text-sm xl:text-base cursor-pointer'
                         style={{ backgroundColor: 'var(--secondary)', color: 'var(--primary)' }}>
                         Login
                     </button>
                     <button className='font-bold py-2 px-4 rounded-lg hover:scale-105 duration-200 transition-translate text-sm xl:text-base  cursor-pointer'
                         style={{ borderWidth: 2, borderColor: 'var(--secondary)', color: 'var(--secondary)' }}>
                         Cadastre-se
+                    </button> */}
+                                        <button className='font-bold py-2 px-4 rounded-lg hover:scale-105 duration-200 transition-translate text-sm xl:text-base  cursor-pointer'
+                        style={{ borderWidth: 2, borderColor: 'var(--secondary)', color: 'var(--secondary)' }}>
+                        Lista de Espera
                     </button>
                 </div>
 

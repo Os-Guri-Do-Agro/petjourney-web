@@ -1,22 +1,118 @@
 'use client'
 import Image from 'next/image'
-import { Building2, Palette, Smartphone, BarChart3, Users, Clock, Shield, Zap, Heart, Activity, Bell, TrendingUp, Stethoscope, FileText, Video, GraduationCap } from 'lucide-react'
+import { Building2, Palette, Smartphone, BarChart3, Users, Clock, Shield, Zap, Heart, Activity, Bell, TrendingUp, Stethoscope, FileText, Video, GraduationCap, Calendar } from 'lucide-react'
 import coelho from '../../assets/home/coelho.jpg'
 import { useRouter } from 'next/navigation'
+import { useEffect, useRef } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 
 export default function ClinicaScreen() {
     const router = useRouter()
+    const heroRef = useRef(null)
+    const whiteLabelRef = useRef<(HTMLDivElement | null)[]>([])
+    const rpmRef = useRef<(HTMLDivElement | null)[]>([])
+    const vetRef = useRef<(HTMLDivElement | null)[]>([])
+    const benefRef = useRef<(HTMLDivElement | null)[]>([])
+    const ctaRef = useRef(null)
+
+    useEffect(() => {
+        const ctx = gsap.context(() => {
+            gsap.from(heroRef.current, {
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                ease: 'power3.out'
+            })
+
+            whiteLabelRef.current.forEach((el, i) => {
+                if (el) {
+                    gsap.from(el, {
+                        scrollTrigger: {
+                            trigger: el,
+                            start: 'top 80%',
+                            toggleActions: 'play none none reverse'
+                        },
+                        opacity: 0,
+                        y: 50,
+                        duration: 0.6,
+                        delay: i * 0.1
+                    })
+                }
+            })
+
+            rpmRef.current.forEach((el, i) => {
+                if (el) {
+                    gsap.from(el, {
+                        scrollTrigger: {
+                            trigger: el,
+                            start: 'top 80%',
+                            toggleActions: 'play none none reverse'
+                        },
+                        opacity: 0,
+                        y: 50,
+                        duration: 0.6,
+                        delay: i * 0.1
+                    })
+                }
+            })
+
+            vetRef.current.forEach((el, i) => {
+                if (el) {
+                    gsap.from(el, {
+                        scrollTrigger: {
+                            trigger: el,
+                            start: 'top 80%',
+                            toggleActions: 'play none none reverse'
+                        },
+                        opacity: 0,
+                        scale: 0.8,
+                        duration: 0.6,
+                        delay: i * 0.1
+                    })
+                }
+            })
+
+            benefRef.current.forEach((el, i) => {
+                if (el) {
+                    gsap.from(el, {
+                        scrollTrigger: {
+                            trigger: el,
+                            start: 'top 80%',
+                            toggleActions: 'play none none reverse'
+                        },
+                        opacity: 0,
+                        y: 30,
+                        duration: 0.6,
+                        delay: i * 0.1
+                    })
+                }
+            })
+
+            if (ctaRef.current) {
+                gsap.from(ctaRef.current, {
+                    scrollTrigger: {
+                        trigger: ctaRef.current,
+                        start: 'top 80%',
+                        toggleActions: 'play none none reverse'
+                    },
+                    opacity: 0,
+                    y: 30,
+                    duration: 0.8
+                })
+            }
+        })
+
+        return () => ctx.revert()
+    }, [])
 
     const whiteLabelFeatures = [
         {
-            icon: Palette,
-            title: 'Identidade Visual Personalizada',
-            description: 'Plataforma com as cores, logo e identidade da sua clínica'
-        },
-        {
-            icon: Smartphone,
-            title: 'App com Sua Marca',
-            description: 'Aplicativo mobile personalizado para seus clientes'
+            icon: Calendar,
+            title: 'Agendamento Online',
+            description: 'Sistema de marcação de consultas integrado com sua agenda'
         },
         {
             icon: Users,
@@ -64,11 +160,16 @@ export default function ClinicaScreen() {
             title: 'Prescrições Digitais',
             description: 'Emita receitas e laudos de forma digital e segura'
         },
-        // {
-        //     icon: Video,
-        //     title: 'Teleconsulta Integrada',
-        //     description: 'Atenda seus pacientes remotamente com qualidade'
-        // },
+        {
+            icon: Video,
+            title: 'Telemedicina Veterinária',
+            description: 'Consultas remotas com qualidade e praticidade'
+        },
+        {
+            icon: TrendingUp,
+            title: 'Relatórios Gerenciais',
+            description: 'Análise de desempenho e indicadores da clínica'
+        },
     ]
 
 
@@ -77,7 +178,7 @@ export default function ClinicaScreen() {
         <>
             <section className="min-h-[70vh] bg-linear-to-b from-[#1D3557] to-[#457B9D] flex items-center">
                 <div className="w-full px-5 md:px-20 lg:px-70 pt-32 pb-20">
-                    <div className="text-white space-y-6 max-w-4xl">
+                    <div ref={heroRef} className="text-white space-y-6 max-w-4xl">
                         <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight">
                             Soluções para Clínicas Veterinárias
                         </h1>
@@ -102,13 +203,16 @@ export default function ClinicaScreen() {
                         </p>
                     </div>
 
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {whiteLabelFeatures.map((feature, index) => {
                             const Icon = feature.icon
                             return (
                                 <div
                                     key={index}
-                                    className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-2 duration-300 border border-gray-100"
+                                    ref={el => { whiteLabelRef.current[index] = el }}
+                                    className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100"
+                                    onMouseEnter={(e) => gsap.to(e.currentTarget, { y: -8, duration: 0.3 })}
+                                    onMouseLeave={(e) => gsap.to(e.currentTarget, { y: 0, duration: 0.3 })}
                                 >
                                     <div className="bg-linear-to-bl from-[#457b9d] to-[#1D3557] w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6">
                                         <Icon className="w-8 h-8 text-white" />
@@ -178,7 +282,10 @@ export default function ClinicaScreen() {
                             return (
                                 <div
                                     key={index}
-                                    className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-2 duration-300 border border-gray-100"
+                                    ref={el => { rpmRef.current[index] = el }}
+                                    className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100"
+                                    onMouseEnter={(e) => gsap.to(e.currentTarget, { y: -8, duration: 0.3 })}
+                                    onMouseLeave={(e) => gsap.to(e.currentTarget, { y: 0, duration: 0.3 })}
                                 >
                                     <div className="bg-linear-to-bl from-[#457b9d] to-[#1D3557] w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6">
                                         <Icon className="w-8 h-8 text-white" />
@@ -255,7 +362,10 @@ export default function ClinicaScreen() {
                             return (
                                 <div
                                     key={index}
-                                    className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-2 duration-300 border border-gray-100"
+                                    ref={el => { vetRef.current[index] = el }}
+                                    className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100"
+                                    onMouseEnter={(e) => gsap.to(e.currentTarget, { y: -8, duration: 0.3 })}
+                                    onMouseLeave={(e) => gsap.to(e.currentTarget, { y: 0, duration: 0.3 })}
                                 >
                                     <div className="bg-linear-to-bl from-[#457b9d] to-[#1D3557] w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6">
                                         <Icon className="w-8 h-8 text-white" />
@@ -297,13 +407,20 @@ export default function ClinicaScreen() {
                                         <p className="text-gray-600 text-sm">Monitoramento contínuo dos pacientes</p>
                                     </div>
                                 </div>
-                                {/* <div className="flex items-start gap-4 p-4 bg-[#F1FAEE] rounded-xl">
-                                    <Video className="w-6 h-6 text-[#457B9D] mt-1 shrink-0" />
+                                <div className="flex items-start gap-4 p-4 bg-[#F1FAEE] rounded-xl">
+                                    <BarChart3 className="w-6 h-6 text-[#457B9D] mt-1 shrink-0" />
                                     <div>
-                                        <h4 className="font-bold text-[#1D3557] mb-1">Atendimento Remoto</h4>
-                                        <p className="text-gray-600 text-sm">Teleconsulta segura e profissional</p>
+                                        <h4 className="font-bold text-[#1D3557] mb-1">Relatórios Automáticos</h4>
+                                        <p className="text-gray-600 text-sm">Análises e insights sobre os pacientes</p>
                                     </div>
-                                </div> */}
+                                </div>
+                                <div className="flex items-start gap-4 p-4 bg-[#F1FAEE] rounded-xl">
+                                    <Bell className="w-6 h-6 text-[#457B9D] mt-1 shrink-0" />
+                                    <div>
+                                        <h4 className="font-bold text-[#1D3557] mb-1">Alertas Inteligentes</h4>
+                                        <p className="text-gray-600 text-sm">Notificações de eventos importantes</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -319,7 +436,7 @@ export default function ClinicaScreen() {
                     </div>
 
                     <div className="grid md:grid-cols-3 gap-8">
-                        <div className="bg-white p-8 rounded-2xl shadow-lg">
+                        <div ref={el => { benefRef.current[0] = el }} className="bg-white p-8 rounded-2xl shadow-lg">
                             <div className="bg-[#457B9D] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
                                 <TrendingUp className="w-8 h-8 text-white" />
                             </div>
@@ -331,7 +448,7 @@ export default function ClinicaScreen() {
                             </p>
                         </div>
 
-                        <div className="bg-white p-8 rounded-2xl shadow-lg">
+                        <div ref={el => { benefRef.current[1] = el }} className="bg-white p-8 rounded-2xl shadow-lg">
                             <div className="bg-[#457B9D] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
                                 <Users className="w-8 h-8 text-white" />
                             </div>
@@ -343,7 +460,7 @@ export default function ClinicaScreen() {
                             </p>
                         </div>
 
-                        <div className="bg-white p-8 rounded-2xl shadow-lg">
+                        <div ref={el => { benefRef.current[2] = el }} className="bg-white p-8 rounded-2xl shadow-lg">
                             <div className="bg-[#457B9D] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
                                 <Shield className="w-8 h-8 text-white" />
                             </div>
@@ -359,7 +476,7 @@ export default function ClinicaScreen() {
             </section>
 
             <section className="py-20 bg-linear-to-b from-[#457B9D] to-[#1D3557]">
-                <div className="px-5 md:px-20 lg:px-70 text-center text-white">
+                <div ref={ctaRef} className="px-5 md:px-20 lg:px-70 text-center text-white">
                     <h2 className="text-3xl md:text-4xl font-bold mb-6">
                         Transforme o atendimento da sua clínica
                     </h2>
@@ -369,11 +486,11 @@ export default function ClinicaScreen() {
                     <div className="flex flex-col md:flex-row gap-4 justify-center">
                         <button
                             onClick={() => router.push('/contato')}
-                            className="bg-[#FFEDD8] text-[#1D3557] px-10 py-4 rounded-xl font-bold shadow-lg hover:scale-105 transition-transform duration-300"
+                            className="bg-[#FFEDD8] hover:bg-[#ffffff] text-[#1D3557] px-10 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer"
                         >
                             Lista de Espera
                         </button>
-                        <button className="bg-transparent border-2 border-white text-white px-10 py-4 rounded-xl font-bold hover:bg-white hover:text-[#1D3557] transition-all duration-300">
+                        <button onClick={() => router.push('/artigos')} className="bg-transparent border-2 cursor-pointer border-white text-white px-10 py-4 rounded-xl font-bold hover:bg-white hover:text-[#1D3557] transition-all duration-300">
                             Saiba Mais
                         </button>
                     </div>
