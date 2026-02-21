@@ -1,13 +1,11 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
-import Image from 'next/image'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Artigos from '../components/home/articles-section'
 import { useRouter } from 'next/navigation'
 import {
   Pill,
-  Dog,
   FileText,
   Syringe,
   Share2,
@@ -57,39 +55,6 @@ export default function Home() {
       icon: Shield,
       title: 'Emergências sem dados',
       description: 'Na urgência, ninguém lembra do histórico completo do pet.'
-    },
-  ]
-
-  const ItensSolucaoPet = [
-    {
-      id: 1,
-      icon: FileText,
-      title: 'Prontuário digital do pet',
-    },
-    {
-      id: 2,
-      icon: Pill,
-      title: 'Upload de exames e precrição',
-    },
-    {
-      id: 3,
-      icon: Syringe,
-      title: 'Caderneta de exames e vacinas digital',
-    },
-    {
-      id: 4,
-      icon: Share2,
-      title: 'Compartilhamento com veterinários',
-    },
-    {
-      id: 5,
-      icon: Bell,
-      title: 'Lembretes automáticos de saúde',
-    },
-    {
-      id: 6,
-      icon: UserCheck,
-      title: 'Caderno do Tutor',
     },
   ]
 
@@ -320,7 +285,7 @@ export default function Home() {
             </p>
 
             <div className=" flex gap-5">
-              <button className="bg-linear-to-l from-[#457b9d] to-[#1D3557] px-6 py-3 rounded-xl font-semibold shadow-lg w-full max-w-70 hover:bg-linear-to-r hover:from-[#457b9d] hover:to-[#1D3557] duration-300 transition-colors cursor-pointer">
+              <button onClick={() => router.push('/lista-espera')}   className="bg-linear-to-l from-[#457b9d] to-[#1D3557] px-6 py-3 rounded-xl font-semibold shadow-lg w-full max-w-70 hover:bg-linear-to-r hover:from-[#457b9d] hover:to-[#1D3557] duration-300 transition-colors cursor-pointer">
                 Faça parte
               </button>
               <button onClick={() => router.push('/tutor')} className="border-2 bg-[#00000050] px-6 py-3 rounded-xl font-semibold shadow-lg w-full max-w-70 hover:bg-[#FAF9F6] duration-300 transition-colors cursor-pointer hover:text-[#1D3557] hover:border-white">

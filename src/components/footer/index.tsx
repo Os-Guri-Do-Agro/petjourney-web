@@ -4,10 +4,40 @@ import { Target } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { FaInstagram, FaFacebook } from "react-icons/fa"
+import { marketingService } from "@/service/marketing/marketing-server"
+import { useState } from "react"
+import { toast } from '@heroui/react';
 
 export function Footer() {
+
+    const [form, setForm] = useState({
+        email: ''
+    })
+    const [loading, setLoading] = useState(false)
+
+    const handleNewSletter = async () => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        if (!emailRegex.test(form.email)) {
+            alert("Por favor, insira um e-mail válido.")
+            return
+        }
+        setLoading(true)
+        try {
+            await marketingService.postNewSletter({
+                email: form.email
+            })
+            alert("Sua Inscrição foi realizada com sucesso!")
+            setForm({ email: '' })
+        } catch (error) {
+            alert('Erro ao enviar sua inscrição. Tente novamente mais tarde.')
+            console.error('Erro no cadastro:', error)
+        } finally {
+            setLoading(false)
+        }
+    }
+
     return (
-        <footer className="bg-[#243F63] text-white pt-16 px-5 md:px-20 lg:px-30 relative overflow-hidden">
+        <footer className="bg-[#243F63] text-white pt-16 px-5 md:px-30 lg:px-30 relative overflow-hidden">
             <div className="relative z-10 pb-8">
                 <div className="flex flex-col gap-6 mb-12">
                     <div className="flex items-center gap-5 md:gap-10 lg:gap-20">
@@ -22,20 +52,7 @@ export function Footer() {
                         <div className="bg-white/20 w-full h-[2px]" />
                     </div>
 
-                    <div className="flex gap-4">
-                        <div className="w-10 h-10 rounded-full border-2 border-white/30 flex items-center justify-center hover:bg-white hover:text-[#243F63] hover:border-white transition-all duration-300 cursor-pointer">
-                            <Link href={'https://www.instagram.com/petjourney.health/'} target="_blank">
-                                <FaInstagram />
-                            </Link>
 
-                        </div>
-                        <div className="w-10 h-10 rounded-full border-2 border-white/30 flex items-center justify-center hover:bg-white hover:text-[#243F63] hover:border-white transition-all duration-300 cursor-pointer">
-                            <Link href={'https://www.facebook.com/petjourney.health'} target="_blank">
-                                <FaFacebook />
-                            </Link>
-
-                        </div>
-                    </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
@@ -65,6 +82,20 @@ export function Footer() {
                             <Link href="mailto:atendimento@petjourney.health" className="inline-block text-white/70 hover:text-white transition-colors duration-200">atendimento@petjourney.health</Link>
                             <p className="text-white/70 mt-4 leading-relaxed">Cuidando do seu pet com amor e dedicação</p>
                         </div>
+                        <div className="flex gap-4 mt-2">
+                        <div className="w-10 h-10 rounded-full border-2 border-white/30 flex items-center justify-center hover:bg-white hover:text-[#243F63] hover:border-white transition-all duration-300 cursor-pointer">
+                            <Link href={'https://www.instagram.com/petjourney.health/'} target="_blank">
+                                <FaInstagram />
+                            </Link>
+
+                        </div>
+                        <div className="w-10 h-10 rounded-full border-2 border-white/30 flex items-center justify-center hover:bg-white hover:text-[#243F63] hover:border-white transition-all duration-300 cursor-pointer">
+                            <Link href={'https://www.facebook.com/petjourney.health'} target="_blank">
+                                <FaFacebook />
+                            </Link>
+
+                        </div>
+                    </div>
                     </div>
 
                     <div>
@@ -75,15 +106,17 @@ export function Footer() {
                                 className="w-full h-11 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg text-white px-4 placeholder:text-white/40 focus:outline-none focus:border-white/50 focus:bg-white/15 transition-all"
                                 placeholder="Seu e-mail"
                                 type="email"
+                                value={form.email}
+                                onChange={(e) => setForm ({...form, email: e.target.value})}
                             />
-                            <button className="bg-white text-[#243F63] h-11 rounded-lg font-semibold hover:bg-white/90 hover:scale-105 transition-all duration-200 cursor-pointer">
-                                Inscrever-se
+                            <button disabled={loading} onClick={handleNewSletter} className="bg-white text-[#243F63] h-11 rounded-lg font-semibold hover:bg-white/90 hover:scale-105 transition-all duration-200 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100">
+                                {loading ? 'Enviando...' : 'Inscrever-se'}
                             </button>
                         </div>
                     </div>
                 </div>
 
-                <div className="mt-16 pt-8 border-t border-white/10">
+                <div className="mt-10 pt-8 border-t border-white/10">
                     <p className="text-center text-sm text-white/50">© 2026 PetJourney. Todos os direitos reservados.</p>
                 </div>
             </div>
