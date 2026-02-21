@@ -93,7 +93,9 @@ export default function Contato() {
                 assunto: selectedAssunto.name,
                 mensagem: formData.mensagem
             })
-            toast.success('Mensagem enviada com sucesso!')
+            setTimeout(() => {
+                toast.success('Mensagem enviada com sucesso!')  
+            }, 300);
             setFormData({ nome: '', email: '', telefone: '', mensagem: '' })
             setSelectedAssunto(assuntos[0])
         } catch (error) {
