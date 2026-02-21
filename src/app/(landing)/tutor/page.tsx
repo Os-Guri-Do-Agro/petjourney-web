@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import{ useRouter } from 'next/navigation'
+import tutorHeaderImg from '@/assets/tutor/tutor-header.jpg'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -28,11 +29,6 @@ export default function TutorScreen() {
             funcRef.current.forEach((el, i) => {
                 if (el) {
                     gsap.from(el, {
-                        scrollTrigger: {
-                            trigger: el,
-                            start: 'top 80%',
-                            toggleActions: 'play none none reverse'
-                        },
                         opacity: 0,
                         y: 50,
                         duration: 0.6,
@@ -173,7 +169,7 @@ export default function TutorScreen() {
 
     return (
         <>
-            <section className="min-h-[70vh] bg-linear-to-b from-[#1D3557] to-[#457B9D] flex items-center">
+            <section className="min-h-[60vh] flex items-center bg-cover bg-center" style={{ backgroundImage: `url(${tutorHeaderImg.src})` }}>
                 <div className="w-full px-5 md:px-20 lg:px-70 pt-32 pb-20">
                     <div ref={heroRef} className="text-white space-y-6 max-w-4xl">
                         <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight">

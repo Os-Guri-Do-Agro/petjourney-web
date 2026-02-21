@@ -2,6 +2,7 @@
 import Image from 'next/image'
 import { Building2, Palette, Smartphone, BarChart3, Users, Clock, Shield, Zap, Heart, Activity, Bell, TrendingUp, Stethoscope, FileText, Video, GraduationCap, Calendar } from 'lucide-react'
 import coelho from '../../assets/home/coelho.jpg'
+import clinicaHeaderImg from '@/assets/clinica/clinica-header.jpg'
 import { useRouter } from 'next/navigation'
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
@@ -176,7 +177,7 @@ export default function ClinicaScreen() {
 
     return (
         <>
-            <section className="min-h-[70vh] bg-linear-to-b from-[#1D3557] to-[#457B9D] flex items-center">
+            <section className="min-h-[60vh] flex items-center bg-cover bg-center" style={{ backgroundImage: `url(${clinicaHeaderImg.src})` }}>
                 <div className="w-full px-5 md:px-20 lg:px-70 pt-32 pb-20">
                     <div ref={heroRef} className="text-white space-y-6 max-w-4xl">
                         <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight">
