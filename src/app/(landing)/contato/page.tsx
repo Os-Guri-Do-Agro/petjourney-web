@@ -4,8 +4,8 @@ import Image from 'next/image'
 import { Mail, Phone, MapPin, Send } from 'lucide-react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import tutor from '../../assets/home/tutor.jpg'
-import coelho from '../../assets/home/coelho.jpg'
+import tutor from '../../../assets/home/tutor.jpg'
+import coelho from '../../../assets/home/coelho.jpg'
 
 if (typeof window !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger)
@@ -253,7 +253,7 @@ export default function Contato() {
                             <p className="text-lg mb-6 text-gray-100">
                                 Junte-se a milhares de tutores que já confiam no Pet Journey para cuidar da saúde e bem-estar dos seus pets.
                             </p>
-                            <button className="bg-white cursor-pointer text-[#1D3557] px-8 py-3 rounded-lg font-bold hover:scale-105 transition-transform w-fit">
+                            <button onClick={() => window.open('/lista-espera', '_blank')} className="bg-white cursor-pointer text-[#1D3557] px-8 py-3 rounded-lg font-bold hover:scale-105 transition-transform w-fit">
                                 Começar Agora
                             </button>
                         </div>

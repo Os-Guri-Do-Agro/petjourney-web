@@ -3,8 +3,8 @@ import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import coelho from '../../assets/home/coelho.jpg'
-import ArtigoImg from '../../assets/home/artigo-img.jpg'
+import coelho from '../../../assets/home/coelho.jpg'
+import ArtigoImg from '../../../assets/home/artigo-img.jpg'
 import { useRouter } from 'next/navigation'
 
 if (typeof window !== 'undefined') {

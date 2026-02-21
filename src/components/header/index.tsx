@@ -43,9 +43,14 @@ export function Header() {
     const logoRef = useRef(null)
 
     useEffect(() => {
-        gsap.from(headerRef.current, { y: -100, opacity: 0, duration: 0.8, ease: 'power3.out' })
+        const hasAnimated = sessionStorage.getItem('headerAnimated')
+        
+        if (!hasAnimated && headerRef.current) {
+            gsap.from(headerRef.current, { y: -100, opacity: 0, duration: 0.8, ease: 'power3.out' })
+            sessionStorage.setItem('headerAnimated', 'true')
+        }
 
-        ScrollTrigger.create({
+        const trigger = ScrollTrigger.create({
             start: 'top -50',
             end: 99999,
             onEnter: () => {
@@ -71,6 +76,8 @@ export function Header() {
                 gsap.to(logoRef.current, { scale: 1, duration: 0.4, ease: 'power2.out' })
             }
         })
+
+        return () => trigger.kill()
     }, [])
 
     return (
@@ -78,7 +85,7 @@ export function Header() {
             <div className="flex justify-between items-center">
                 <div>
                     <Link href={'/'}>
-                        <img ref={logoRef} className='w-30 md:w-35 lg:w-45 object-contain hover:scale-105 transition-transform duration-200' src="/logo.png" alt="logo Pet Journey" />
+                        <img ref={logoRef} className='w-30 md:w-35 lg:w-45 object-contain hover:scale-105 transition-transform duration-200' src="./logo.png" alt="logo Pet Journey" />
                     </Link>
                 </div>
 
@@ -102,7 +109,7 @@ export function Header() {
                         Cadastre-se
                     </button> */}
                                         <button className='font-bold py-2 px-4 rounded-lg hover:scale-105 duration-200 transition-translate text-sm xl:text-base  cursor-pointer'
-                        style={{ borderWidth: 2, borderColor: 'var(--secondary)', color: 'var(--secondary)' }}>
+                        style={{ borderWidth: 2, borderColor: 'var(--secondary)', color: 'var(--secondary)' }} onClick={() => window.open('/lista-espera', '_blank')}>
                         Lista de Espera
                     </button>
                 </div>

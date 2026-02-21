@@ -485,7 +485,7 @@ export default function ClinicaScreen() {
                     </p>
                     <div className="flex flex-col md:flex-row gap-4 justify-center">
                         <button
-                            onClick={() => router.push('/contato')}
+                            onClick={() => window.open('/lista-espera', '_blank')}
                             className="bg-[#FFEDD8] hover:bg-[#ffffff] text-[#1D3557] px-10 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer"
                         >
                             Lista de Espera

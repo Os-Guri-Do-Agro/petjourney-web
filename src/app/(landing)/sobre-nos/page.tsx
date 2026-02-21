@@ -3,11 +3,11 @@ import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import coelho from '../../assets/home/coelho.jpg'
+import coelho from '../../../assets/home/coelho.jpg'
 import { Book, Calendar, Star, Watch, ChevronLeft, ChevronRight } from "lucide-react"
 import { useRouter } from 'next/navigation'
 
-import dog from '../../assets/about/dog-logoMarca.jpg'
+import dog from '../../../assets/about/dog-logoMarca.jpg'
 
 
 if (typeof window !== 'undefined') {

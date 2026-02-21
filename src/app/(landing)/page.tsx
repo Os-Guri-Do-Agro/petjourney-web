@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import Artigos from '../components/home/articles-section'
+import Artigos from '../../components/home/articles-section'
 import { useRouter } from 'next/navigation'
 import {
   Pill,
@@ -285,7 +285,7 @@ export default function Home() {
             </p>
 
             <div className=" flex gap-5">
-              <button onClick={() => router.push('/lista-espera')}   className="bg-linear-to-l from-[#457b9d] to-[#1D3557] px-6 py-3 rounded-xl font-semibold shadow-lg w-full max-w-70 hover:bg-linear-to-r hover:from-[#457b9d] hover:to-[#1D3557] duration-300 transition-colors cursor-pointer">
+              <button onClick={() => window.open('/lista-espera', '_blank')} className="bg-linear-to-l from-[#457b9d] to-[#1D3557] px-6 py-3 rounded-xl font-semibold shadow-lg w-full max-w-70 hover:bg-linear-to-r hover:from-[#457b9d] hover:to-[#1D3557] duration-300 transition-colors cursor-pointer">
                 Faça parte
               </button>
               <button onClick={() => router.push('/tutor')} className="border-2 bg-[#00000050] px-6 py-3 rounded-xl font-semibold shadow-lg w-full max-w-70 hover:bg-[#FAF9F6] duration-300 transition-colors cursor-pointer hover:text-[#1D3557] hover:border-white">
@@ -469,7 +469,7 @@ export default function Home() {
               Comece agora a organizar a saúde do seu pet
             </h2>
 
-            <button className='px-5 py-4 bg-linear-to-bl from-[#457b9d] to-[#1D3557] rounded-2xl font-bold text-white max-w-70 cursor-pointer'>
+            <button className='px-5 py-4 bg-linear-to-bl from-[#457b9d] to-[#1D3557] rounded-2xl font-bold text-white max-w-70 cursor-pointer' onClick={() => window.open('/lista-espera', '_blank')}>
               Faça parte da lista de espera
             </button>
 

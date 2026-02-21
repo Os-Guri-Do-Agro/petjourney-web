@@ -3,8 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import coelho from '../../assets/home/coelho.jpg'
-import ArtigoImg from '../../assets/home/artigo-img.jpg'
+import ArtigoImg from '../../../assets/home/artigo-img.jpg'
 import { artigoService } from '@/service/artigo/artigo-service'
 import { categoriaArtigoService } from '@/service/categori-artigo/categoriaArtigo-service'
 import { useRouter } from 'next/navigation'
@@ -367,8 +366,8 @@ export default function Artigos() {
                         Fique por dentro das novidades e receba conteúdos exclusivos sobre cuidados com pets
                     </p>
                     <div className="flex flex-col md:flex-row gap-4 justify-center">
-                        <button className="bg-[#FFEDD8] text-[#1D3557] px-10 py-4 rounded-xl font-bold shadow-lg hover:scale-105 transition-transform duration-300 cursor-pointer">
-                            Assine nosso newsletter
+                        <button onClick={() => window.open('/lista-espera', '_blank')} className="bg-[#FFEDD8] text-[#1D3557] px-10 py-4 rounded-xl font-bold shadow-lg hover:scale-105 transition-transform duration-300 cursor-pointer">
+                            Lista de Espera
                         </button>
                         <button onClick={() => router.push('/contato')} className="bg-transparent border-2 border-white text-white px-10 py-4 rounded-xl font-bold hover:bg-white hover:text-[#1D3557] transition-all duration-300 cursor-pointer">
                             Entre em contato

@@ -4,10 +4,9 @@ import Image from 'next/image'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Heart, FileX, Calendar, ClipboardX, Link2Off, BookOpen, CalendarCheck, Video, Shield, Bell, FileText, Sparkles } from 'lucide-react'
-import coelho from '../../assets/home/coelho.jpg'
-import tutor from '../../assets/home/tutor.jpg'
-import ave from '../../assets/home/ave.jpg'
-import dogHero from '../../assets/home/logo-apoiadores/dog-hero.png'
+import coelho from '../../../assets/home/coelho.jpg'
+import tutor from '../../../assets/home/tutor.jpg'
+import ave from '../../../assets/home/ave.jpg'
 import { useRouter } from 'next/navigation'
 
 if (typeof window !== 'undefined') {
