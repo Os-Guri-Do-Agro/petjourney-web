@@ -469,9 +469,15 @@ export default function Home() {
               Comece agora a organizar a saúde do seu pet
             </h2>
 
-            <button className='px-5 py-4 bg-linear-to-bl from-[#457b9d] to-[#1D3557] rounded-2xl font-bold text-white max-w-70 cursor-pointer' onClick={() => window.open('/lista-espera', '_blank')}>
+<div className="flex gap-5 flex-wrap">
+            <button className='px-5 py-4 bg-linear-to-bl from-[#457b9d] to-[#1D3557] hover:bg-linear-to-r hover:from-[#457b9d] hover:to-[#1D3557] rounded-2xl font-bold text-white max-w-70 cursor-pointer' onClick={() => window.open('/lista-espera', '_blank')}>
               Faça parte da lista de espera
             </button>
+            
+            <button className='border-2 border-white text-white bg-[#000000af] px-3 py-3 rounded-xl font-semibold shadow-lg hover:bg-[#FAF9F6] duration-300 transition-colors cursor-pointer hover:text-[#1D3557] hover:border-white' onClick={() => router.push('/tutor')}>
+              Saiba mais
+            </button>  
+</div>
 
           </div>
 

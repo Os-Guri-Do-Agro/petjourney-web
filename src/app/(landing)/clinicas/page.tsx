@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { Building2, Palette, Smartphone, BarChart3, Users, Clock, Shield, Zap, Heart, Activity, Bell, TrendingUp, Stethoscope, FileText, Video, GraduationCap, Calendar } from 'lucide-react'
 import coelho from '../../assets/home/coelho.jpg'
 import clinicaHeaderImg from '@/assets/clinica/clinica-header.jpg'
+import clinicaFooterImg from '@/assets/clinica/clinica-footer.jpg'
 import { useRouter } from 'next/navigation'
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
@@ -476,7 +477,7 @@ export default function ClinicaScreen() {
                 </div>
             </section>
 
-            <section className="py-20 bg-linear-to-b from-[#457B9D] to-[#1D3557]">
+            <section className="py-20 bg-cover bg-center" style={{ backgroundImage: `url(${clinicaFooterImg.src})` }}>
                 <div ref={ctaRef} className="px-5 md:px-20 lg:px-70 text-center text-white">
                     <h2 className="text-3xl md:text-4xl font-bold mb-6">
                         Transforme o atendimento da sua clínica

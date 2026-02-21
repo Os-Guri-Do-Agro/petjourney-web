@@ -6,7 +6,7 @@ import Link from "next/link"
 import { FaInstagram, FaFacebook } from "react-icons/fa"
 import { marketingService } from "@/service/marketing/marketing-server"
 import { useState } from "react"
-import { toast } from '@heroui/react';
+import toast, { Toaster } from 'react-hot-toast'
 
 export function Footer() {
 
@@ -18,7 +18,7 @@ export function Footer() {
     const handleNewSletter = async () => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
         if (!emailRegex.test(form.email)) {
-            alert("Por favor, insira um e-mail válido.")
+            toast.error("Por favor, insira um e-mail válido.")
             return
         }
         setLoading(true)
@@ -26,11 +26,10 @@ export function Footer() {
             await marketingService.postNewSletter({
                 email: form.email
             })
-            alert("Sua Inscrição foi realizada com sucesso!")
+            toast.success("Sua Inscrição foi realizada com sucesso!")
             setForm({ email: '' })
         } catch (error) {
-            alert('Erro ao enviar sua inscrição. Tente novamente mais tarde.')
-            console.error('Erro no cadastro:', error)
+            toast.error('Erro ao enviar sua inscrição. Tente novamente mais tarde.')
         } finally {
             setLoading(false)
         }
@@ -38,6 +37,7 @@ export function Footer() {
 
     return (
         <footer className="bg-[#243F63] text-white pt-16 px-5 md:px-30 lg:px-30 relative overflow-hidden">
+            <Toaster position="top-right" />
             <div className="relative z-10 pb-8">
                 <div className="flex flex-col gap-6 mb-12">
                     <div className="flex items-center gap-5 md:gap-10 lg:gap-20">

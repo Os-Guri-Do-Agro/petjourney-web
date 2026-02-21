@@ -55,7 +55,7 @@ export function Header() {
             end: 99999,
             onEnter: () => {
                 gsap.to(headerRef.current, {
-                    backgroundColor: 'rgba(29, 53, 87, 0.8)',
+                    backgroundColor: 'rgba(29, 53, 87, 0.95)',
                     paddingTop: '12px',
                     paddingBottom: '12px',
                     boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)',

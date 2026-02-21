@@ -5,6 +5,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import ArtigoImg from '../../../assets/home/artigo-img.jpg'
 import artigosHeaderImg from '@/assets/artigos/artigos-header.jpg'
+import artigosFooterImg from '@/assets/artigos/artigos-footer.jpg'
 import { artigoService } from '@/service/artigo/artigo-service'
 import { categoriaArtigoService } from '@/service/categori-artigo/categoriaArtigo-service'
 import { useRouter } from 'next/navigation'
@@ -358,7 +359,7 @@ export default function Artigos() {
                 </div>
             </section>
 
-            <section className="py-20 bg-linear-to-b from-[#457B9D] to-[#1D3557]">
+            <section className="py-20 bg-cover bg-center" style={{ backgroundImage: `url(${artigosFooterImg.src})` }}>
                 <div ref={finalRef} className="px-5 md:px-20 lg:px-70 text-center text-white">
                     <h2 className="text-3xl md:text-4xl font-bold mb-6">
                         Cada etapa importa. E você não precisa caminhar sozinho.

@@ -5,6 +5,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import{ useRouter } from 'next/navigation'
 import tutorHeaderImg from '@/assets/tutor/tutor-header.jpg'
+import tutorFooterImg from '@/assets/tutor/tutor-footer.jpg'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -295,7 +296,7 @@ export default function TutorScreen() {
                 </div>
             </section>
 
-            <section className="py-20 bg-linear-to-b from-[#457B9D] to-[#1D3557]">
+            <section className="py-20 bg-cover bg-center" style={{ backgroundImage: `url(${tutorFooterImg.src})` }}>
                 <div ref={ctaRef} className="px-5 md:px-20 lg:px-70 text-center text-white">
                     <h2 className="text-3xl md:text-4xl font-bold mb-6">
                         Conheça as funcionalidades para tutores de pets
