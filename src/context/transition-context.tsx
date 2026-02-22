@@ -21,7 +21,7 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
 
     const navigate = useCallback((href: string) => {
         // ── Transição animada só para /sobre-nos ─────────────────────────────
-        if (href !== '/sobre-nos') {
+        if (href !== '/lista-espera') {
             router.push(href)
             return
         }

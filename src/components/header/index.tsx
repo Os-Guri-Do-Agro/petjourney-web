@@ -85,7 +85,7 @@ export function Header() {
     }, [])
 
     return (
-        <div ref={headerRef} className="fixed top-0 left-0 right-0 z-50 px-5 md:px-30 lg:px-70 py-4 md:py-6">
+        <div ref={headerRef} className="fixed top-0 left-0 right-0 z-50 px-5 md:px-30 lg:px-70 py-4 md:py-6 bg-[#0d1b2a]/95 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none">
             <div className="flex justify-between items-center">
                 <div>
                     <TransitionLink href={'/'}>
@@ -143,14 +143,18 @@ export function Header() {
                         ))}
                     </ul>
                     <div className="flex flex-col gap-3 mt-4">
-                        <button className='text-white font-bold py-2 px-4 rounded-lg'
+                        {/* <button className='text-white font-bold py-2 px-4 rounded-lg'
                             style={{ backgroundColor: 'var(--secondary)', color: 'var(--primary)' }}>
                             Login
-                        </button>
-                        <button className='font-bold py-2 px-4 rounded-lg'
+                        </button> */}
+                        {/* <button className='font-bold py-2 px-4 rounded-lg'
                             style={{ borderWidth: 2, borderColor: 'var(--secondary)', color: 'var(--secondary)' }}>
                             Cadastre-se
-                        </button>
+                        </button> */}
+                          <button className='font-bold py-2 px-4 rounded-lg hover:scale-105 duration-200 transition-translate text-sm xl:text-base  cursor-pointer'
+                        style={{ borderWidth: 2, borderColor: 'var(--secondary)', color: 'var(--secondary)' }} onClick={() => window.open('/lista-espera', '_blank')}>
+                        Lista de Espera
+                    </button>
                     </div>
                 </div>
             )}
