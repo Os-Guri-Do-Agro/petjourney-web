@@ -1,8 +1,8 @@
 'use client'
-import Link from 'next/link'
 import { useState, useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { TransitionLink } from '@/components/transition-link'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -34,6 +34,10 @@ const headerItems = [
     {
         link: '/artigos',
         label: 'Artigos'
+    },
+    {
+        link: '/sobre-nos',
+        label: 'Sobre-nos'
     },
 ]
 
@@ -84,16 +88,16 @@ export function Header() {
         <div ref={headerRef} className="fixed top-0 left-0 right-0 z-50 px-5 md:px-30 lg:px-70 py-4 md:py-6">
             <div className="flex justify-between items-center">
                 <div>
-                    <Link href={'/'}>
+                    <TransitionLink href={'/'}>
                         <img ref={logoRef} className='w-30 md:w-35 lg:w-45 object-contain hover:scale-105 transition-transform duration-200' src="./logo.png" alt="logo Pet Journey" />
-                    </Link>
+                    </TransitionLink>
                 </div>
 
                 <div className="hidden lg:flex gap-5">
                     <ul className='flex gap-3'>
                         {headerItems.map((item) => (
                             <li className='font-semibold hover:scale-110 transition-transform duration-300 text-sm xl:text-base' key={item.link} style={{ color: 'var(--secondary)' }}>
-                                <Link className='hover:text-[#1D3557] hover:bg-[#FFEDD8] px-3 rounded-2xl py-1' href={item.link}>{item.label}</Link>
+                                <TransitionLink className='hover:text-[#1D3557] hover:bg-[#FFEDD8] px-3 rounded-2xl py-1' href={item.link}>{item.label}</TransitionLink>
                             </li>
                         ))}
                     </ul>
@@ -134,7 +138,7 @@ export function Header() {
                     <ul className='flex flex-col gap-4'>
                         {headerItems.map((item) => (
                             <li className='font-semibold text-center' key={item.link} style={{ color: 'var(--secondary)' }}>
-                                <Link href={item.link} onClick={() => setIsMenuOpen(false)}>{item.label}</Link>
+                                <TransitionLink href={item.link} onClick={() => setIsMenuOpen(false)}>{item.label}</TransitionLink>
                             </li>
                         ))}
                     </ul>
