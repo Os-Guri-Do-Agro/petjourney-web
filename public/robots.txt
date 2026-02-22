@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+Allow: /tutor
+Allow: /clinicas
+Allow: /artigos
+Allow: /sobre-nos
+Allow: /contato
+
+Disallow: /lojas-parceiras
+Disallow: /educacional
+Disallow: /servicos
+Disallow: /lista-espera
+
+Sitemap: https://petjourney.health/sitemap.xml
