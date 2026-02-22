@@ -4,11 +4,7 @@ import {
     Book, Watch, Calendar, Star, Heart, Shield, Zap, Users, Activity, BookOpen,
     MessageCircle, Stethoscope, Lightbulb, TrendingUp, Lock, Pill, Rocket, PawPrint
 } from 'lucide-react'
-<<<<<<< HEAD
-import { useEffect, useRef } from 'react'
-=======
 import { useEffect, useRef, useCallback } from 'react'
->>>>>>> 70f282e85e6952e0928be0a7dd87c9e158f650b2
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useRouter } from 'next/navigation'
@@ -19,13 +15,6 @@ gsap.registerPlugin(ScrollTrigger)
 const HERO_IMG      = 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=1920&q=80'
 const MANIFESTO_IMG = 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=900&q=80'
 const CTA_IMG       = 'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=1920&q=80'
-<<<<<<< HEAD
-const TEAM_IMGS     = [
-    'https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=400&q=80',
-    'https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=400&q=80',
-    'https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=400&q=80',
-    'https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=400&q=80',
-=======
 // Troque cada URL pela foto real do membro quando tiver
 const TEAM_MEMBERS = [
     { nome: 'Nome Completo', cargo: 'Cargo', src: 'https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=400&q=80' },
@@ -34,7 +23,6 @@ const TEAM_MEMBERS = [
     { nome: 'Nome Completo', cargo: 'Cargo', src: 'https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=400&q=80' },
     { nome: 'Nome Completo', cargo: 'Cargo', src: 'https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=400&q=80' },
     { nome: 'Nome Completo', cargo: 'Cargo', src: 'https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=400&q=80' },
->>>>>>> 70f282e85e6952e0928be0a7dd87c9e158f650b2
 ]
 
 const stats = [
@@ -74,15 +62,11 @@ export default function SobreNos() {
     const statsRef     = useRef<HTMLDivElement>(null)
     const missaoRef    = useRef<(HTMLDivElement | null)[]>([])
     const valoresRef   = useRef<(HTMLDivElement | null)[]>([])
-    const jornadaRef   = useRef<(HTMLDivElement | null)[]>([])
     const manifestoRef = useRef(null)
     const ctaRef       = useRef(null)
     const counterEls   = useRef<HTMLSpanElement[]>([])
-<<<<<<< HEAD
-=======
     const carouselRef  = useRef<HTMLDivElement>(null)
     const carouselTween = useRef<gsap.core.Tween | null>(null)
->>>>>>> 70f282e85e6952e0928be0a7dd87c9e158f650b2
 
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -134,23 +118,10 @@ export default function SobreNos() {
                 scrollTrigger: { trigger: manifestoRef.current, start: 'top 75%', toggleActions: 'play none none reverse' },
                 opacity: 0, x: 60, duration: 1, ease: 'power2.out'
             })
-<<<<<<< HEAD
-
-            // Jornada items
-            jornadaRef.current.forEach((el, i) => {
-                if (!el) return
-                gsap.from(el, {
-                    scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none reverse' },
-                    opacity: 0, x: i % 2 === 0 ? -60 : 60, duration: 0.8, ease: 'power3.out'
-                })
-            })
-
-=======
 
             // Jornada — agora é controlada pelo componente JornadaScrub
             // (pin + scrub via ScrollTrigger dentro do próprio componente)
 
->>>>>>> 70f282e85e6952e0928be0a7dd87c9e158f650b2
             // CTA
             gsap.from(ctaRef.current, {
                 scrollTrigger: { trigger: ctaRef.current, start: 'top 80%', toggleActions: 'play none none reverse' },
@@ -285,14 +256,12 @@ export default function SobreNos() {
                                     <div key={i} className="flex items-start gap-3">
                                         <div className="shrink-0 w-2 h-2 rounded-full bg-[#457B9D] mt-3" />
                                         <p className="text-lg text-gray-700 leading-relaxed">{text}</p>
-<<<<<<< HEAD
-=======
                                     </div>
                                 ))}
                             </div>
                             <div className="bg-gradient-to-br from-[#1D3557] to-[#457B9D] rounded-2xl p-8 text-white">
                                 <p className="text-xl font-black leading-snug">
-                                    "Cada passo conta.<br />Cada pet importa."
+                                    &quot;Cada passo conta.<br />Cada pet importa.&quot;
                                 </p>
                                 <p className="text-white/70 mt-2 text-sm">— Time PetJourney</p>
                             </div>
@@ -372,170 +341,19 @@ export default function SobreNos() {
                                     <div key={i} className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center hover:bg-[#1D3557]/60 transition-colors duration-300">
                                         <p className="text-3xl font-extrabold text-white mb-1">{item.num}</p>
                                         <p className="text-white/50 text-sm">{item.label}</p>
->>>>>>> 70f282e85e6952e0928be0a7dd87c9e158f650b2
                                     </div>
                                 ))}
                             </div>
-                            <div className="bg-gradient-to-br from-[#1D3557] to-[#457B9D] rounded-2xl p-8 text-white">
-                                <p className="text-xl font-black leading-snug">
-                                    "Cada passo conta.<br />Cada pet importa."
-                                </p>
-                                <p className="text-white/70 mt-2 text-sm">— Time PetJourney</p>
-                            </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-<<<<<<< HEAD
-            {/* ── NOSSOS VALORES ───────────────────────────────────── */}
-            <section className="w-full py-24 bg-[#FAF9F6]">
-                <div className="px-5 md:px-20 lg:px-70">
-                    <div className="text-center mb-16">
-                        <h2 className="text-3xl md:text-5xl font-bold text-[#1D3557] mb-6">
-                            Nossos Valores
-                        </h2>
-                        <p className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto">
-                            Os pilares que guiam cada decisão e cada linha de código que escrevemos.
-                        </p>
-                    </div>
-
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {valores.map((v, i) => {
-                            const Icon   = v.icon
-                            const BgIcon = v.bgIcon
-                            return (
-                                <div
-                                    key={i}
-                                    ref={el => { valoresRef.current[i] = el }}
-                                    className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100 relative overflow-hidden group"
-                                >
-                                    {/* ícone decorativo de fundo */}
-                                    <BgIcon className="absolute -right-4 -top-4 w-24 h-24 text-[#1D3557] opacity-[0.04] group-hover:opacity-[0.08] transition-opacity duration-500" />
-
-                                    <div className="bg-linear-to-bl from-[#457b9d] to-[#1D3557] w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 relative z-10">
-                                        <Icon className="w-8 h-8 text-white" />
-                                    </div>
-                                    <h3 className="font-bold text-xl text-[#1D3557] text-center mb-3 relative z-10">{v.title}</h3>
-                                    <p className="text-gray-600 text-center leading-relaxed relative z-10">{v.description}</p>
-                                </div>
-                            )
-                        })}
-                    </div>
-                </div>
-            </section>
-
-            {/* ── NOSSA JORNADA — timeline vertical alternada ───────── */}
-            <section className="w-full py-24 bg-white">
-                <div className="px-5 md:px-20 lg:px-70">
-                    <div className="text-center mb-16">
-                        <h2 className="text-3xl md:text-5xl font-bold text-[#1D3557] mb-6">
-                            Nossa Jornada
-                        </h2>
-                        <p className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto">
-                            De uma ideia a uma plataforma completa de saúde animal.
-                        </p>
-                    </div>
-
-                    <div className="relative max-w-4xl mx-auto">
-                        {/* Linha central vertical */}
-                        <div className="hidden md:block absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#457B9D] via-[#1D3557] to-[#457B9D]" />
-
-                        <div className="flex flex-col gap-12">
-                            {jornada.map((item, i) => {
-                                const DotIcon = item.DotIcon
-                                const isLeft  = i % 2 === 0
-                                return (
-                                    <div
-                                        key={i}
-                                        ref={el => { jornadaRef.current[i] = el }}
-                                        className={`flex items-center gap-8 ${isLeft ? 'md:flex-row' : 'md:flex-row-reverse'} flex-col`}
-                                    >
-                                        {/* Card */}
-                                        <div className="flex-1">
-                                            <div className="bg-[#FAF9F6] rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#457B9D] hover:-translate-y-1">
-                                                <div className={`flex items-center gap-3 mb-4 ${isLeft ? 'md:justify-end justify-start' : 'justify-start'}`}>
-                                                    <span className={`bg-gradient-to-r ${item.cor} text-white text-sm font-bold px-4 py-1.5 rounded-full`}>
-                                                        {item.ano}
-                                                    </span>
-                                                </div>
-                                                <h3 className={`text-xl font-bold text-[#1D3557] mb-2 ${isLeft ? 'md:text-right text-left' : 'text-left'}`}>
-                                                    {item.titulo}
-                                                </h3>
-                                                <p className={`text-gray-600 leading-relaxed ${isLeft ? 'md:text-right text-left' : 'text-left'}`}>
-                                                    {item.desc}
-                                                </p>
-                                            </div>
-                                        </div>
-
-                                        {/* Dot central com ícone */}
-                                        <div className={`hidden md:flex shrink-0 w-14 h-14 rounded-full bg-gradient-to-br ${item.cor} items-center justify-center shadow-lg z-10`}>
-                                            <DotIcon className="w-6 h-6 text-white" />
-                                        </div>
-
-                                        {/* Espaço espelho */}
-                                        <div className="hidden md:block flex-1" />
-                                    </div>
-                                )
-                            })}
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* ── EQUIPE ───────────────────────────────────────────── */}
-            <section className="w-full py-24 bg-[#FAF9F6]">
-                <div className="px-5 md:px-20 lg:px-70">
-                    <div className="text-center mb-16">
-                        <h2 className="text-3xl md:text-5xl font-bold text-[#1D3557] mb-4">
-                            Nossa Equipe
-                        </h2>
-                        <p className="text-lg md:text-xl text-gray-700 max-w-2xl mx-auto">
-                            Conheça as pessoas que tornam a Pet Journey possível.
-                        </p>
-                    </div>
-
-                    {/* Troque os src pelos seus quando tiver as fotos */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {[
-                            { nome: 'Nome Completo', cargo: 'Cargo', src: TEAM_IMGS[0] },
-                            { nome: 'Nome Completo', cargo: 'Cargo', src: TEAM_IMGS[1] },
-                            { nome: 'Nome Completo', cargo: 'Cargo', src: TEAM_IMGS[2] },
-                            { nome: 'Nome Completo', cargo: 'Cargo', src: TEAM_IMGS[3] },
-                        ].map((m, i) => (
-                            <div
-                                key={i}
-                                className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#457B9D] hover:-translate-y-1 group"
-                            >
-                                <div className="relative h-64 overflow-hidden">
-                                    <Image
-                                        src={m.src}
-                                        alt={m.nome}
-                                        fill
-                                        className="object-cover group-hover:scale-105 transition-transform duration-500"
-                                        sizes="(max-width: 768px) 100vw, 25vw"
-                                        unoptimized
-                                    />
-                                </div>
-                                <div className="p-6 text-center space-y-2">
-                                    <h4 className="text-lg font-bold text-[#1D3557]">{m.nome}</h4>
-                                    <p className="text-[#457B9D] font-semibold text-sm uppercase tracking-wide">{m.cargo}</p>
-                                    <p className="text-gray-600 text-sm leading-relaxed">
-                                        Breve descrição sobre o membro da equipe.
-                                    </p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-=======
             {/* ── NOSSA JORNADA — scroll-driven horizontal ──────────── */}
             <JornadaScrub />
 
             {/* ── EQUIPE — carrossel infinito ───────────────────────── */}
             <TeamCarousel />
->>>>>>> 70f282e85e6952e0928be0a7dd87c9e158f650b2
 
             {/* ── CTA FINAL ────────────────────────────────────────── */}
             {/* Troque o src pela sua foto de footer quando tiver */}
@@ -803,4 +621,3 @@ function JornadaScrub() {
         </section>
     )
 }
-
