@@ -4,7 +4,11 @@ import {
     Book, Watch, Calendar, Star, Heart, Shield, Zap, Users, Activity, BookOpen,
     MessageCircle, Stethoscope, Lightbulb, TrendingUp, Lock, Pill, Rocket, PawPrint
 } from 'lucide-react'
+<<<<<<< HEAD
 import { useEffect, useRef } from 'react'
+=======
+import { useEffect, useRef, useCallback } from 'react'
+>>>>>>> 70f282e85e6952e0928be0a7dd87c9e158f650b2
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useRouter } from 'next/navigation'
@@ -15,11 +19,22 @@ gsap.registerPlugin(ScrollTrigger)
 const HERO_IMG      = 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=1920&q=80'
 const MANIFESTO_IMG = 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=900&q=80'
 const CTA_IMG       = 'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=1920&q=80'
+<<<<<<< HEAD
 const TEAM_IMGS     = [
     'https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=400&q=80',
     'https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=400&q=80',
     'https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=400&q=80',
     'https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=400&q=80',
+=======
+// Troque cada URL pela foto real do membro quando tiver
+const TEAM_MEMBERS = [
+    { nome: 'Nome Completo', cargo: 'Cargo', src: 'https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=400&q=80' },
+    { nome: 'Nome Completo', cargo: 'Cargo', src: 'https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=400&q=80' },
+    { nome: 'Nome Completo', cargo: 'Cargo', src: 'https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=400&q=80' },
+    { nome: 'Nome Completo', cargo: 'Cargo', src: 'https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=400&q=80' },
+    { nome: 'Nome Completo', cargo: 'Cargo', src: 'https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=400&q=80' },
+    { nome: 'Nome Completo', cargo: 'Cargo', src: 'https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=400&q=80' },
+>>>>>>> 70f282e85e6952e0928be0a7dd87c9e158f650b2
 ]
 
 const stats = [
@@ -63,6 +78,11 @@ export default function SobreNos() {
     const manifestoRef = useRef(null)
     const ctaRef       = useRef(null)
     const counterEls   = useRef<HTMLSpanElement[]>([])
+<<<<<<< HEAD
+=======
+    const carouselRef  = useRef<HTMLDivElement>(null)
+    const carouselTween = useRef<gsap.core.Tween | null>(null)
+>>>>>>> 70f282e85e6952e0928be0a7dd87c9e158f650b2
 
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -114,6 +134,7 @@ export default function SobreNos() {
                 scrollTrigger: { trigger: manifestoRef.current, start: 'top 75%', toggleActions: 'play none none reverse' },
                 opacity: 0, x: 60, duration: 1, ease: 'power2.out'
             })
+<<<<<<< HEAD
 
             // Jornada items
             jornadaRef.current.forEach((el, i) => {
@@ -124,6 +145,12 @@ export default function SobreNos() {
                 })
             })
 
+=======
+
+            // Jornada — agora é controlada pelo componente JornadaScrub
+            // (pin + scrub via ScrollTrigger dentro do próprio componente)
+
+>>>>>>> 70f282e85e6952e0928be0a7dd87c9e158f650b2
             // CTA
             gsap.from(ctaRef.current, {
                 scrollTrigger: { trigger: ctaRef.current, start: 'top 80%', toggleActions: 'play none none reverse' },
@@ -258,6 +285,8 @@ export default function SobreNos() {
                                     <div key={i} className="flex items-start gap-3">
                                         <div className="shrink-0 w-2 h-2 rounded-full bg-[#457B9D] mt-3" />
                                         <p className="text-lg text-gray-700 leading-relaxed">{text}</p>
+<<<<<<< HEAD
+=======
                                     </div>
                                 ))}
                             </div>
@@ -272,6 +301,93 @@ export default function SobreNos() {
                 </div>
             </section>
 
+            {/* ── NOSSOS VALORES ───────────────────────────────────── */}
+            <section className="w-full py-24 bg-[#FAF9F6]">
+                <div className="px-5 md:px-20 lg:px-70">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl md:text-5xl font-bold text-[#1D3557] mb-6">
+                            Nossos Valores
+                        </h2>
+                        <p className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto">
+                            Os pilares que guiam cada decisão e cada linha de código que escrevemos.
+                        </p>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {valores.map((v, i) => {
+                            const Icon   = v.icon
+                            const BgIcon = v.bgIcon
+                            return (
+                                <div
+                                    key={i}
+                                    ref={el => { valoresRef.current[i] = el }}
+                                    className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100 relative overflow-hidden group"
+                                >
+                                    {/* ícone decorativo de fundo */}
+                                    <BgIcon className="absolute -right-4 -top-4 w-24 h-24 text-[#1D3557] opacity-[0.04] group-hover:opacity-[0.08] transition-opacity duration-500" />
+
+                                    <div className="bg-linear-to-bl from-[#457b9d] to-[#1D3557] w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 relative z-10">
+                                        <Icon className="w-8 h-8 text-white" />
+                                    </div>
+                                    <h3 className="font-bold text-xl text-[#1D3557] text-center mb-3 relative z-10">{v.title}</h3>
+                                    <p className="text-gray-600 text-center leading-relaxed relative z-10">{v.description}</p>
+                                </div>
+                            )
+                        })}
+                    </div>
+                </div>
+            </section>
+
+            {/* ── SEÇÃO ESCURA — marca / propósito ──────────────────── */}
+            <section className="w-full py-28 bg-[#0d1b2a] relative overflow-hidden">
+                {/* Ornamento de fundo */}
+                <div className="absolute -top-20 -right-20 w-96 h-96 bg-[#1D3557] rounded-full opacity-30 blur-3xl" />
+                <div className="absolute -bottom-20 -left-20 w-96 h-96 bg-[#457B9D] rounded-full opacity-20 blur-3xl" />
+
+                <div className="relative z-10 px-5 md:px-20 lg:px-70">
+                    <div className="max-w-5xl mx-auto">
+                        <div className="grid md:grid-cols-2 items-center gap-16">
+                            <div className="space-y-6">
+                                <span className="inline-block text-[#457B9D] text-sm font-bold uppercase tracking-widest">
+                                    Missão
+                                </span>
+                                <h2 className="text-4xl md:text-5xl font-extrabold text-white leading-tight">
+                                    Tecnologia a serviço
+                                    <span className="text-[#457B9D]"> da vida.</span>
+                                </h2>
+                                <p className="text-lg text-white/65 leading-relaxed">
+                                    Criamos a PetJourney porque acreditamos que cada animal merece
+                                    uma saúde acompanhada com a mesma seriedade e cuidado que
+                                    dedicamos às pessoas.
+                                </p>
+                            </div>
+
+                            <div className="grid grid-cols-2 gap-4">
+                                {[
+                                    { num: '5k+',   label: 'Pets cadastrados'},
+                                    { num: '300+',  label: 'Clínicas parceiras'},
+                                    { num: '98%',   label: 'Satisfação' },
+                                    { num: '24/7',  label: 'Suporte ativo' },
+                                ].map((item, i) => (
+                                    <div key={i} className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center hover:bg-[#1D3557]/60 transition-colors duration-300">
+                                        <p className="text-3xl font-extrabold text-white mb-1">{item.num}</p>
+                                        <p className="text-white/50 text-sm">{item.label}</p>
+>>>>>>> 70f282e85e6952e0928be0a7dd87c9e158f650b2
+                                    </div>
+                                ))}
+                            </div>
+                            <div className="bg-gradient-to-br from-[#1D3557] to-[#457B9D] rounded-2xl p-8 text-white">
+                                <p className="text-xl font-black leading-snug">
+                                    "Cada passo conta.<br />Cada pet importa."
+                                </p>
+                                <p className="text-white/70 mt-2 text-sm">— Time PetJourney</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+<<<<<<< HEAD
             {/* ── NOSSOS VALORES ───────────────────────────────────── */}
             <section className="w-full py-24 bg-[#FAF9F6]">
                 <div className="px-5 md:px-20 lg:px-70">
@@ -413,6 +529,13 @@ export default function SobreNos() {
                     </div>
                 </div>
             </section>
+=======
+            {/* ── NOSSA JORNADA — scroll-driven horizontal ──────────── */}
+            <JornadaScrub />
+
+            {/* ── EQUIPE — carrossel infinito ───────────────────────── */}
+            <TeamCarousel />
+>>>>>>> 70f282e85e6952e0928be0a7dd87c9e158f650b2
 
             {/* ── CTA FINAL ────────────────────────────────────────── */}
             {/* Troque o src pela sua foto de footer quando tiver */}
@@ -447,3 +570,237 @@ export default function SobreNos() {
         </>
     )
 }
+
+// ── Carrossel infinito da equipe ────────────────────────────────────────────
+function TeamCarousel() {
+    const trackRef = useRef<HTMLDivElement>(null)
+    const tweenRef = useRef<gsap.core.Tween | null>(null)
+
+    // Duplicamos os membros para criar o loop perfeito
+    const items = [...TEAM_MEMBERS, ...TEAM_MEMBERS]
+
+    useEffect(() => {
+        const track = trackRef.current
+        if (!track) return
+
+        // Largura de um "ciclo" completo (metade do total — os originais)
+        const totalWidth = track.scrollWidth / 2
+
+        tweenRef.current = gsap.to(track, {
+            x: `-${totalWidth}px`,
+            duration: 40,
+            ease: 'none',
+            repeat: -1,
+            modifiers: {
+                x: gsap.utils.unitize(x => parseFloat(x) % totalWidth),
+            },
+        })
+
+        return () => {
+            tweenRef.current?.kill()
+        }
+    }, [])
+
+    return (
+        <section className="w-full py-24 bg-[#FAF9F6] overflow-hidden">
+            <div className="px-5 md:px-20 lg:px-70 mb-16 text-center">
+                <h2 className="text-3xl md:text-5xl font-bold text-[#1D3557] mb-4">
+                    Nossa Equipe
+                </h2>
+                <p className="text-lg md:text-xl text-gray-700 max-w-2xl mx-auto">
+                    Conheça as pessoas que tornam a Pet Journey possível.
+                </p>
+            </div>
+
+            {/* Faixas de fade nas bordas */}
+            <div className="relative">
+                <div className="absolute left-0 top-0 bottom-0 w-24 z-10 bg-gradient-to-r from-[#FAF9F6] to-transparent pointer-events-none" />
+                <div className="absolute right-0 top-0 bottom-0 w-24 z-10 bg-gradient-to-l from-[#FAF9F6] to-transparent pointer-events-none" />
+
+                <div
+                    className="flex gap-6 w-max"
+                    ref={trackRef}
+                    onMouseEnter={() => tweenRef.current?.pause()}
+                    onMouseLeave={() => tweenRef.current?.resume()}
+                >
+                    {items.map((m, i) => (
+                        <div
+                            key={i}
+                            className="w-72 shrink-0 bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#457B9D] hover:-translate-y-2 group"
+                        >
+                            <div className="relative h-64 overflow-hidden">
+                                <Image
+                                    src={m.src}
+                                    alt={m.nome}
+                                    fill
+                                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                                    sizes="288px"
+                                    unoptimized
+                                />
+                            </div>
+                            <div className="p-6 text-center space-y-2">
+                                <h4 className="text-lg font-bold text-[#1D3557]">{m.nome}</h4>
+                                <p className="text-[#457B9D] font-semibold text-sm uppercase tracking-wide">{m.cargo}</p>
+                                <p className="text-gray-500 text-sm leading-relaxed">
+                                    Breve descrição sobre o membro da equipe.
+                                </p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    )
+}
+
+// ── Jornada — horizontal desktop / vertical mobile ──────────────────────────
+function JornadaScrub() {
+    const sectionRef = useRef<HTMLDivElement>(null)
+
+    useEffect(() => {
+        const section = sectionRef.current
+        if (!section) return
+
+        // Linha animada (cresce da esquerda no desktop, de cima no mobile)
+        gsap.fromTo('.jornada-line',
+            { scale: 0, opacity: 0 },
+            { scale: 1, opacity: 1, duration: 1.2, ease: 'power2.out',
+              transformOrigin: 'left center',
+              scrollTrigger: { trigger: section, start: 'top 70%' } }
+        )
+
+        // Dots pulso
+        gsap.fromTo('.jornada-dot',
+            { scale: 0, opacity: 0 },
+            { scale: 1, opacity: 1, duration: 0.5, ease: 'back.out(2)',
+              stagger: 0.18,
+              scrollTrigger: { trigger: section, start: 'top 70%' } }
+        )
+
+        // Cards de cima (desktop) / todos no mobile
+        gsap.fromTo('.jornada-card-top',
+            { y: -35, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.7, ease: 'power3.out',
+              stagger: 0.15,
+              scrollTrigger: { trigger: section, start: 'top 70%' } }
+        )
+
+        // Cards de baixo (desktop)
+        gsap.fromTo('.jornada-card-bot',
+            { y: 35, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.7, ease: 'power3.out',
+              stagger: 0.15,
+              scrollTrigger: { trigger: section, start: 'top 70%' } }
+        )
+    }, [])
+
+    return (
+        <section ref={sectionRef} className="w-full py-24 bg-white overflow-hidden">
+            <div className="px-5 md:px-20 lg:px-70">
+                <div className="text-center mb-16">
+                    <h2 className="text-3xl md:text-5xl font-bold text-[#1D3557] mb-4">
+                        Nossa Jornada
+                    </h2>
+                    <p className="text-lg text-gray-500 max-w-2xl mx-auto">
+                        De uma ideia a uma plataforma completa de saúde animal.
+                    </p>
+                </div>
+
+                {/* ── DESKTOP: horizontal zig-zag ─────────────────────── */}
+                <div className="hidden md:block relative">
+                    {/* Cards de cima (0 e 2) */}
+                    <div className="grid grid-cols-4 gap-4">
+                        {jornada.map((item, i) => {
+                            const DotIcon = item.DotIcon
+                            const isTop = i % 2 === 0
+                            return (
+                                <div key={i} className={isTop ? 'jornada-card-top' : 'invisible pointer-events-none'}>
+                                    {isTop && (
+                                        <div className="bg-[#FAF9F6] rounded-2xl p-6 shadow-md border border-gray-100 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 relative overflow-hidden">
+                                            <DotIcon className="absolute -right-3 -bottom-3 w-16 h-16 text-[#457B9D]/8" />
+                                            <span className={`inline-block bg-gradient-to-r ${item.cor} text-white text-xs font-bold px-3 py-1 rounded-full mb-4`}>
+                                                {item.ano}
+                                            </span>
+                                            <h3 className="text-base font-bold text-[#1D3557] mb-2">{item.titulo}</h3>
+                                            <p className="text-sm text-gray-500 leading-relaxed">{item.desc}</p>
+                                        </div>
+                                    )}
+                                </div>
+                            )
+                        })}
+                    </div>
+
+                    {/* Linha + dots */}
+                    <div className="relative flex items-center my-4">
+                        <div className="jornada-line absolute left-0 right-0 h-0.5 bg-gradient-to-r from-[#457B9D] via-[#1D3557] to-[#457B9D] origin-left" />
+                        <div className="grid grid-cols-4 gap-4 w-full relative z-10">
+                            {jornada.map((item, i) => {
+                                const DotIcon = item.DotIcon
+                                return (
+                                    <div key={i} className="flex justify-center">
+                                        <div className={`jornada-dot w-12 h-12 rounded-full bg-gradient-to-br ${item.cor} flex items-center justify-center shadow-lg ring-4 ring-white`}>
+                                            <DotIcon className="w-5 h-5 text-white" />
+                                        </div>
+                                    </div>
+                                )
+                            })}
+                        </div>
+                    </div>
+
+                    {/* Cards de baixo (1 e 3) */}
+                    <div className="grid grid-cols-4 gap-4">
+                        {jornada.map((item, i) => {
+                            const DotIcon = item.DotIcon
+                            const isBot = i % 2 !== 0
+                            return (
+                                <div key={i} className={isBot ? 'jornada-card-bot' : 'invisible pointer-events-none'}>
+                                    {isBot && (
+                                        <div className="bg-[#FAF9F6] rounded-2xl p-6 shadow-md border border-gray-100 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 relative overflow-hidden">
+                                            <DotIcon className="absolute -right-3 -bottom-3 w-16 h-16 text-[#457B9D]/8" />
+                                            <span className={`inline-block bg-gradient-to-r ${item.cor} text-white text-xs font-bold px-3 py-1 rounded-full mb-4`}>
+                                                {item.ano}
+                                            </span>
+                                            <h3 className="text-base font-bold text-[#1D3557] mb-2">{item.titulo}</h3>
+                                            <p className="text-sm text-gray-500 leading-relaxed">{item.desc}</p>
+                                        </div>
+                                    )}
+                                </div>
+                            )
+                        })}
+                    </div>
+                </div>
+
+                {/* ── MOBILE: vertical ────────────────────────────────── */}
+                <div className="md:hidden relative pl-7 max-w-xs mx-auto">
+                    {/* Linha vertical */}
+                    <div className="jornada-line absolute left-2.5 top-2 bottom-2 w-0.5 bg-gradient-to-b from-[#457B9D] via-[#1D3557] to-[#457B9D] origin-top" />
+
+                    <div className="flex flex-col gap-5">
+                        {jornada.map((item, i) => {
+                            const DotIcon = item.DotIcon
+                            return (
+                                <div key={i} className="jornada-card-top relative ">
+                                    {/* Dot na linha */}
+                                    <div className={`jornada-dot absolute -left-8 top-3.5 w-8 h-8 rounded-full bg-gradient-to-br ${item.cor} flex items-center justify-center shadow-md ring-3 ring-white`}>
+                                        <DotIcon className="w-3.5 h-3.5 text-white" />
+                                    </div>
+
+                                    {/* Card */}
+                                    <div className="bg-[#FAF9F6] rounded-xl p-4 shadow-sm border border-gray-100 relative overflow-hidden">
+                                        <DotIcon className="absolute -right-2 -bottom-2 w-10 h-10 text-[#457B9D]/8" />
+                                        <span className={`inline-block bg-gradient-to-r ${item.cor} text-white text-xs font-bold px-2.5 py-0.5 rounded-full mb-2`}>
+                                            {item.ano}
+                                        </span>
+                                        <h3 className="text-sm font-bold text-[#1D3557] mb-1">{item.titulo}</h3>
+                                        <p className="text-xs text-gray-500 leading-relaxed">{item.desc}</p>
+                                    </div>
+                                </div>
+                            )
+                        })}
+                    </div>
+                </div>
+            </div>
+        </section>
+    )
+}
+
