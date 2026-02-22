@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import{ useRouter } from 'next/navigation'
+import { event } from '@/lib/gtag'
 import tutorHeaderImg from '@/assets/tutor/tutor-header.jpg'
 import tutorFooterImg from '@/assets/tutor/tutor-footer.jpg'
 
@@ -180,7 +181,10 @@ export default function TutorScreen() {
                             Descubra como a PetJourney pode transformar o cuidado com seu pet.
                             Aprenda a usar todas as funcionalidades da plataforma.
                         </p>
-                        <button onClick={() => window.open('/lista-espera', '_blank')} className="bg-[#FFEDD8] hover:bg-[#ffffff] cursor-pointer text-[#1D3557] px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-shadow duration-300">
+                        <button onClick={() => {
+                            event({ action: 'click', category: 'cta', label: 'Tutor Hero - Começar Agora' })
+                            window.open('/lista-espera', '_blank')
+                        }} className="bg-[#FFEDD8] hover:bg-[#ffffff] cursor-pointer text-[#1D3557] px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-shadow duration-300">
                             Começar Agora
                         </button>
                     </div>
@@ -309,10 +313,16 @@ export default function TutorScreen() {
                     </div>
 
                     <div className="flex flex-col md:flex-row gap-4 justify-center">
-                        <button onClick={() => window.open('/lista-espera', '_blank')} className="bg-[#FFEDD8] hover:bg-[#ffffff] text-[#1D3557] px-10 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer">
+                        <button onClick={() => {
+                            event({ action: 'click', category: 'cta', label: 'Tutor Footer - Lista de Espera' })
+                            window.open('/lista-espera', '_blank')
+                        }} className="bg-[#FFEDD8] hover:bg-[#ffffff] text-[#1D3557] px-10 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer">
                             Lista de Espera
                         </button>
-                        <button className="bg-transparent border-2 border-white text-white px-10 py-4 rounded-xl font-bold hover:bg-white hover:text-[#1D3557] transition-all duration-300 cursor-pointer" onClick={() => router.push('/clinicas')}>
+                        <button className="bg-transparent border-2 border-white text-white px-10 py-4 rounded-xl font-bold hover:bg-white hover:text-[#1D3557] transition-all duration-300 cursor-pointer" onClick={() => {
+                            event({ action: 'click', category: 'cta', label: 'Tutor Footer - Saiba Mais (Clínicas)' })
+                            router.push('/clinicas')
+                        }}>
                             Saiba Mais
                         </button>
                     </div>

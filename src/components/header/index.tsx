@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { TransitionLink } from '@/components/transition-link'
+import { event } from '@/lib/gtag'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -97,7 +98,11 @@ export function Header() {
                     <ul className='flex gap-3'>
                         {headerItems.map((item) => (
                             <li className='font-semibold hover:scale-110 transition-transform duration-300 text-sm xl:text-base' key={item.link} style={{ color: 'var(--secondary)' }}>
-                                <TransitionLink className='hover:text-[#1D3557] hover:bg-[#FFEDD8] px-3 rounded-2xl py-1' href={item.link}>{item.label}</TransitionLink>
+                                <TransitionLink
+                                    className='hover:text-[#1D3557] hover:bg-[#FFEDD8] px-3 rounded-2xl py-1'
+                                    href={item.link}
+                                    onClick={() => event({ action: 'click', category: 'navegacao_header', label: item.label })}
+                                >{item.label}</TransitionLink>
                             </li>
                         ))}
                     </ul>
@@ -113,14 +118,21 @@ export function Header() {
                         Cadastre-se
                     </button> */}
                                         <button className='font-bold py-2 px-4 rounded-lg hover:scale-105 duration-200 transition-translate text-sm xl:text-base  cursor-pointer'
-                        style={{ borderWidth: 2, borderColor: 'var(--secondary)', color: 'var(--secondary)' }} onClick={() => window.open('/lista-espera', '_blank')}>
+                        style={{ borderWidth: 2, borderColor: 'var(--secondary)', color: 'var(--secondary)' }} onClick={() => {
+                            event({ action: 'click', category: 'cta', label: 'Header Desktop - Lista de Espera' })
+                            window.open('/lista-espera', '_blank')
+                        }}>
                         Lista de Espera
                     </button>
                 </div>
 
                 <button
                     className="lg:hidden p-2"
-                    onClick={() => setIsMenuOpen(!isMenuOpen)}
+                    onClick={() => {
+                        const next = !isMenuOpen
+                        setIsMenuOpen(next)
+                        event({ action: next ? 'open' : 'close', category: 'menu_mobile', label: 'Hamburger Menu' })
+                    }}
                     aria-label="Menu"
                 >
                     <svg className="w-6 h-6" fill="none" stroke="var(--secondary)" viewBox="0 0 24 24">
@@ -152,7 +164,10 @@ export function Header() {
                             Cadastre-se
                         </button> */}
                           <button className='font-bold py-2 px-4 rounded-lg hover:scale-105 duration-200 transition-translate text-sm xl:text-base  cursor-pointer'
-                        style={{ borderWidth: 2, borderColor: 'var(--secondary)', color: 'var(--secondary)' }} onClick={() => window.open('/lista-espera', '_blank')}>
+                        style={{ borderWidth: 2, borderColor: 'var(--secondary)', color: 'var(--secondary)' }} onClick={() => {
+                            event({ action: 'click', category: 'cta', label: 'Header Mobile - Lista de Espera' })
+                            window.open('/lista-espera', '_blank')
+                        }}>
                         Lista de Espera
                     </button>
                     </div>

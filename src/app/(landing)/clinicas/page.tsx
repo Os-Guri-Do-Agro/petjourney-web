@@ -5,6 +5,7 @@ import coelho from '../../assets/home/coelho.jpg'
 import clinicaHeaderImg from '@/assets/clinica/clinica-header.jpg'
 import clinicaFooterImg from '@/assets/clinica/clinica-footer.jpg'
 import { useRouter } from 'next/navigation'
+import { event } from '@/lib/gtag'
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -487,12 +488,18 @@ export default function ClinicaScreen() {
                     </p>
                     <div className="flex flex-col md:flex-row gap-4 justify-center">
                         <button
-                            onClick={() => window.open('/lista-espera', '_blank')}
+                            onClick={() => {
+                                event({ action: 'click', category: 'cta', label: 'Clinicas Footer - Lista de Espera' })
+                                window.open('/lista-espera', '_blank')
+                            }}
                             className="bg-[#FFEDD8] hover:bg-[#ffffff] text-[#1D3557] px-10 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer"
                         >
                             Lista de Espera
                         </button>
-                        <button onClick={() => router.push('/artigos')} className="bg-transparent border-2 cursor-pointer border-white text-white px-10 py-4 rounded-xl font-bold hover:bg-white hover:text-[#1D3557] transition-all duration-300">
+                        <button onClick={() => {
+                            event({ action: 'click', category: 'cta', label: 'Clinicas Footer - Saiba Mais (Artigos)' })
+                            router.push('/artigos')
+                        }} className="bg-transparent border-2 cursor-pointer border-white text-white px-10 py-4 rounded-xl font-bold hover:bg-white hover:text-[#1D3557] transition-all duration-300">
                             Saiba Mais
                         </button>
                     </div>

@@ -7,6 +7,7 @@ import { marketingService } from '@/service/marketing/marketing-server'
 import gsap from 'gsap'
 import toast, { Toaster } from 'react-hot-toast'
 import Link from 'next/link'
+import { event } from '@/lib/gtag'
 
 
 const perfis = [
@@ -122,10 +123,20 @@ export default function ListaEspera() {
                 telefone: formData.telefone.replace(/\D/g, '')
             })
             toast.success('Cadastro realizado com sucesso!')
+            event({
+                action: 'form_submit',
+                category: 'lista_espera',
+                label: selectedPerfil.name,
+            })
             setFormData({ nome: '', email: '', telefone: '' })
             setSelectedPerfil(perfis[0])
         } catch (error) {
             toast.error('Erro ao adicionar à lista de espera')
+            event({
+                action: 'form_error',
+                category: 'lista_espera',
+                label: 'Erro na API',
+            })
         } finally {
             setLoading(false)
         }
