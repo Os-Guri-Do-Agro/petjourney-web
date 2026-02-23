@@ -59,10 +59,10 @@ export function Footer() {
                     <div>
                         <h4 className="font-bold text-lg mb-5 text-white">Catálogo</h4>
                         <ul className="space-y-3 text-sm">
-                            <li><Link href="/clinicas" className="inline-block text-white/70 hover:text-white hover:translate-x-1 transition-all duration-200">Clínicas</Link></li>
-                            <li><Link href="/artigos" className="inline-block text-white/70 hover:text-white hover:translate-x-1 transition-all duration-200">Artigos e Dicas</Link></li>
                             <li><Link href="/tutor" className="inline-block text-white/70 hover:text-white hover:translate-x-1 transition-all duration-200">Tutor</Link></li>
-                            <li><Link href="/contato" className="inline-block text-white/70 hover:text-white hover:translate-x-1 transition-all duration-200">Contato</Link></li>
+                            <li><Link href="/clinicas" className="inline-block text-white/70 hover:text-white hover:translate-x-1 transition-all duration-200">Clínicas</Link></li>
+                            <li><Link href="/artigos" className="inline-block text-white/70 hover:text-white hover:translate-x-1 transition-all duration-200">Artigos</Link></li>
+                            <li><Link href="/sobre-nos" className="inline-block text-white/70 hover:text-white hover:translate-x-1 transition-all duration-200">Sobre nós</Link></li>
                             {/* <li><Link href="/lojas-parceiras" className="inline-block text-white/70 hover:text-white hover:translate-x-1 transition-all duration-200">Lojas Parceiras</Link></li> */}
                         </ul>
                     </div>
@@ -77,25 +77,24 @@ export function Footer() {
 
                     <div>
                         <h4 className="font-bold text-lg mb-5 text-white">Contato</h4>
-                        <div className="space-y-3 text-sm">
-                            {/* <Link href="tel:11999999999" className="inline-block text-white/70 hover:text-white transition-colors duration-200">📞 (11) 9999-9999</Link> */}
-                            <Link href="mailto:atendimento@petjourney.health" className="inline-block text-white/70 hover:text-white transition-colors duration-200">atendimento@petjourney.health</Link>
-                            <p className="text-white/70 mt-4 leading-relaxed">Cuidando do seu pet com amor e dedicação</p>
+                        <div className="space-y-4 text-sm">
+                            <Link href="/contato" className="inline-block text-white/70 hover:text-white transition-colors duration-200 font-semibold underline underline-offset-4">Entre em contato conosco</Link>
+                            
+                            <div className="flex gap-4 mt-6">
+                                <div className="w-10 h-10 rounded-full border-2 border-white/30 flex items-center justify-center hover:bg-white hover:text-[#243F63] hover:border-white transition-all duration-300 cursor-pointer">
+                                    <Link href={'https://www.instagram.com/petjourney.health/'} target="_blank">
+                                        <FaInstagram />
+                                    </Link>
+                                </div>
+                                <div className="w-10 h-10 rounded-full border-2 border-white/30 flex items-center justify-center hover:bg-white hover:text-[#243F63] hover:border-white transition-all duration-300 cursor-pointer">
+                                    <Link href={'https://www.facebook.com/petjourney.health'} target="_blank">
+                                        <FaFacebook />
+                                    </Link>
+                                </div>
+                            </div>
+                            
+                            <p className="text-white/70 mt-6 leading-relaxed italic">Cuidando do seu pet com amor e dedicação...</p>
                         </div>
-                        <div className="flex gap-4 mt-2">
-                        <div className="w-10 h-10 rounded-full border-2 border-white/30 flex items-center justify-center hover:bg-white hover:text-[#243F63] hover:border-white transition-all duration-300 cursor-pointer">
-                            <Link href={'https://www.instagram.com/petjourney.health/'} target="_blank">
-                                <FaInstagram />
-                            </Link>
-
-                        </div>
-                        <div className="w-10 h-10 rounded-full border-2 border-white/30 flex items-center justify-center hover:bg-white hover:text-[#243F63] hover:border-white transition-all duration-300 cursor-pointer">
-                            <Link href={'https://www.facebook.com/petjourney.health'} target="_blank">
-                                <FaFacebook />
-                            </Link>
-
-                        </div>
-                    </div>
                     </div>
 
                     <div>

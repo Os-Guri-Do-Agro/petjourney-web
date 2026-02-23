@@ -9,6 +9,7 @@ import artigosFooterImg from '@/assets/artigos/artigos-footer.jpg'
 import { artigoService } from '@/service/artigo/artigo-service'
 import { categoriaArtigoService } from '@/service/categori-artigo/categoriaArtigo-service'
 import { useRouter } from 'next/navigation'
+import { event } from '@/lib/gtag'
 
 
 if (typeof window !== 'undefined') {
@@ -368,10 +369,16 @@ export default function Artigos() {
                         Fique por dentro das novidades e receba conteúdos exclusivos sobre cuidados com pets
                     </p>
                     <div className="flex flex-col md:flex-row gap-4 justify-center">
-                        <button onClick={() => window.open('/lista-espera', '_blank')} className="bg-[#FFEDD8] text-[#1D3557] px-10 py-4 rounded-xl font-bold shadow-lg hover:scale-105 transition-transform duration-300 cursor-pointer">
+                        <button onClick={() => {
+                            event({ action: 'click', category: 'cta', label: 'Artigos Footer - Lista de Espera' })
+                            window.open('/lista-espera', '_blank')
+                        }} className="bg-[#FFEDD8] text-[#1D3557] px-10 py-4 rounded-xl font-bold shadow-lg hover:scale-105 transition-transform duration-300 cursor-pointer">
                             Lista de Espera
                         </button>
-                        <button onClick={() => router.push('/contato')} className="bg-transparent border-2 border-white text-white px-10 py-4 rounded-xl font-bold hover:bg-white hover:text-[#1D3557] transition-all duration-300 cursor-pointer">
+                        <button onClick={() => {
+                            event({ action: 'click', category: 'cta', label: 'Artigos Footer - Contato' })
+                            router.push('/contato')
+                        }} className="bg-transparent border-2 border-white text-white px-10 py-4 rounded-xl font-bold hover:bg-white hover:text-[#1D3557] transition-all duration-300 cursor-pointer">
                             Entre em contato
                         </button>
                     </div>

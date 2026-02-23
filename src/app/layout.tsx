@@ -15,8 +15,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt">
-      <body className={`antialiased`}>
+    <html lang="pt" suppressHydrationWarning>
+      <body className={`antialiased overflow-x-hidden`} suppressHydrationWarning>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-360T12Y572"
           strategy="afterInteractive"

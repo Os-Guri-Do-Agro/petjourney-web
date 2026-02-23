@@ -1,7 +1,6 @@
 'use client'
-import Image from 'next/image'
-import { Building2, Palette, Smartphone, BarChart3, Users, Clock, Shield, Zap, Heart, Activity, Bell, TrendingUp, Stethoscope, FileText, Video, GraduationCap, Calendar } from 'lucide-react'
-import coelho from '../../assets/home/coelho.jpg'
+
+import { Smartphone, BarChart3, Users, Clock, Shield, Zap, Heart, Activity, Bell, TrendingUp, Stethoscope, FileText, Video, GraduationCap, Calendar } from 'lucide-react'
 import clinicaHeaderImg from '@/assets/clinica/clinica-header.jpg'
 import clinicaFooterImg from '@/assets/clinica/clinica-footer.jpg'
 import { useRouter } from 'next/navigation'

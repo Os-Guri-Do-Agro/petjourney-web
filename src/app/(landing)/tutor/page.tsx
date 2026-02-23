@@ -170,9 +170,10 @@ export default function TutorScreen() {
 
 
     return (
-        <>
-            <section className="min-h-[60vh] flex items-center bg-cover bg-center" style={{ backgroundImage: `url(${tutorHeaderImg.src})` }}>
-                <div className="w-full px-5 md:px-20 lg:px-70 pt-32 pb-20">
+        <main className="w-full max-w-[100vw] overflow-x-hidden">
+            <section className="w-full relative min-h-[60vh] flex items-center bg-cover bg-center overflow-hidden" style={{ backgroundImage: `url(${tutorHeaderImg.src})` }}>
+                <div className="absolute inset-0 bg-black/30 md:bg-transparent"></div>
+                <div className="relative z-10 w-full px-5 md:px-20 lg:px-70 pt-32 pb-20">
                     <div ref={heroRef} className="text-white space-y-6 max-w-4xl">
                         <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight">
                             Guia completo para tutores
@@ -229,7 +230,7 @@ export default function TutorScreen() {
                 </div>
             </section>
 
-            <section className="py-20 bg-[#FAF9F6] rounded-tl-[500px]">
+            <section className="w-full py-20 bg-[#FAF9F6] rounded-tl-[100px] md:rounded-tl-[500px]">
                 <div className="px-5 md:px-20 lg:px-70">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl md:text-4xl font-bold text-[#1D3557] mb-4">
@@ -300,8 +301,9 @@ export default function TutorScreen() {
                 </div>
             </section>
 
-            <section className="py-20 bg-cover bg-center" style={{ backgroundImage: `url(${tutorFooterImg.src})` }}>
-                <div ref={ctaRef} className="px-5 md:px-20 lg:px-70 text-center text-white">
+            <section className="w-full py-20 bg-cover bg-center relative overflow-hidden" style={{ backgroundImage: `url(${tutorFooterImg.src})` }}>
+                <div className="absolute inset-0 bg-black/40 md:bg-transparent"></div>
+                <div ref={ctaRef} className="relative z-10 px-5 md:px-20 lg:px-70 text-center text-white">
                     <h2 className="text-3xl md:text-4xl font-bold mb-6">
                         Conheça as funcionalidades para tutores de pets
                     </h2>
@@ -328,6 +330,6 @@ export default function TutorScreen() {
                     </div>
                 </div>
             </section>
-        </>
+        </main>
     )
-}   
+}

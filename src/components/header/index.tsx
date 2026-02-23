@@ -38,7 +38,7 @@ const headerItems = [
     },
     {
         link: '/sobre-nos',
-        label: 'Sobre-nos'
+        label: 'Sobre Nós'
     },
 ]
 
@@ -97,7 +97,7 @@ export function Header() {
                 <div className="hidden lg:flex gap-5">
                     <ul className='flex gap-3'>
                         {headerItems.map((item) => (
-                            <li className='font-semibold hover:scale-110 transition-transform duration-300 text-sm xl:text-base' key={item.link} style={{ color: 'var(--secondary)' }}>
+                            <li className='font-semibold hover:scale-110 transition-transform duration-300 text-base xl:text-lg' key={item.link} style={{ color: 'var(--secondary)' }}>
                                 <TransitionLink
                                     className='hover:text-[#1D3557] hover:bg-[#FFEDD8] px-3 rounded-2xl py-1'
                                     href={item.link}
@@ -149,7 +149,7 @@ export function Header() {
                 <div className="lg:hidden mt-4 pb-4">
                     <ul className='flex flex-col gap-4'>
                         {headerItems.map((item) => (
-                            <li className='font-semibold text-center' key={item.link} style={{ color: 'var(--secondary)' }}>
+                            <li className='font-semibold text-center text-lg' key={item.link} style={{ color: 'var(--secondary)' }}>
                                 <TransitionLink href={item.link} onClick={() => setIsMenuOpen(false)}>{item.label}</TransitionLink>
                             </li>
                         ))}
