@@ -441,13 +441,16 @@ um ambiente digital seguro e acessível.
           ref={ctaRef}
           className="relative z-10 px-5 md:px-20 lg:px-70 text-center text-white"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Cada etapa importa.
-            <br />E você não precisa caminhar sozinho.
+          <h2 className="mb-6 flex flex-col items-center justify-center gap-2 drop-shadow-md">
+            <span className="text-2xl md:text-3xl font-medium text-[#FFEDD8] italic">
+              Não faltava amor.
+            </span>
+            <span className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white">
+              Faltava estrutura.
+            </span>
           </h2>
           <p className="text-xl mb-10 max-w-2xl mx-auto text-white/85">
-            Junte-se a milhares de tutores que já estão transformando o cuidado
-            com seus pets.
+           Entre na lista de espera e organize o histórico do seu pet em um único lugar
           </p>
           <div className="flex flex-col md:flex-row gap-4 justify-center">
             <button
