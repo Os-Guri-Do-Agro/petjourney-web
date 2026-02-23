@@ -54,9 +54,11 @@ export default function Artigos() {
     const buscarCategoriaArtigo = async () => {
         try {
             const response = await categoriaArtigoService.getAllCategoriaArtigo()
-            setCategoria(response.data.data || [])
+            const data = response?.data?.data?.data || response?.data?.data || []
+            setCategoria(Array.isArray(data) ? data : [])
         } catch (e) {
             console.error('Erro ao buscar categorias:', e)
+            setCategoria([])
         }
     }
 
