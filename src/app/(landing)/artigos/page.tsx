@@ -177,10 +177,12 @@ export default function Artigos() {
                 <div className="px-5 md:px-20 lg:px-70">
                     <div ref={textRef} className="text-center mb-16">
                         <h2 className="text-3xl md:text-4xl font-bold text-[#1D3557] mb-4">
-                            Na Pet Journey, acreditamos que cada pet merece uma vida longa e cheia de cuidado.
+                            Na PetJourney, acreditamos que cada pet merece <br /> uma vida longa e cheia de cuidado.
                         </h2>
                         <p className="text-lg text-[#457B9D] max-w-3xl mx-auto">
-                            E que cada tutor merece as ferramentas para tornar isso possível. Somos uma plataforma que conecta saúde, bem-estar e tecnologia em uma jornada completa de cuidado animal.
+                        Cada tutor merece uma ferramenta para tornar isso possível. <br />
+Somos uma plataforma que conecta saúde, bem-estar e tecnologia em uma jornada completa
+de cuidado animal.
                         </p>
                     </div>
                 </div>
@@ -363,10 +365,10 @@ export default function Artigos() {
             <section className="py-20 bg-cover bg-center" style={{ backgroundImage: `url(${artigosFooterImg.src})` }}>
                 <div ref={finalRef} className="px-5 md:px-20 lg:px-70 text-center text-white">
                     <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                        Cada etapa importa. E você não precisa caminhar sozinho.
+                    Cada etapa importa, e a PetJourney acompanha você em cada uma delas.
                     </h2>
                     <p className="text-xl mb-10 max-w-2xl mx-auto">
-                        Fique por dentro das novidades e receba conteúdos exclusivos sobre cuidados com pets
+                    Fique por dentro das novidades do nosso lançamento.
                     </p>
                     <div className="flex flex-col md:flex-row gap-4 justify-center">
                         <button onClick={() => {

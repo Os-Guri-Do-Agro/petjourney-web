@@ -129,11 +129,11 @@ export default function ClinicaScreen() {
     ]
 
     const rpmFeatures = [
-        {
-            icon: Activity,
-            title: 'Monitoramento em Tempo Real',
-            description: 'Acompanhe sinais vitais dos pets remotamente'
-        },
+        // {
+        //     icon: Activity,
+        //     title: 'Monitoramento em Tempo Real',
+        //     description: 'Acompanhe sinais vitais dos pets remotamente'
+        // },
         {
             icon: Bell,
             title: 'Alertas Inteligentes',
@@ -162,11 +162,11 @@ export default function ClinicaScreen() {
             title: 'Prescrições Digitais',
             description: 'Emita receitas e laudos de forma digital e segura'
         },
-        {
-            icon: Video,
-            title: 'Telemedicina Veterinária',
-            description: 'Consultas remotas com qualidade e praticidade'
-        },
+        // {
+        //     icon: Video,
+        //     title: 'Telemedicina Veterinária',
+        //     description: 'Consultas remotas com qualidade e praticidade'
+        // },
         {
             icon: TrendingUp,
             title: 'Relatórios Gerenciais',
@@ -267,7 +267,7 @@ export default function ClinicaScreen() {
                 </div>
             </section>
 
-            <section className="w-full py-24 bg-[#FAF9F6]">
+            <section className="w-full pt-24 bg-[#FAF9F6]">
                 <div className="px-5 md:px-30 lg:px-70">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl md:text-5xl font-bold text-[#1D3557] mb-6">
@@ -278,7 +278,7 @@ export default function ClinicaScreen() {
                         </p>
                     </div>
 
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
                         {rpmFeatures.map((feature, index) => {
                             const Icon = feature.icon
                             return (
@@ -303,7 +303,7 @@ export default function ClinicaScreen() {
                         })}
                     </div>
 
-                    <div className="bg-linear-to-br from-[#1D3557] via-[#457b9d] to-[#1D3557] p-10 md:p-16 rounded-3xl text-white relative overflow-hidden">
+                    {/* <div className="bg-linear-to-br from-[#1D3557] via-[#457b9d] to-[#1D3557] p-10 md:p-16 rounded-3xl text-white relative overflow-hidden">
                         <div className="absolute inset-0 opacity-10">
                             <div className="absolute top-10 left-10 w-40 h-40 bg-white/50 rounded-full blur-3xl"></div>
                             <div className="absolute bottom-20 right-20 w-60 h-60 bg-white/50 rounded-full blur-3xl"></div>
@@ -343,7 +343,7 @@ export default function ClinicaScreen() {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </section>
 
@@ -358,7 +358,7 @@ export default function ClinicaScreen() {
                         </p>
                     </div>
 
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
                         {vetFeatures.map((feature, index) => {
                             const Icon = feature.icon
                             return (
@@ -402,13 +402,13 @@ export default function ClinicaScreen() {
                                         <p className="text-gray-600 text-sm">Histórico médico detalhado e organizado</p>
                                     </div>
                                 </div>
-                                <div className="flex items-start gap-4 p-4 bg-[#F1FAEE] rounded-xl">
+                                {/* <div className="flex items-start gap-4 p-4 bg-[#F1FAEE] rounded-xl">
                                     <Activity className="w-6 h-6 text-[#457B9D] mt-1 shrink-0" />
                                     <div>
                                         <h4 className="font-bold text-[#1D3557] mb-1">Dados em Tempo Real</h4>
                                         <p className="text-gray-600 text-sm">Monitoramento contínuo dos pacientes</p>
                                     </div>
-                                </div>
+                                </div> */}
                                 <div className="flex items-start gap-4 p-4 bg-[#F1FAEE] rounded-xl">
                                     <BarChart3 className="w-6 h-6 text-[#457B9D] mt-1 shrink-0" />
                                     <div>
@@ -416,13 +416,13 @@ export default function ClinicaScreen() {
                                         <p className="text-gray-600 text-sm">Análises e insights sobre os pacientes</p>
                                     </div>
                                 </div>
-                                <div className="flex items-start gap-4 p-4 bg-[#F1FAEE] rounded-xl">
+                                {/* <div className="flex items-start gap-4 p-4 bg-[#F1FAEE] rounded-xl">
                                     <Bell className="w-6 h-6 text-[#457B9D] mt-1 shrink-0" />
                                     <div>
                                         <h4 className="font-bold text-[#1D3557] mb-1">Alertas Inteligentes</h4>
                                         <p className="text-gray-600 text-sm">Notificações de eventos importantes</p>
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     </div>

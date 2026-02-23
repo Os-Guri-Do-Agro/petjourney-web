@@ -179,14 +179,13 @@ export default function TutorScreen() {
                             Guia completo para tutores
                         </h1>
                         <p className="text-lg md:text-xl text-[#FAF9F6] max-w-2xl">
-                            Descubra como a PetJourney pode transformar o cuidado com seu pet.
-                            Aprenda a usar todas as funcionalidades da plataforma.
+                        Em breve, uma plataforma segura e inteligente
                         </p>
                         <button onClick={() => {
                             event({ action: 'click', category: 'cta', label: 'Tutor Hero - Começar Agora' })
                             window.open('/lista-espera', '_blank')
                         }} className="bg-[#FFEDD8] hover:bg-[#ffffff] cursor-pointer text-[#1D3557] px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-shadow duration-300">
-                            Começar Agora
+                            Lista de espera
                         </button>
                     </div>
                 </div>
@@ -305,7 +304,8 @@ export default function TutorScreen() {
                 <div className="absolute inset-0 bg-black/40 md:bg-transparent"></div>
                 <div ref={ctaRef} className="relative z-10 px-5 md:px-20 lg:px-70 text-center text-white">
                     <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                        Conheça as funcionalidades para tutores de pets
+                    Conheça também sobre as soluções para clínicas
+                    veterinárias
                     </h2>
                     <div className=" flex flex-col gap-2">
                         <p className="text-xl max-w-2xl mx-auto">

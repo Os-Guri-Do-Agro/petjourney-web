@@ -265,9 +265,9 @@ export default function Home() {
     { icon: FileText, label: "Prontuário Digital" },
     { icon: Pill, label: "Exames e Prescrições" },
     { icon: Syringe, label: "Caderneta de Vacinas" },
-    { icon: Share2, label: "Compartilhamento com Veterinários" },
-    { icon: Bell, label: "Lembretes Automáticos" },
-    { icon: Calendar, label: "Agendamento Integrado" },
+    // { icon: Share2, label: "Compartilhamento com Veterinários" },
+    // { icon: Bell, label: "Lembretes Automáticos" },
+    // { icon: Calendar, label: "Agendamento Integrado" },
   ];
 
   return (
@@ -297,7 +297,7 @@ export default function Home() {
                 }}
                 className="bg-linear-to-l from-[#457b9d] to-[#1D3557] px-6 py-3 rounded-xl font-semibold shadow-lg w-full max-w-70 hover:bg-linear-to-r hover:from-[#457b9d] hover:to-[#1D3557] duration-300 transition-colors cursor-pointer"
               >
-                Faça parte
+                Lista de espera
               </button>
               <button
                 onClick={() => {
@@ -360,7 +360,7 @@ export default function Home() {
 
             <div className="text-[#457B9D] text-lg leading-relaxed space-y-2">
               <p className="">
-                A PETJourney nasce para organizar o histórico de saúde do seu
+                A PetJourney nasce para organizar o histórico de saúde do seu
                 pet em um único ambiente digital.
               </p>
               <p>
@@ -428,7 +428,7 @@ export default function Home() {
 
             <div className=" flex gap-5 flex-wrap">
               <button
-                className="bg-linear-to-l from-[#457b9d] to-[#1D3557] hover:bg-linear-to-r hover:from-[#457b9d] hover:to-[#1D3557] px-6 py-3 rounded-xl font-semibold shadow-lg w-full max-w-70 hover:bg-white duration-300 transition-colors cursor-pointer text-white"
+                className="bg-linear-to-l from-[#457b9dd2] to-[#1d3557b7] hover:bg-linear-to-r hover:from-[#457b9dd2] hover:to-[#1d3557b7] px-6 py-3 rounded-xl font-semibold shadow-lg w-full max-w-70 hover:bg-white duration-300 transition-colors cursor-pointer text-white"
                 onClick={() => {
                   event({
                     action: "click",
@@ -441,7 +441,7 @@ export default function Home() {
                 Sou Tutor
               </button>
               <button
-                className="bg-linear-to-l from-[#457b9d] to-[#1D3557] px-6 py-3 rounded-xl font-semibold shadow-lg w-full max-w-70 hover:bg-white duration-300 transition-colors cursor-pointer text-white hover:bg-linear-to-r hover:from-[#457b9d] hover:to-[#1D3557]"
+                className="bg-linear-to-l from-[#457b9dd2] to-[#1d3557b7] hover:bg-linear-to-r hover:from-[#457b9dd2] hover:to-[#1d3557b7] px-6 py-3 rounded-xl font-semibold shadow-lg w-full max-w-70 hover:bg-white duration-300 transition-colors cursor-pointer text-white"
                 onClick={() => {
                   event({
                     action: "click",

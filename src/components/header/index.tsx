@@ -38,7 +38,7 @@ const headerItems = [
     },
     {
         link: '/sobre-nos',
-        label: 'Sobre Nós'
+        label: 'Sobre-nos'
     },
 ]
 

@@ -281,7 +281,7 @@ um ambiente digital seguro e acessível.
                 }}
                 className="bg-linear-to-l from-[#457b9d] to-[#1D3557] px-6 py-3 rounded-xl font-semibold shadow-lg w-full max-w-70 hover:bg-linear-to-r hover:from-[#457b9d] hover:to-[#1D3557] duration-300 transition-colors cursor-pointer"
               >
-                Faça parte
+                Lista de espera
               </button>
               <button
                 onClick={() => {
@@ -309,8 +309,9 @@ um ambiente digital seguro e acessível.
               Nossos Valores
             </h2>
             <p className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto">
-              Os pilares que guiam cada decisão e cada linha de código que
-              escrevemos.
+            Os princípios que orientam cada decisão, cada produto e cada linha de
+código que desenvolvemos.
+
             </p>
           </div>
 
@@ -395,7 +396,7 @@ um ambiente digital seguro e acessível.
           ref={sloganRef}
           className="w-full bg-[#1D3557] relative py-16 flex justify-center items-center px-5 overflow-hidden"
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-[#1D3557] to-[#457B9D] opacity-95" />
+          <div className="absolute inset-0 bg-linear-to-r from-[#1D3557] to-[#457B9D] opacity-95" />
           <h2 className="relative z-10 text-xl md:text-3xl lg:text-4xl font-light text-white tracking-[0.15em] md:tracking-[0.2em] text-center flex flex-wrap justify-center items-baseline gap-2 md:gap-4">
             <span className="slogan-word">amar.</span>
             <span className="slogan-word">conectar.</span>
@@ -411,7 +412,7 @@ um ambiente digital seguro e acessível.
       <JornadaScrub />
 
       {/* ── FAIXA PRE-TEAM ───────────────────────────────────────── */}
-      <section className="w-full bg-gradient-to-r from-[#457B9D] to-[#1D3557] py-16 md:py-24 flex flex-col justify-center items-center px-5 text-center relative overflow-hidden">
+      <section className="w-full bg-linear-to-r from-[#457B9D] to-[#1D3557] py-16 md:py-24 flex flex-col justify-center items-center px-5 text-center relative overflow-hidden">
         <div className="absolute -top-12 -right-12 opacity-[0.03] pointer-events-none">
           <Heart className="w-64 h-64 text-white" />
         </div>
@@ -518,19 +519,25 @@ function TeamCarousel() {
 
   return (
     <section className="w-full py-24 bg-[#FAF9F6] overflow-hidden">
-      <div className="px-5 md:px-20 lg:px-70 mb-16 text-center">
+      <div className="px-5 md:px-20 lg:px-70 mb-16 text-center space-y-6">
         <h2 className="text-3xl md:text-5xl font-bold text-[#1D3557] mb-4">
           Nossa Equipe
         </h2>
         <p className="text-lg md:text-xl text-gray-700 max-w-2xl mx-auto">
           Conheça as pessoas que tornam a Pet Journey possível.
         </p>
+        <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          Somos pessoas reais. <br />
+          Alguns de nós somos tutores. <br />
+          Outros descobriram trabalhando nisso, o quanto o cuidado estruturado faz diferença. <br />
+          O que nos une é a convicção de que saúde pet merece organização, respeito e continuidade.
+        </p>
       </div>
 
       {/* Faixas de fade nas bordas */}
       <div className="relative">
-        <div className="absolute left-0 top-0 bottom-0 w-24 z-10 bg-gradient-to-r from-[#FAF9F6] to-transparent pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-24 z-10 bg-gradient-to-l from-[#FAF9F6] to-transparent pointer-events-none" />
+        <div className="absolute left-0 top-0 bottom-0 w-24 z-10 bg-linear-to-r from-[#FAF9F6] to-transparent pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-24 z-10 bg-linear-to-l from-[#FAF9F6] to-transparent pointer-events-none" />
 
         <div
           className="flex gap-6 w-max"
@@ -665,7 +672,7 @@ function JornadaScrub() {
                     <div className="bg-[#FAF9F6] rounded-2xl p-6 shadow-md border border-gray-100 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 relative overflow-hidden">
                       <DotIcon className="absolute -right-3 -bottom-3 w-16 h-16 text-[#457B9D]/8" />
                       <span
-                        className={`inline-block bg-gradient-to-r ${item.cor} text-white text-xs font-bold px-3 py-1 rounded-full mb-4`}
+                        className={`inline-block bg-linear-to-r ${item.cor} text-white text-xs font-bold px-3 py-1 rounded-full mb-4`}
                       >
                         {item.ano}
                       </span>
@@ -684,14 +691,14 @@ function JornadaScrub() {
 
           {/* Linha + dots */}
           <div className="relative flex items-center my-4">
-            <div className="jornada-line absolute left-0 right-0 h-0.5 bg-gradient-to-r from-[#457B9D] via-[#1D3557] to-[#457B9D] origin-left" />
+            <div className="jornada-line absolute left-0 right-0 h-0.5 bg-linear-to-r from-[#457B9D] via-[#1D3557] to-[#457B9D] origin-left" />
             <div className="grid grid-cols-4 gap-4 w-full relative z-10">
               {jornada.map((item, i) => {
                 const DotIcon = item.DotIcon;
                 return (
                   <div key={i} className="flex justify-center">
                     <div
-                      className={`jornada-dot w-12 h-12 rounded-full bg-gradient-to-br ${item.cor} flex items-center justify-center shadow-lg ring-4 ring-white`}
+                      className={`jornada-dot w-12 h-12 rounded-full bg-linear-to-br ${item.cor} flex items-center justify-center shadow-lg ring-4 ring-white`}
                     >
                       <DotIcon className="w-5 h-5 text-white" />
                     </div>
@@ -717,7 +724,7 @@ function JornadaScrub() {
                     <div className="bg-[#FAF9F6] rounded-2xl p-6 shadow-md border border-gray-100 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 relative overflow-hidden">
                       <DotIcon className="absolute -right-3 -bottom-3 w-16 h-16 text-[#457B9D]/8" />
                       <span
-                        className={`inline-block bg-gradient-to-r ${item.cor} text-white text-xs font-bold px-3 py-1 rounded-full mb-4`}
+                        className={`inline-block bg-linear-to-r ${item.cor} text-white text-xs font-bold px-3 py-1 rounded-full mb-4`}
                       >
                         {item.ano}
                       </span>
@@ -738,7 +745,7 @@ function JornadaScrub() {
         {/* ── MOBILE: vertical ────────────────────────────────── */}
         <div className="md:hidden relative pl-7 max-w-xs mx-auto">
           {/* Linha vertical */}
-          <div className="jornada-line absolute left-2.5 top-2 bottom-2 w-0.5 bg-gradient-to-b from-[#457B9D] via-[#1D3557] to-[#457B9D] origin-top" />
+          <div className="jornada-line absolute left-2.5 top-2 bottom-2 w-0.5 bg-linear-to-b from-[#457B9D] via-[#1D3557] to-[#457B9D] origin-top" />
 
           <div className="flex flex-col gap-5">
             {jornada.map((item, i) => {
@@ -747,7 +754,7 @@ function JornadaScrub() {
                 <div key={i} className="jornada-card-top relative ">
                   {/* Dot na linha */}
                   <div
-                    className={`jornada-dot absolute -left-8 top-3.5 w-8 h-8 rounded-full bg-gradient-to-br ${item.cor} flex items-center justify-center shadow-md ring-3 ring-white`}
+                    className={`jornada-dot absolute -left-8 top-3.5 w-8 h-8 rounded-full bg-linear-to-br ${item.cor} flex items-center justify-center shadow-md ring-3 ring-white`}
                   >
                     <DotIcon className="w-3.5 h-3.5 text-white" />
                   </div>
@@ -756,7 +763,7 @@ function JornadaScrub() {
                   <div className="bg-[#FAF9F6] rounded-xl p-4 shadow-sm border border-gray-100 relative overflow-hidden">
                     <DotIcon className="absolute -right-2 -bottom-2 w-10 h-10 text-[#457B9D]/8" />
                     <span
-                      className={`inline-block bg-gradient-to-r ${item.cor} text-white text-xs font-bold px-2.5 py-0.5 rounded-full mb-2`}
+                      className={`inline-block bg-linear-to-r ${item.cor} text-white text-xs font-bold px-2.5 py-0.5 rounded-full mb-2`}
                     >
                       {item.ano}
                     </span>

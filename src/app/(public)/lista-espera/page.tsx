@@ -2,7 +2,8 @@
 
 import { useState, useEffect, useRef, Fragment } from 'react'
 import { Loader2, ChevronDown, Check } from 'lucide-react'
-import { Listbox, ListboxButton, ListboxOptions, ListboxOption, Transition } from '@headlessui/react'
+import { FaInstagram, FaFacebook } from 'react-icons/fa'
+import { Listbox, ListboxButton, ListboxOptions, ListboxOption, Transition, Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
 import { marketingService } from '@/service/marketing/marketing-server'
 import gsap from 'gsap'
 import toast, { Toaster } from 'react-hot-toast'
@@ -30,6 +31,7 @@ export default function ListaEspera() {
         telefone: ''
     })
     const [loading, setLoading] = useState(false)
+    const [showSuccessModal, setShowSuccessModal] = useState(false)
 
     const leftPanelRef = useRef(null)
     const dogIconRef = useRef(null)
@@ -122,7 +124,7 @@ export default function ListaEspera() {
                 email: formData.email,
                 telefone: formData.telefone.replace(/\D/g, '')
             })
-            toast.success('Cadastro realizado com sucesso!')
+            setShowSuccessModal(true)
             event({
                 action: 'form_submit',
                 category: 'lista_espera',
@@ -161,6 +163,57 @@ export default function ListaEspera() {
     return (
         <div className="min-h-screen flex">
             <Toaster position="top-right" />
+            
+            <Transition show={showSuccessModal}>
+                <Dialog as="div" className="relative z-50" onClose={() => setShowSuccessModal(false)}>
+                    <div className="fixed inset-0 bg-black/50 transition-opacity data-closed:opacity-0 data-enter:duration-300 data-leave:duration-200 data-enter:ease-out data-leave:ease-in" />
+
+                    <div className="fixed inset-0 overflow-y-auto">
+                        <div className="flex min-h-full items-center justify-center p-4">
+                            <DialogPanel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-8 text-center shadow-xl transition-all data-closed:scale-95 data-closed:opacity-0 data-enter:duration-300 data-leave:duration-200 data-enter:ease-out data-leave:ease-in">
+
+                                    <div className="mb-6">
+                                        <div className="mx-auto w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
+                                            <Check className="w-8 h-8 text-green-600" />
+                                        </div>
+                                        <DialogTitle className="text-2xl font-bold text-[#1D3557] mb-2">
+                                            Você está na lista!
+                                        </DialogTitle>
+                                        <p className="text-[#457B9D] text-lg">
+                                            Siga a PetJourney nas redes sociais e fique por dentro de todas as novidades!
+                                        </p>
+                                    </div>
+
+                                    <div className="flex items-center justify-center gap-4 mb-6">
+                                        <a
+                                            href="https://www.instagram.com/petjourney.health/"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="w-12 h-12 bg-[#1D3557] hover:bg-[#457B9D] rounded-full flex items-center justify-center transition-colors"
+                                        >
+                                            <FaInstagram className="w-6 h-6 text-white" />
+                                        </a>
+                                        <a
+                                            href="https://www.facebook.com/petjourney.health"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="w-12 h-12 bg-[#1D3557] hover:bg-[#457B9D] rounded-full flex items-center justify-center transition-colors"
+                                        >
+                                            <FaFacebook className="w-6 h-6 text-white" />
+                                        </a>
+                                    </div>
+
+                                    <button
+                                        onClick={() => setShowSuccessModal(false)}
+                                        className="w-full bg-[#1D3557] hover:bg-[#457B9D] text-white font-semibold py-3 rounded-lg transition-colors cursor-pointer"
+                                    >
+                                        Fechar
+                                    </button>
+                                </DialogPanel>
+                        </div>
+                    </div>
+                </Dialog>
+            </Transition>
             <div ref={leftPanelRef} className="hidden lg:flex lg:w-1/2 bg-linear-to-br from-[#1D3557] via-[#457b9d] to-[#1D3557] relative overflow-hidden">
                 <div className="absolute inset-0 opacity-10">
                     <div className="absolute top-20 left-20 w-60 h-60 bg-white/50 rounded-full blur-3xl"></div>
