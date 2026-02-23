@@ -398,7 +398,7 @@ export default function Contato() {
 
         {/* Socials & Direct Contact */}
         <div className="mt-16 flex flex-col md:flex-row items-center justify-between bg-white px-8 py-10 rounded-2xl shadow-sm border border-gray-100 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-[#F1FAEE] to-transparent rounded-full -mr-32 -mt-32 pointer-events-none" />
+          <div className="absolute top-0 right-0 w-64 h-64 bg-linear-to-br from-[#F1FAEE] to-transparent rounded-full -mr-32 -mt-32 pointer-events-none" />
 
           <div className="mb-8 md:mb-0 max-w-xl relative z-10">
             <h2 className="text-2xl md:text-3xl font-bold text-[#1D3557] mb-3">
