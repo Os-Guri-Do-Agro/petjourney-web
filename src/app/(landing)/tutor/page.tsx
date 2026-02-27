@@ -1,5 +1,5 @@
 'use client'
-import { FileText, Syringe, Bell, BookOpen, Dog, Pill, Heart, Shield, Clock, Smartphone } from 'lucide-react'
+import { FileText, Syringe, Bell, BookOpen, Dog, Pill, Heart, Shield, Clock, Smartphone, Cat } from 'lucide-react'
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -105,9 +105,9 @@ export default function TutorScreen() {
             descricao: 'Faça upload de exames, laudos e prescrições médicas. Tenha tudo documentado e facilmente acessível.'
         },
         {
-            icon: Bell,
-            titulo: 'Lembretes Automáticos',
-            descricao: 'Receba notificações sobre vacinas, medicamentos e consultas. Nunca mais esqueça um compromisso importante.'
+            icon: Cat,
+            titulo: 'Multi-espécies',
+            descricao: 'Organize a saúde de cães, gatos e outros animais como coelhos hamsters, tartarugas e mais.'
         },
         {
             icon: BookOpen,
@@ -134,11 +134,6 @@ export default function TutorScreen() {
         },
         {
             numero: '3',
-            titulo: 'Configure Lembretes',
-            descricao: 'Ative notificações para vacinas, medicamentos e consultas veterinárias.'
-        },
-        {
-            numero: '4',
             titulo: 'Acompanhe a Saúde',
             descricao: 'Monitore a saúde do seu pet e mantenha tudo atualizado em tempo real.'
         }
@@ -173,10 +168,10 @@ export default function TutorScreen() {
         <main className="w-full max-w-[100vw] overflow-x-hidden">
             <section className="w-full relative min-h-[60vh] flex items-center bg-cover bg-center overflow-hidden" style={{ backgroundImage: `url(${tutorHeaderImg.src})` }}>
                 <div className="absolute inset-0 bg-black/30 md:bg-transparent"></div>
-                <div className="relative z-10 w-full px-5 md:px-20 lg:px-70 pt-32 pb-20">
+                <div className="relative z-10 w-full px-5 md:px-20 lg:px-20 xl:px-40 2xl:px-70pt-32 pb-20">
                     <div ref={heroRef} className="text-white space-y-6 max-w-4xl">
                         <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight">
-                            Guia completo para tutores
+                            Guia para tutores
                         </h1>
                         <p className="text-lg md:text-xl text-[#FAF9F6] max-w-2xl">
                         Em breve, uma plataforma segura e inteligente
@@ -192,7 +187,7 @@ export default function TutorScreen() {
             </section>
 
             <section className="py-20 bg-[#FAF9F6]">
-                <div className="px-5 md:px-20 lg:px-70">
+                <div className="px-5 md:px-20 lg:px-20 xl:px-40 2xl:px-70lg:px-70">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl md:text-4xl font-bold text-[#1D3557] mb-4">
                             Funcionalidades principais
@@ -230,7 +225,7 @@ export default function TutorScreen() {
             </section>
 
             <section className="w-full py-20 bg-[#FAF9F6] rounded-tl-[100px] md:rounded-tl-[500px]">
-                <div className="px-5 md:px-20 lg:px-70">
+                <div className="px-5 md:px-20 lg:px-20 xl:px-40 2xl:px-70lg:px-70">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl md:text-4xl font-bold text-[#1D3557] mb-4">
                             Como começar
@@ -265,7 +260,7 @@ export default function TutorScreen() {
             </section>
 
             <section className="py-20 bg-[#FAF9F6]">
-                <div className="px-5 md:px-20 lg:px-70">
+                <div className="px-5 md:px-20 lg:px-20 xl:px-40 2xl:px-70lg:px-70">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl md:text-4xl font-bold text-[#1D3557] mb-4">
                             Por que usar a PetJourney?
@@ -302,15 +297,12 @@ export default function TutorScreen() {
 
             <section className="w-full py-20 bg-cover bg-center relative overflow-hidden" style={{ backgroundImage: `url(${tutorFooterImg.src})` }}>
                 <div className="absolute inset-0 bg-black/40 md:bg-transparent"></div>
-                <div ref={ctaRef} className="relative z-10 px-5 md:px-20 lg:px-70 text-center text-white">
+                <div ref={ctaRef} className="relative z-10 px-5 md:px-20 lg:px-20 xl:px-40 2xl:px-70text-center text-white">
                     <h2 className="text-3xl md:text-4xl font-bold mb-6">
                     Conheça também sobre as soluções para clínicas
                     veterinárias
                     </h2>
                     <div className=" flex flex-col gap-2">
-                        <p className="text-xl max-w-2xl mx-auto">
-                            Em breve, uma plataforma segura e inteligente.
-                        </p>
                         <span className='text-md mb-10'> A PetJourney está em desenvolvimento, inscreva-se e seja o primeiro a ter acesso a plataforma.</span>
                     </div>
 

@@ -163,7 +163,7 @@ export default function Artigos() {
     return (
         <>
             <section className="min-h-[60vh] flex items-center bg-cover bg-top" style={{ backgroundImage: `url(${artigosHeaderImg.src})` }}>
-                <div className="w-full px-5 md:px-20 lg:px-70 pt-32 pb-20">
+                <div className="w-full px-5 md:px-20 lg:px-20 xl:px-40 2xl:px-70pt-32 pb-20">
                     <div ref={heroRef} className="text-white space-y-6 max-w-4xl">
                         <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight">
                             Artigos
@@ -176,7 +176,7 @@ export default function Artigos() {
             </section>
 
             <section className="py-20 bg-[#FAF9F6]">
-                <div className="px-5 md:px-20 lg:px-70">
+                <div className="px-5 md:px-20 lg:px-20 xl:px-40 2xl:px-70lg:px-70">
                     <div ref={textRef} className="text-center mb-16">
                         <h2 className="text-3xl md:text-4xl font-bold text-[#1D3557] mb-4">
                             Na PetJourney, acreditamos que cada pet merece <br /> uma vida longa e cheia de cuidado.
@@ -191,7 +191,7 @@ de cuidado animal.
             </section>
 
             <section className="py-20 bg-[#FAF9F6]">
-                <div className="px-5 md:px-20 lg:px-70">
+                <div className="px-5 md:px-20 lg:px-20 xl:px-40 2xl:px-70lg:px-70">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl md:text-4xl font-bold text-[#1D3557] mb-4">
                             Últimos Posts
@@ -252,7 +252,7 @@ de cuidado animal.
             </section>
 
             <section className="py-20 bg-[#FAF9F6]">
-                <div className="px-5 md:px-20 lg:px-70">
+                <div className="px-5 md:px-20 lg:px-20 xl:px-40 2xl:px-70lg:px-70">
                 <div className="flex flex-col lg:flex-row gap-8">
                     <div className="lg:w-3/4">
                         <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
@@ -365,7 +365,7 @@ de cuidado animal.
             </section>
 
             <section className="py-20 bg-cover bg-center" style={{ backgroundImage: `url(${artigosFooterImg.src})` }}>
-                <div ref={finalRef} className="px-5 md:px-20 lg:px-70 text-center text-white">
+                <div ref={finalRef} className="px-5 md:px-20 lg:px-20 xl:px-40 2xl:px-70text-center text-white">
                     <h2 className="text-3xl md:text-4xl font-bold mb-6">
                     Cada etapa importa, e a PetJourney acompanha você em cada uma delas.
                     </h2>

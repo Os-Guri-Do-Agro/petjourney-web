@@ -188,8 +188,8 @@ export default function ListaEspera() {
                                         <DialogTitle className="text-2xl font-bold text-[#1D3557] mb-2">
                                             Você está na lista!
                                         </DialogTitle>
-                                        <p className="text-[#457B9D] text-lg">
-                                            Siga a PetJourney nas redes sociais e fique por dentro de todas as novidades!
+                                        <p className="text-[#457B9D] text-lg text-center">
+                                            Siga a PetJourney nas redes sociais e <br /> fique por dentro de todas as novidades!
                                         </p>
                                     </div>
 
@@ -264,9 +264,10 @@ export default function ListaEspera() {
                         </Link>
 
                     </div>
-                    <h1 className="text-5xl font-bold text-[#FAF9F6] mb-6">Bem-vindo ao PetJourney</h1>
-                    <p className="text-[#FAF9F6]/90 text-xl max-w-md leading-relaxed">
-                        O histórico completo do seu pet, acessível quando você precisar. Organize vacinas, exames e prescrições em um só lugar.
+                    <h1 className="text-5xl font-bold text-[#FAF9F6] mb-6">Seja um dos primeiros a experimentar a PetJourney!</h1>
+                    <p className="text-[#FAF9F6]/90 text-xl leading-relaxed">
+                        Estamos finalizando os últimos detalhes da plataforma. <br />
+                        Cadastre-se para ser avisado no lançamento oficial.
                     </p>
                 </div>
             </div>

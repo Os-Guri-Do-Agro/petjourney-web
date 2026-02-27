@@ -179,7 +179,7 @@ export default function ClinicaScreen() {
     return (
         <>
             <section className="min-h-[60vh] flex items-center bg-cover bg-center" style={{ backgroundImage: `url(${clinicaHeaderImg.src})` }}>
-                <div className="w-full px-5 md:px-20 lg:px-70 pt-32 pb-20">
+                <div className="w-full px-5 md:px-20 lg:px-20 xl:px-40 2xl:px-70pt-32 pb-20">
                     <div ref={heroRef} className="text-white space-y-6 max-w-4xl">
                         <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight">
                             Soluções para Clínicas Veterinárias
@@ -195,7 +195,7 @@ export default function ClinicaScreen() {
             </section>
 
             <section className="w-full py-24 bg-[#FAF9F6]">
-                <div className="px-5 md:px-30 lg:px-70">
+                <div className="px-5 md:px-20 lg:px-20 xl:px-40 2xl:px-70lg:px-70">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl md:text-5xl font-bold text-[#1D3557] mb-6">
                             White Label: Sua Marca, Nossa Tecnologia
@@ -268,7 +268,7 @@ export default function ClinicaScreen() {
             </section>
 
             <section className="w-full pt-24 bg-[#FAF9F6]">
-                <div className="px-5 md:px-30 lg:px-70">
+                <div className="px-5 md:px-20 lg:px-20 xl:px-40 2xl:px-70lg:px-70">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl md:text-5xl font-bold text-[#1D3557] mb-6">
                             RPM: Monitoramento Remoto de Pacientes
@@ -348,7 +348,7 @@ export default function ClinicaScreen() {
             </section>
 
             <section className="w-full py-24 bg-[#FAF9F6]">
-                <div className="px-5 md:px-30 lg:px-70">
+                <div className="px-5 md:px-20 lg:px-20 xl:px-40 2xl:px-70lg:px-70">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl md:text-5xl font-bold text-[#1D3557] mb-6">
                             Ferramentas para Veterinários
@@ -430,7 +430,7 @@ export default function ClinicaScreen() {
             </section>
 
             <section className="w-full py-24 bg-[#FAF9F6]">
-                <div className="px-5 md:px-30 lg:px-70">
+                <div className="px-5 md:px-20 lg:px-20 xl:px-40 2xl:px-70lg:px-70">
                     <div className="text-center mb-12">
                         <h2 className="text-3xl md:text-5xl font-bold text-[#1D3557] mb-6">
                             Benefícios para sua clínica
@@ -478,7 +478,7 @@ export default function ClinicaScreen() {
             </section>
 
             <section className="py-20 bg-cover bg-center" style={{ backgroundImage: `url(${clinicaFooterImg.src})` }}>
-                <div ref={ctaRef} className="px-5 md:px-20 lg:px-70 text-center text-white">
+                <div ref={ctaRef} className="px-5 md:px-20 lg:px-20 xl:px-40 2xl:px-70text-center text-white">
                     <h2 className="text-3xl md:text-4xl font-bold mb-6">
                         Transforme o atendimento da sua clínica
                     </h2>

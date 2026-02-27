@@ -23,7 +23,7 @@ import tutor from "../../../assets/home/tutor.jpg";
 import coelho from "../../../assets/home/coelho.jpg";
 import { marketingService } from "@/service/marketing/marketing-server";
 import toast, { Toaster } from "react-hot-toast";
-import clinicaFooterImg from "@/assets/clinica/clinica-footer.jpg";
+import clinicaFooterImg from "@/assets/contato/footer.jpg";
 import { useRouter } from 'next/navigation'
 import { event } from '@/lib/gtag'
 if (typeof window !== "undefined") {
@@ -243,7 +243,7 @@ export default function Contato() {
       </section>
 
       {/* Form Section */}
-      <section className="px-5 md:px-20 lg:px-30 py-20 relative z-20">
+      <section className="px-5 md:px-20 lg:px-20 xl:px-40 2xl:px-70 py-20 relative z-20 mt-20">
         <div className="grid md:grid-cols-2 gap-10 items-center">
           {/* Form */}
           <div ref={formRef} className="bg-white p-8 rounded-2xl shadow-xl">
@@ -397,7 +397,7 @@ export default function Contato() {
         </div>
 
         {/* Socials & Direct Contact */}
-        <div className="mt-16 flex flex-col md:flex-row items-center justify-between bg-white px-8 py-10 rounded-2xl shadow-sm border border-gray-100 relative overflow-hidden">
+        <div className="mt-16 flex flex-col md:flex-row items-center mb-20 justify-between bg-white px-8 py-10 rounded-2xl shadow-sm border border-gray-100 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-linear-to-br from-[#F1FAEE] to-transparent rounded-full -mr-32 -mt-32 pointer-events-none" />
 
           <div className="mb-8 md:mb-0 max-w-xl relative z-10">
@@ -405,13 +405,13 @@ export default function Contato() {
               Prefere outro canal?
             </h2>
             <p className="text-gray-600 text-lg">
-              Fale diretamente conosco através do email
+              Fale diretamente conosco através do email <br />
               <a
                 href="mailto:atendimento@petjourney.health"
                 className="text-[#457B9D] font-bold mx-1 hover:underline transition-all"
               >
                 atendimento@petjourney.health
-              </a>
+              </a> <br />
               ou acompanhe nossa jornada nas redes sociais.
             </p>
           </div>
@@ -473,12 +473,12 @@ export default function Contato() {
       >
         <div
           ref={ctaRef}
-          className="px-5 md:px-20 lg:px-70 text-center text-white"
+          className="px-5 md:px-20 lg:px-20 xl:px-40 2xl:px-70text-center text-white"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">
            Faça parte da jornada desde o início
           </h2>
-          <p className="text-xl mb-10 max-w-2xl mx-auto">
+          <p className="text-xl mb-10 mx-auto text-center">
             Seja avisado em primeira mão quando a PetJourney estiver disponível.
           </p>
           <div className="flex flex-col md:flex-row gap-4 justify-center">

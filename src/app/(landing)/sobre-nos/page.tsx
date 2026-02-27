@@ -23,7 +23,7 @@ import { event } from "@/lib/gtag";
 gsap.registerPlugin(ScrollTrigger);
 
 import manifestoImage from "@/assets/about/dog-abracando-human.png";
-import ctaImage from "@/assets/about/ctaImagem.jpg";
+import ctaImage from "@/assets/about/about-footer.jpg";
 
 const MANIFESTO_IMG = manifestoImage.src;
 const CTA_IMG = ctaImage.src
@@ -110,7 +110,7 @@ const jornada = [
   {
     ano: "2025",
     DotIcon: Lightbulb,
-    titulo: "A ideia ganha forma",
+    titulo: "A Ideia Ganha Forma",
     desc: "A PETJourney nasce da percepção de um problema silencioso: a saúde dos pets está fragmentada. Começamos a estruturar uma solução baseada em organização, continuidade e responsabilidade digital.",
     cor: "from-violet-500 to-purple-600",
   },
@@ -256,7 +256,7 @@ export default function SobreNos() {
   return (
     <>
       {/* ── HERO ─────────────────────────────────────────────── */}
-      <section className="h-[60vh] bg-[url('../assets/about/about-cachorro-not.jpg')] bg-no-repeat bg-center bg-cover">
+      <section className="h-[60vh] bg-[url('../assets/about/aboutt-header.jpg')] bg-no-repeat bg-center bg-cover">
         <div className="relative z-10 w-full px-5 md:px-20 lg:px-20 xl:px-40 2xl:px-70 pt-24">
           <div ref={heroRef} className=" text-white space-y-6 w-full md:mt-20">
             <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold leading-tight text-[#FAF9F6]">
@@ -303,7 +303,7 @@ um ambiente digital seguro e acessível.
 
       {/* ── NOSSOS VALORES ───────────────────────────────────── */}
       <section id="valores" className="w-full py-24 bg-[#FAF9F6]">
-        <div className="px-5 md:px-20 lg:px-70">
+        <div className="px-5 md:px-16 lg:px-20 xl:px-40 2xl:px-70">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-bold text-[#1D3557] mb-6">
               Nossos Valores
@@ -364,12 +364,13 @@ código que desenvolvemos.
 
           <div
             ref={manifestoRef}
-            className="flex items-center px-5 md:px-16 lg:px-20 py-16 order-2 md:order-1 bg-[#F1FAEE]"
+            className="flex items-center px-5 md:px-16 lg:px-20 xl:px-40 2xl:px-70 py-16 order-2 md:order-1 bg-[#F1FAEE]"
           >
             <div className="w-full space-y-6 max-w-xl">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#1D3557]">
                 Nosso Manifesto
               </h2>
+              <p className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto">Nossa missão é dar tranquilidade para quem ama e estrutura para quem cuida.</p>
               <div className="space-y-5">
                 {[
                   "A saúde dos pets não pode depender de lembranças soltas ou documentos espalhados.",
@@ -422,9 +423,9 @@ código que desenvolvemos.
 
         <div className="relative z-10 max-w-4xl mx-auto space-y-4">
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-light text-white leading-relaxed">
-            Tecnologia criada por pessoas, <br className="md:hidden" />
-            para cuidar de quem{" "}
-            <span className="font-bold text-[#FFEDD8]">você mais ama</span>.
+            Tecnologia criada por pessoas 
+            para <br /> cuidar de quem
+            <span className="font-bold text-[#FFEDD8]"> você mais ama</span>.
           </h2>
         </div>
       </section>
@@ -435,7 +436,7 @@ código que desenvolvemos.
       {/* ── CTA FINAL ────────────────────────────────────────── */}
       {/* Troque o src pela sua foto de footer quando tiver */}
       <section
-        className="py-20 bg-cover bg-center relative"
+        className="py-20 bg-cover bg-left relative"
         style={{ backgroundImage: `url(${CTA_IMG})` }}
       >
         <div
@@ -443,14 +444,12 @@ código que desenvolvemos.
           className="relative z-10 px-5 md:px-20 lg:px-70 text-center text-white"
         >
           <h2 className="mb-6 flex flex-col items-center justify-center gap-2 drop-shadow-md">
-            <span className="text-2xl md:text-3xl font-medium text-[#FFEDD8] italic">
-              Não faltava amor.
-            </span>
+
             <span className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white">
-              Faltava estrutura.
+              Não faltava amor, faltava estrutura.
             </span>
           </h2>
-          <p className="text-xl mb-10 max-w-2xl mx-auto text-white/85">
+          <p className="text-xl mb-10  mx-auto text-white/85">
            Entre na lista de espera e organize o histórico do seu pet em um único lugar
           </p>
           <div className="flex flex-col md:flex-row gap-4 justify-center">

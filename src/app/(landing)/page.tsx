@@ -276,13 +276,12 @@ export default function Home() {
         <div className="relative z-10 w-full px-5 md:px-20 lg:px-20 xl:px-40 2xl:px-70 pt-24">
           <div ref={heroRef} className=" text-white space-y-6 w-full md:mt-20">
             <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold leading-tight text-[#FAF9F6]">
-              O histórico completo do seu pet, <br />
-              acessível quando você precisar
+              O histórico completo do seu pet. <br />
+              Pronto quando você precisar 
             </h1>
 
             <p className="text-[#FAF9F6] text-xl max-w-lg">
-              Vacinas, exames, prescrições e agendamentos organizados em um só
-              lugar
+              Vacinas, exames e prescrições organizados em um único ambiente digital.
             </p>
 
             <div className=" flex gap-5">
@@ -355,7 +354,7 @@ export default function Home() {
         <div className="w-full flex flex-col lg:flex-row gap-16">
           <div ref={marketplaceRef} className="lg:w-1/2 space-y-6">
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#1D3557] leading-snug">
-              Tudo conectado em  <br /> um só lugar
+              A solução: PetJourney <br /> Organização estruturada da saúde do seu pet  
             </h2>
 
             <div className="text-[#457B9D] text-lg leading-relaxed space-y-2">

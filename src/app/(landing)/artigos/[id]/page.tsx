@@ -142,7 +142,7 @@ export default function ArtigoPage() {
                     />
                     <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent" />
 
-                    <div className="absolute bottom-0 left-0 right-0 px-5 md:px-20 lg:px-30 pb-12">
+                    <div className="absolute bottom-0 left-0 right-0 px-5 md:px-20 lg:px-20 xl:px-40 2xl:px-70pb-12">
                         <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
                             {artigo?.titulo}
                         </h1>

@@ -154,7 +154,7 @@ export default function Servicos() {
 
     return (
         <>
-            <section className="w-full bg-[#1D3557] py-40 px-5 md:px-20 lg:px-30">
+            <section className="w-full bg-[#1D3557] py-40 px-5 md:px-20 lg:px-20 xl:px-40 2xl:px-70lg:px-30">
                 <div ref={heroRef} className="text-center text-white space-y-6">
                     <h1 className="text-4xl md:text-6xl font-bold leading-tight">
                         Serviços
@@ -163,7 +163,7 @@ export default function Servicos() {
             </section>
 
             <section className="w-full py-24 bg-linear-to-b from-[#F1FAEE] to-[#FAF9F6]">
-                <div className="px-5 md:px-20 lg:px-30 text-center space-y-10">
+                <div className="px-5 md:px-20 lg:px-20 xl:px-40 2xl:px-70text-center space-y-10">
                     <div ref={textRef}>
                         <h2 className="text-3xl md:text-5xl font-bold text-[#1D3557]">
                             Antes da tecnologia, existe amor.
@@ -206,7 +206,7 @@ export default function Servicos() {
             </section>
 
             <section className="w-full py-24 bg-[#FAF9F6]">
-                <div className="px-5 md:px-20 lg:px-30 space-y-12">
+                <div className="px-5 md:px-20 lg:px-20 xl:px-40 2xl:px-70space-y-12">
                     <div ref={connectTitleRef} className="text-center space-y-6">
                         <h2 className="text-3xl md:text-5xl font-bold text-[#1D3557]">
                             Conectar é reduzir fricção no cuidado.
@@ -245,7 +245,7 @@ export default function Servicos() {
             </section>
 
             <section className="w-full py-24 bg-[#F1FAEE]">
-                <div className="px-5 md:px-20 lg:px-30 text-center space-y-12">
+                <div className="px-5 md:px-20 lg:px-20 xl:px-40 2xl:px-70text-center space-y-12">
                     <h2 ref={careRef} className="text-3xl md:text-5xl font-bold text-[#1D3557]">
                         Cuidar é prevenir, acompanhar e proteger.
                     </h2>

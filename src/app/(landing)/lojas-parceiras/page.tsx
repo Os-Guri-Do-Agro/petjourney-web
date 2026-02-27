@@ -177,7 +177,7 @@ export default function Marketplace() {
 
     return (
         <>
-            <section className="w-full bg-[#1D3557] py-40 px-5 md:px-20 lg:px-30">
+            <section className="w-full bg-[#1D3557] py-40 px-5 md:px-20 lg:px-20 xl:px-40 2xl:px-70lg:px-30">
                 <div ref={heroRef} className="text-center text-white">
                     <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold">
                         Lojas Parceiras
@@ -186,7 +186,7 @@ export default function Marketplace() {
             </section>
 
             <section className="w-full py-20 bg-linear-to-b from-[#F1FAEE] to-[#FAF9F6]">
-                <div className="px-5 md:px-20 lg:px-30">
+                <div className="px-5 md:px-20 lg:px-20 xl:px-40 2xl:px-70lg:px-30">
                     <div ref={textRef} className="text-center">
                         <h2 className="text-2xl md:text-4xl font-bold leading-relaxed text-[#1D3557] mb-4">
                             Tudo que seu pet precisa em um só lugar
@@ -196,7 +196,7 @@ export default function Marketplace() {
             </section>
 
             <section className="w-full py-16 bg-[#FAF9F6]">
-                <div className="px-5 md:px-20 lg:px-30">
+                <div className="px-5 md:px-20 lg:px-20 xl:px-40 2xl:px-70lg:px-30">
                     <div ref={missionRef} className="space-y-12">
                         <div className="relative">
                             <div className="absolute top-0 bottom-0 w-1 bg-linear-to-b from-[#457B9D] to-[#1D3557] rounded-full"></div>
@@ -224,7 +224,7 @@ export default function Marketplace() {
 
 
             <section ref={storesRef} className="w-full py-20 bg-[#FAF9F6]">
-                <div className="px-5 md:px-20 lg:px-30">
+                <div className="px-5 md:px-20 lg:px-20 xl:px-40 2xl:px-70lg:px-30">
                     <h2 className="text-3xl md:text-4xl font-bold text-[#1D3557] text-center mb-12">Nossas Lojas</h2>
 
                     <div className="mb-8 space-y-4">

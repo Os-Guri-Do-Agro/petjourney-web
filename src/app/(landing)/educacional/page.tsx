@@ -133,7 +133,7 @@ export default function Educacional() {
 
     return (
         <>
-            <section className="w-full bg-[#1D3557] py-40 px-5 md:px-20 lg:px-30">
+            <section className="w-full bg-[#1D3557] py-40 px-5 md:px-20 lg:px-20 xl:px-40 2xl:px-70lg:px-30">
                 <div ref={heroRef} className="text-center text-white">
                     <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold">
                         Educacional
@@ -142,7 +142,7 @@ export default function Educacional() {
             </section>
 
             <section className="w-full py-20 bg-linear-to-b from-[#F1FAEE] to-[#FAF9F6]">
-                <div className="px-5 md:px-20 lg:px-30">
+                <div className="px-5 md:px-20 lg:px-20 xl:px-40 2xl:px-70lg:px-30">
                     <div ref={textRef} className="text-center">
                         <h2 className="text-2xl md:text-4xl font-bold leading-relaxed text-[#1D3557] mb-4">
                             Conhecimento que transforma a vida dos pets, e dos humanos também.
@@ -152,7 +152,7 @@ export default function Educacional() {
             </section>
 
             <section className="w-full py-16 bg-[#FAF9F6]">
-                <div className="px-5 md:px-20 lg:px-30">
+                <div className="px-5 md:px-20 lg:px-20 xl:px-40 2xl:px-70lg:px-30">
                     <div ref={missionRef} className="relative">
                         <div className="absolute top-0 bottom-0 w-1 bg-linear-to-b from-[#457B9D] to-[#1D3557] rounded-full"></div>
                         <p className="text-center text-gray-700 text-lg md:text-xl leading-relaxed pl-6">
@@ -162,7 +162,7 @@ export default function Educacional() {
                 </div>
             </section>
 
-            <section className="w-full px-5 md:px-20 lg:px-30 py-10 bg-[#FAF9F6]">
+            <section className="w-full px-5 md:px-20 lg:px-20 xl:px-40 2xl:px-70py-10 bg-[#FAF9F6]">
 
                 <div className="flex flex-col lg:flex-row gap-8">
 

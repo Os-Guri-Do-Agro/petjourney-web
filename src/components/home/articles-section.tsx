@@ -85,7 +85,7 @@ export default function ArticlesSection() {
             ref={sectionRef}
             className="w-full pb-10 bg-[#FAF9F6]"
         >
-            <div className="w-full px-5 md:px-30 lg:px-70">
+            <div className="w-full px-5 md:px-20 lg:px-20 xl:px-40 2xl:px-70lg:px-70">
 
                 <div ref={titleRef} className="text-center mb-16 space-y-4">
                     <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#1D3557] leading-snug">
