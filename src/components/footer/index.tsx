@@ -3,7 +3,7 @@
 import { Target } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import { FaInstagram, FaFacebook } from "react-icons/fa"
+import { FaInstagram, FaFacebook, FaLinkedin } from "react-icons/fa"
 import { marketingService } from "@/service/marketing/marketing-server"
 import { useState } from "react"
 import toast, { Toaster } from 'react-hot-toast'
@@ -89,6 +89,11 @@ export function Footer() {
                                 <div className="w-10 h-10 rounded-full border-2 border-white/30 flex items-center justify-center hover:bg-white hover:text-[#243F63] hover:border-white transition-all duration-300 cursor-pointer">
                                     <Link href={'https://www.facebook.com/petjourney.health'} target="_blank">
                                         <FaFacebook />
+                                    </Link>
+                                </div>
+                                                                <div className="w-10 h-10 rounded-full border-2 border-white/30 flex items-center justify-center hover:bg-white hover:text-[#243F63] hover:border-white transition-all duration-300 cursor-pointer">
+                                    <Link href={'https://www.linkedin.com/company/petjourney'} target="_blank">
+                                        <FaLinkedin />
                                     </Link>
                                 </div>
                             </div>

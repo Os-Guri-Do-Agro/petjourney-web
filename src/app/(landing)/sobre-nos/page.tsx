@@ -20,6 +20,11 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useRouter } from "next/navigation";
 import { event } from "@/lib/gtag";
+import Emilio from "@/assets/about/emilio.jpeg";
+import Lucas from "@/assets/about/Lucas - black shirt.jpeg";
+import Nicolas from "@/assets/about/nini.jpeg";
+import Luis from "@/assets/about/dark.png";
+import Leticia from "@/assets/about/lele.png";
 gsap.registerPlugin(ScrollTrigger);
 
 import manifestoImage from "@/assets/about/dog-abracando-human.png";
@@ -30,35 +35,40 @@ const CTA_IMG = ctaImage.src
 // Troque cada URL pela foto real do membro quando tiver
 const TEAM_MEMBERS = [
   {
-    nome: "Nome Completo",
-    cargo: "Cargo",
-    src: "https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=400&q=80",
+    nome: "Emilio Machado",
+    cargo: "Fundador",
+    descricao: "É apaixonado por tecnologia aplicada à saúde e por soluções que transformam organização em tranquilidade. Acredita que cuidado também é estrutura, e que organizar informações é uma forma silenciosa de proteger quem amamos. Trabalha continuamente para desenvolver ferramentas que proporcionem segurança, autonomia e clareza tanto para tutores quanto para profissionais. É tutor do Watson, um mini-goldendoodle que acompanha boa parte das reuniões e da rotina no escritório — e por lá, muitos já os chamam de “Os Watsons”.",
+    src: Emilio,
   },
   {
-    nome: "Nome Completo",
-    cargo: "Cargo",
-    src: "https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=400&q=80",
+    nome: "Lucas Machado",
+    cargo: "Desenvolvimento de Negócios",
+    descricao: "Conecta estratégia e crescimento. Atua na construção de parcerias que fortaleçam a rede de cuidado ao redor do pet e ampliem o alcance da PetJourney. Divide com Emilio a responsabilidade diária pelo Watson, experiência que reforça, na prática, a importância da organização e da continuidade no cuidado. Acredita que uma infraestrutura sólida é o que gera impacto consistente e de longo prazo.",
+    src: Lucas,
   },
   {
-    nome: "Nome Completo",
-    cargo: "Cargo",
-    src: "https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=400&q=80",
+    nome: "Nicolas Castela",
+    cargo: "Produto & Tecnologia",
+    descricao: "Transforma ideias em estrutura. Cuida para que cada funcionalidade tenha propósito, simplicidade e impacto real na rotina do tutor. Acredita que a tecnologia deve ser invisível — funcionando bem o suficiente para que o usuário perceba o valor, e não a complexidade. É tutor da Lily, sua gatinha cheia de personalidade, que reforça diariamente sua paixão por pets e a importância de construir soluções que realmente façam sentido na vida real.",
+    src: Nicolas,
   },
   {
-    nome: "Nome Completo",
-    cargo: "Cargo",
-    src: "https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=400&q=80",
+    nome: "Luís Gustavo",
+    cargo: "Operações & Estrutura",
+    descricao: "Garante que o que prometemos funcione na prática. Cuida para que os processos sejam organizados, sustentáveis e escaláveis, assegurando que o crescimento aconteça com consistência. Acredita que bastidores bem estruturados são o que sustentam experiências simples e fluidas para o usuário. Apaixonado por gatos, sonha em ter um de cada cor — porque acredita que cada pet tem sua própria personalidade.",
+    src: Luis,
   },
   {
-    nome: "Nome Completo",
-    cargo: "Cargo",
-    src: "https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=400&q=80",
+    nome: "Letícia Porfírio",
+    cargo: "Marketing & Experiência do Usuário",
+    descricao: "Constrói a voz da PetJourney. Trabalha para que cada mensagem seja clara, acolhedora e transparente. Acredita que comunicação também é cuidado, e que a confiança começa na forma como falamos com as pessoas. É tutora do Minguinho, seu gato laranja inseparável, e das cadelas Lili e Minnie, que a acompanham em boa parte da rotina de trabalho. Costuma ser chamada de “mãe de pet”, porque seu cuidado é, de fato, o de uma mãe.",
+    src: Leticia,
   },
-  {
-    nome: "Nome Completo",
-    cargo: "Cargo",
-    src: "https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=400&q=80",
-  },
+  // {
+  //   nome: "Marcel",
+  //   cargo: "Cargo",
+  //   src: "https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=400&q=80",
+  // },
 ];
 
 const valores = [
@@ -523,10 +533,9 @@ function TeamCarousel() {
           Nossa Equipe
         </h2>
         <p className="text-lg md:text-xl text-gray-700 max-w-2xl mx-auto">
-          Conheça as pessoas que tornam a Pet Journey possível.
+          Conheça as pessoas que tornam a PetJourney possível.
         </p>
         <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-          Somos pessoas reais. <br />
           Alguns de nós somos tutores. <br />
           Outros descobriram trabalhando nisso, o quanto o cuidado estruturado faz diferença. <br />
           O que nos une é a convicção de que saúde pet merece organização, respeito e continuidade.
@@ -539,7 +548,7 @@ function TeamCarousel() {
         <div className="absolute right-0 top-0 bottom-0 w-24 z-10 bg-linear-to-l from-[#FAF9F6] to-transparent pointer-events-none" />
 
         <div
-          className="flex gap-6 w-max"
+          className="flex gap-6 w-max items-stretch py-2"
           ref={trackRef}
           onMouseEnter={() => tweenRef.current?.pause()}
           onMouseLeave={() => tweenRef.current?.resume()}
@@ -547,26 +556,39 @@ function TeamCarousel() {
           {items.map((m, i) => (
             <div
               key={i}
-              className="w-72 shrink-0 bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#457B9D] hover:-translate-y-2 group"
+              className="w-80 md:w-[720px] md:min-h-[360px] shrink-0 bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#457B9D] hover:-translate-y-2 group flex flex-col md:flex-row"
             >
-              <div className="relative h-64 overflow-hidden">
+              <div className="relative h-64 md:h-auto md:w-[300px] shrink-0 overflow-hidden">
                 <Image
                   src={m.src}
                   alt={m.nome}
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  sizes="288px"
+                  sizes="(max-width: 768px) 320px, 300px"
                   unoptimized
                 />
               </div>
-              <div className="p-6 text-center space-y-2">
-                <h4 className="text-lg font-bold text-[#1D3557]">{m.nome}</h4>
-                <p className="text-[#457B9D] font-semibold text-sm uppercase tracking-wide">
-                  {m.cargo}
-                </p>
-                <p className="text-gray-500 text-sm leading-relaxed">
-                  Breve descrição sobre o membro da equipe.
-                </p>
+              <div className="p-8 flex flex-col flex-1 justify-center">
+                <div className="text-center md:text-left mb-4 shrink-0">
+                  <h4 className="text-2xl font-bold text-[#1D3557]">{m.nome}</h4>
+                  <p className="text-[#457B9D] font-semibold text-[15px] uppercase tracking-wide mt-1">
+                    {m.cargo}
+                  </p>
+                </div>
+                {m.descricao && (
+                  <div 
+                    className="flex-1 overflow-y-auto pr-3 mt-auto" 
+                    style={{ 
+                      maxHeight: '220px',
+                      scrollbarWidth: 'thin',
+                      scrollbarColor: '#cbd5e1 transparent' 
+                    }}
+                  >
+                    <p className="text-gray-600 text-base leading-relaxed text-center md:text-left">
+                      {m.descricao}
+                    </p>
+                  </div>
+                )}
               </div>
             </div>
           ))}
